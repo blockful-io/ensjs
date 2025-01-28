@@ -87,10 +87,7 @@ it('should successfully register a subdomain', async () => {
     duration: 31536000,
     owner: accounts[1],
     secret,
-    resolverAddress: getChainContractAddress({
-      client: publicClient,
-      contract: 'ensPublicResolver',
-    }),
+    resolverAddress: '0x8FADE66B79cC9f707aB26799354482EB93a5B7dD',
   }
   const commitTxParent = await commitName(walletClient, {
     ...paramsParent,
@@ -125,10 +122,7 @@ it('should successfully register a subdomain', async () => {
     duration: 31536000,
     owner: accounts[1],
     secret,
-    resolverAddress: getChainContractAddress({
-      client: publicClient,
-      contract: 'ensPublicResolver',
-    }),
+    resolverAddress: '0x8FADE66B79cC9f707aB26799354482EB93a5B7dD',
   }
 
   const price = await getPrice(publicClient, {

@@ -44,13 +44,13 @@ export type RegisterNameParameters<
 
 export type RegisterNameReturnType = Hash
 
-export const makeFunctionData = <
+export const makeFunctionData = async <
   TChain extends ChainWithEns,
   TAccount extends Account | undefined,
 >(
   wallet: ClientWithAccount<Transport, TChain, TAccount>,
   { value, ...args }: RegisterNameDataParameters,
-): RegisterNameDataReturnType => {
+): Promise<RegisterNameDataReturnType> => {
   const nameType = getNameType(args.name)
 
   switch (nameType) {
@@ -153,7 +153,7 @@ async function registerName<
     ...txArgs
   }: RegisterNameParameters<TChain, TAccount, TChainOverride>,
 ): Promise<RegisterNameReturnType> {
-  const data = makeFunctionData(wallet, {
+  const data = await makeFunctionData(wallet, {
     name,
     owner,
     duration,
