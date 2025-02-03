@@ -8,6 +8,7 @@ import {
   type Address,
   type Hex,
 } from 'viem'
+import { packetToBytes } from 'viem/ens'
 import {
   CampaignReferenceTooLargeError,
   ResolverAddressRequiredError,
@@ -52,12 +53,22 @@ export type CommitmentTuple = [
 
 export type SubdomainRegistrationTuple = [
   node: Hex,
-  label: Hex,
+  label: string,
   owner: Address,
   resolver: Address,
   duration: bigint,
   fuses: number,
   expiry: bigint,
+]
+
+export type OffchainSubdomainRegistrationTuple = [
+  {
+    name: Hex
+    owner: Address
+    duration: bigint
+    secret: Hex
+    extraData: Hex
+  },
 ]
 
 export type RegistrationTuple = [
@@ -184,6 +195,23 @@ export const makeSubdomainRegistrationTuple = (
     0n, // expiry
     0, // fuses
     BigInt(params.duration), // duration
+  ]
+}
+
+export const makeOffchainSubdomainRegistrationTuple = (
+  params: { extraData?: Hex } & Pick<
+    RegistrationParameters,
+    'name' | 'owner' | 'duration' | 'secret'
+  >,
+): OffchainSubdomainRegistrationTuple => {
+  return [
+    {
+      name: toHex(packetToBytes(params.name)),
+      owner: params.owner,
+      duration: BigInt(params.duration),
+      secret: params.secret,
+      extraData: params.extraData || '0x',
+    },
   ]
 }
 

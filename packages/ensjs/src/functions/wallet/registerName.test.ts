@@ -1,4 +1,4 @@
-import type { Address, Hex } from 'viem'
+import { type Address, type Hex } from 'viem'
 import { afterEach, beforeAll, beforeEach, expect, it } from 'vitest'
 import { getChainContractAddress } from '../../contracts/getChainContractAddress.js'
 import { nameWrapperOwnerOfSnippet } from '../../contracts/nameWrapper.js'
@@ -87,7 +87,7 @@ it('should successfully register a subdomain', async () => {
     duration: 31536000,
     owner: accounts[1],
     secret,
-    resolverAddress: '0x8FADE66B79cC9f707aB26799354482EB93a5B7dD',
+    resolverAddress: '0x1c950cDD1A1F3fcc0bE2AD2D9ad5b98770FC86bD',
   }
   const commitTxParent = await commitName(walletClient, {
     ...paramsParent,
@@ -115,14 +115,14 @@ it('should successfully register a subdomain', async () => {
   const ownerParent = await getNameWrapperOwner(paramsParent.name)
   expect(ownerParent).toBe(accounts[1])
 
-  //// Subdomain registration
+  // Subdomain registration
 
   const params: RegistrationParameters = {
     name: 'child.parent.eth',
     duration: 31536000,
     owner: accounts[1],
     secret,
-    resolverAddress: '0x8FADE66B79cC9f707aB26799354482EB93a5B7dD',
+    resolverAddress: '0x1c950cDD1A1F3fcc0bE2AD2D9ad5b98770FC86bD',
   }
 
   const price = await getPrice(publicClient, {
@@ -137,6 +137,35 @@ it('should successfully register a subdomain', async () => {
     value: total,
   })
   expect(tx).toBeTruthy()
+  const receipt = await waitForTransaction(tx)
+  expect(receipt.status).toBe('success')
+
+  const owner = await getNameWrapperOwner(params.name)
+  expect(owner).toBe(accounts[1])
+})
+
+it('should successfully register an offchain subdomain', async () => {
+  const params: RegistrationParameters = {
+    name: 'child.bawbawbaw.eth',
+    duration: 31536000,
+    owner: accounts[1],
+    secret,
+    resolverAddress: '0x1c950cDD1A1F3fcc0bE2AD2D9ad5b98770FC86bD',
+  }
+
+  const price = await getPrice(publicClient, {
+    nameOrNames: params.name,
+    duration: params.duration,
+  })
+  const total = price!.base + price!.premium
+
+  const tx = await registerName(walletClient, {
+    ...params,
+    account: accounts[1],
+    value: total,
+  })
+  expect(tx).toBeTruthy()
+
   const receipt = await waitForTransaction(tx)
   expect(receipt.status).toBe('success')
 
