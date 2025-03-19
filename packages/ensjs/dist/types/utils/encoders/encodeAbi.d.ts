@@ -1,5 +1,5 @@
 import { type Hex } from 'viem';
-import type { Prettify } from '../../types';
+import type { Prettify } from '../../types.js';
 export type AbiEncodeAs = 'json' | 'zlib' | 'cbor' | 'uri';
 type AbiContentType = 1 | 2 | 4 | 8;
 declare const abiEncodeMap: {

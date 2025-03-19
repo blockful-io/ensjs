@@ -1,5 +1,5 @@
 import type { Account, Address, Client, SendTransactionParameters, TransactionRequest } from 'viem';
-import type { ChainWithEns } from './contracts/consts';
+import type { ChainWithEns } from './contracts/consts.js';
 export type Prettify<T> = {
     [K in keyof T]: T[K];
 } & {};

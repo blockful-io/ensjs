@@ -1,7 +1,7 @@
 import { type Account, type Address, type Hash, type Transport } from 'viem';
-import type { ChainWithEns, ClientWithAccount } from '../../contracts/consts';
-import type { Eth2ldNameSpecifier, GetNameType, Prettify, SimpleTransactionRequest, WriteTransactionParameters } from '../../types';
-import { type EncodeChildFusesInputObject } from '../../utils/fuses';
+import type { ChainWithEns, ClientWithAccount } from '../../contracts/consts.js';
+import type { Eth2ldNameSpecifier, GetNameType, Prettify, SimpleTransactionRequest, WriteTransactionParameters } from '../../types.js';
+import { type EncodeChildFusesInputObject } from '../../utils/fuses.js';
 export type WrapNameDataParameters<TName extends string, TNameOption extends GetNameType<TName> = GetNameType<TName>> = {
     /** The name to wrap */
     name: TName;

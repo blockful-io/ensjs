@@ -1,6 +1,6 @@
 import { decode, encode, getCodec, } from '@ensdomains/content-hash';
 import { isHex } from 'viem';
-import { InvalidContentHashError } from '../errors/utils';
+import { InvalidContentHashError } from '../errors/utils.js';
 function matchProtocol(text) {
     return (text.match(/^(ipfs|sia|ipns|bzz|onion|onion3|arweave|ar):\/\/(.*)/) ||
         text.match(/\/(ipfs)\/(.*)/) ||

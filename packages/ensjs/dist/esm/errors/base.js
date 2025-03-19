@@ -1,4 +1,4 @@
-import { getVersion } from './error-utils';
+import { getVersion } from './error-utils.js';
 export class BaseError extends Error {
     constructor(shortMesage, args = {}) {
         super();

@@ -1,4 +1,4 @@
-import { BaseError } from './base';
+import { BaseError } from './base.js';
 export declare class CoinFormatterNotFoundError extends BaseError {
     coinType: string | number;
     name: string;

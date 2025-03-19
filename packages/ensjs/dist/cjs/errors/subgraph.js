@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.InvalidOrderByError = exports.FilterKeyRequiredError = exports.InvalidFilterKeyError = void 0;
-const base_1 = require("./base");
-class InvalidFilterKeyError extends base_1.BaseError {
+const base_js_1 = require("./base.js");
+class InvalidFilterKeyError extends base_js_1.BaseError {
     constructor({ filterKey, supportedFilterKeys, }) {
         super(`Invalid filter key: ${filterKey}`, {
             metaMessages: [
@@ -32,7 +32,7 @@ class InvalidFilterKeyError extends base_1.BaseError {
     }
 }
 exports.InvalidFilterKeyError = InvalidFilterKeyError;
-class FilterKeyRequiredError extends base_1.BaseError {
+class FilterKeyRequiredError extends base_js_1.BaseError {
     constructor({ supportedFilterKeys, details, }) {
         super('At least one filter key is required', {
             metaMessages: [
@@ -56,7 +56,7 @@ class FilterKeyRequiredError extends base_1.BaseError {
     }
 }
 exports.FilterKeyRequiredError = FilterKeyRequiredError;
-class InvalidOrderByError extends base_1.BaseError {
+class InvalidOrderByError extends base_js_1.BaseError {
     constructor({ orderBy, supportedOrderBys, }) {
         super(`Invalid orderBy: ${orderBy}`, {
             metaMessages: [

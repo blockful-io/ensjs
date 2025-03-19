@@ -1,6 +1,6 @@
 import { ens_beautify, ens_emoji, ens_normalize, ens_normalize_fragment, ens_split, ens_tokenize, is_combining_mark, should_escape, } from '@adraffy/ens-normalize';
 import { bytesToHex, concat, hexToBytes, keccak256, stringToBytes } from 'viem';
-import { decodeLabelhash, isEncodedLabelhash } from './labels';
+import { decodeLabelhash, isEncodedLabelhash } from './labels.js';
 const zeros = new Uint8Array(32);
 zeros.fill(0);
 export const normalise = (name) => (name ? ens_normalize(name) : name);

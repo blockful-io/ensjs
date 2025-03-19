@@ -1,5 +1,5 @@
-import type { InputMaybe, Scalars } from './types';
-import type { Name } from './utils';
+import type { InputMaybe, Scalars } from './types.js';
+import type { Name } from './utils.js';
 export type BlockChangedFilter = {
     number_gte: Scalars['Int'];
 };

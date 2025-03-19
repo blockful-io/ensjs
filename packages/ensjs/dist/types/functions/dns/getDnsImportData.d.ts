@@ -1,6 +1,6 @@
 import { type Client, type Hex, type Transport } from 'viem';
-import type { ChainWithEns } from '../../contracts/consts';
-import type { Endpoint } from './types';
+import type { ChainWithEns } from '../../contracts/consts.js';
+import type { Endpoint } from './types.js';
 export type GetDnsImportDataParameters = {
     /** Name to prepare for DNS import */
     name: string;

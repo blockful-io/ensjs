@@ -1,6 +1,6 @@
 import type { Address } from 'viem';
-import type { ClientWithEns } from '../../contracts/consts';
-import { type Name } from './utils';
+import type { ClientWithEns } from '../../contracts/consts.js';
+import { type Name } from './utils.js';
 type GetNamesForAddressOrderBy = 'expiryDate' | 'name' | 'labelName' | 'createdAt';
 type GetNamesForAddressRelation = {
     /** Names with registrant as address (default: true) */

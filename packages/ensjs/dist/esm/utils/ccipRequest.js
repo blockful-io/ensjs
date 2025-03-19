@@ -1,6 +1,6 @@
 import { decodeFunctionData, encodeFunctionResult, isAddressEqual, parseAbi, ccipRequest as viemCcipRequest, } from 'viem';
-import { getChainContractAddress } from '../contracts/getChainContractAddress';
-import { ccipBatchRequest } from './ccipBatchRequest';
+import { getChainContractAddress } from '../contracts/getChainContractAddress.js';
+import { ccipBatchRequest } from './ccipBatchRequest.js';
 const abi = parseAbi([
     'function query((address,string[],bytes)[]) returns (bool[],bytes[])',
 ]);

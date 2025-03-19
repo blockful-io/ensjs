@@ -2,11 +2,11 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.checkSafeUniversalResolverData = void 0;
 const viem_1 = require("viem");
-const getRevertErrorData_1 = require("./getRevertErrorData");
+const getRevertErrorData_js_1 = require("./getRevertErrorData.js");
 const checkSafeUniversalResolverData = (data, { strict, abi, args, functionName, address, docsPath, sender, }) => {
     if (typeof data === 'object') {
         if (!strict) {
-            const errorData = (0, getRevertErrorData_1.getRevertErrorData)(data);
+            const errorData = (0, getRevertErrorData_js_1.getRevertErrorData)(data);
             if (errorData) {
                 try {
                     (0, viem_1.decodeErrorResult)({

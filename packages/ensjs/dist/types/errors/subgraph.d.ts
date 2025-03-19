@@ -1,4 +1,4 @@
-import { BaseError } from './base';
+import { BaseError } from './base.js';
 export declare class InvalidFilterKeyError extends BaseError {
     filterKey: string;
     supportedFilterKeys: readonly string[];

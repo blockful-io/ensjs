@@ -1,9 +1,9 @@
 import { BaseError, decodeFunctionResult, encodeFunctionData, labelhash, } from 'viem';
-import { baseRegistrarAvailableSnippet } from '../../contracts/baseRegistrar';
-import { getChainContractAddress } from '../../contracts/getChainContractAddress';
-import { UnsupportedNameTypeError } from '../../errors/general';
-import { generateFunction, } from '../../utils/generateFunction';
-import { getNameType } from '../../utils/getNameType';
+import { baseRegistrarAvailableSnippet } from '../../contracts/baseRegistrar.js';
+import { getChainContractAddress } from '../../contracts/getChainContractAddress.js';
+import { UnsupportedNameTypeError } from '../../errors/general.js';
+import { generateFunction, } from '../../utils/generateFunction.js';
+import { getNameType } from '../../utils/getNameType.js';
 const encode = (client, { name }) => {
     const labels = name.split('.');
     const nameType = getNameType(name);

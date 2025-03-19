@@ -1,5 +1,5 @@
-import { NoChainError, UnsupportedChainError } from '../errors/contracts';
-import { addresses, subgraphs, supportedChains, } from './consts';
+import { NoChainError, UnsupportedChainError } from '../errors/contracts.js';
+import { addresses, subgraphs, supportedChains, } from './consts.js';
 /**
  * Adds ENS contract addresses to the viem chain
  * @param chain - The viem {@link Chain} object to add the ENS contracts to

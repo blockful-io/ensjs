@@ -1,7 +1,7 @@
 import { type Address, type Hex } from 'viem';
-import type { DateWithValue } from '../../types';
-import { type DecodedFuses } from '../../utils/fuses';
-import type { SubgraphDomain } from './fragments';
+import type { DateWithValue } from '../../types.js';
+import { type DecodedFuses } from '../../utils/fuses.js';
+import type { SubgraphDomain } from './fragments.js';
 export type Name = {
     /** Id of the name, equal to namehash */
     id: Hex;

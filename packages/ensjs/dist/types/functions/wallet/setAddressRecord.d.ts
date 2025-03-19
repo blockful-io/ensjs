@@ -1,6 +1,6 @@
 import type { Account, Address, Hash, Transport } from 'viem';
-import type { ChainWithEns, ClientWithAccount } from '../../contracts/consts';
-import type { Prettify, SimpleTransactionRequest, WriteTransactionParameters } from '../../types';
+import type { ChainWithEns, ClientWithAccount } from '../../contracts/consts.js';
+import type { Prettify, SimpleTransactionRequest, WriteTransactionParameters } from '../../types.js';
 export type SetAddressRecordDataParameters = {
     /** Name to set address record for */
     name: string;

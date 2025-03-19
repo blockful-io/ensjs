@@ -1,58 +1,58 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const viem_1 = require("viem");
-const normalise_1 = require("../../utils/normalise");
-const publicResolver_1 = require("../../contracts/publicResolver");
-const consts_1 = require("../../utils/consts");
-const generateFunction_1 = require("../../utils/generateFunction");
-const normaliseCoinId_1 = require("../../utils/normaliseCoinId");
+const normalise_js_1 = require("../../utils/normalise.js");
+const publicResolver_js_1 = require("../../contracts/publicResolver.js");
+const consts_js_1 = require("../../utils/consts.js");
+const generateFunction_js_1 = require("../../utils/generateFunction.js");
+const normaliseCoinId_js_1 = require("../../utils/normaliseCoinId.js");
 const encode = (_client, { name, coin = 60, bypassFormat }) => {
-    const coder = (0, normaliseCoinId_1.getCoderFromCoin)(coin);
+    const coder = (0, normaliseCoinId_js_1.getCoderFromCoin)(coin);
     if (coder.coinType === 60) {
         return {
-            to: consts_1.EMPTY_ADDRESS,
+            to: consts_js_1.EMPTY_ADDRESS,
             data: (0, viem_1.encodeFunctionData)({
-                abi: publicResolver_1.publicResolverSingleAddrSnippet,
+                abi: publicResolver_js_1.publicResolverSingleAddrSnippet,
                 functionName: 'addr',
-                args: [(0, normalise_1.namehash)(name)],
+                args: [(0, normalise_js_1.namehash)(name)],
             }),
         };
     }
     if (bypassFormat) {
         return {
-            to: consts_1.EMPTY_ADDRESS,
+            to: consts_js_1.EMPTY_ADDRESS,
             data: (0, viem_1.encodeFunctionData)({
-                abi: publicResolver_1.publicResolverMultiAddrSnippet,
+                abi: publicResolver_js_1.publicResolverMultiAddrSnippet,
                 functionName: 'addr',
-                args: [(0, normalise_1.namehash)(name), BigInt(coin)],
+                args: [(0, normalise_js_1.namehash)(name), BigInt(coin)],
             }),
         };
     }
     return {
-        to: consts_1.EMPTY_ADDRESS,
+        to: consts_js_1.EMPTY_ADDRESS,
         data: (0, viem_1.encodeFunctionData)({
-            abi: publicResolver_1.publicResolverMultiAddrSnippet,
+            abi: publicResolver_js_1.publicResolverMultiAddrSnippet,
             functionName: 'addr',
-            args: [(0, normalise_1.namehash)(name), BigInt(coder.coinType)],
+            args: [(0, normalise_js_1.namehash)(name), BigInt(coder.coinType)],
         }),
     };
 };
 const decode = async (_client, data, { coin = 60, strict }) => {
     if (data === '0x')
         return null;
-    const coder = (0, normaliseCoinId_1.getCoderFromCoin)(coin);
+    const coder = (0, normaliseCoinId_js_1.getCoderFromCoin)(coin);
     let response;
     try {
         if (coder.coinType === 60) {
             response = (0, viem_1.decodeFunctionResult)({
-                abi: publicResolver_1.publicResolverSingleAddrSnippet,
+                abi: publicResolver_js_1.publicResolverSingleAddrSnippet,
                 functionName: 'addr',
                 data,
             });
         }
         else {
             response = (0, viem_1.decodeFunctionResult)({
-                abi: publicResolver_1.publicResolverMultiAddrSnippet,
+                abi: publicResolver_js_1.publicResolverMultiAddrSnippet,
                 functionName: 'addr',
                 data,
             });
@@ -75,6 +75,6 @@ const decode = async (_client, data, { coin = 60, strict }) => {
         return null;
     }
 };
-const _getAddr = (0, generateFunction_1.generateFunction)({ encode, decode });
+const _getAddr = (0, generateFunction_js_1.generateFunction)({ encode, decode });
 exports.default = _getAddr;
 //# sourceMappingURL=_getAddr.js.map

@@ -1,6 +1,6 @@
 import { type Hex } from 'viem';
-import type { ClientWithEns } from '../../contracts/consts';
-import type { DecodedAbi, Prettify, SimpleTransactionRequest } from '../../types';
+import type { ClientWithEns } from '../../contracts/consts.js';
+import type { DecodedAbi, Prettify, SimpleTransactionRequest } from '../../types.js';
 export type InternalGetAbiParameters = {
     /** Name to get ABI record for */
     name: string;
@@ -15,6 +15,6 @@ export type InternalGetAbiParameters = {
     strict?: boolean;
 };
 export type InternalGetAbiReturnType = Prettify<DecodedAbi | null>;
-declare const _getAbi: import("../../utils/generateFunction").GeneratedFunction<(_client: ClientWithEns, { name, supportedContentTypes, }: Omit<InternalGetAbiParameters, 'strict'>) => SimpleTransactionRequest, (_client: ClientWithEns, data: Hex, { strict }: Pick<InternalGetAbiParameters, 'strict'>) => Promise<InternalGetAbiReturnType>>;
+declare const _getAbi: import("../../utils/generateFunction.js").GeneratedFunction<(_client: ClientWithEns, { name, supportedContentTypes, }: Omit<InternalGetAbiParameters, 'strict'>) => SimpleTransactionRequest, (_client: ClientWithEns, data: Hex, { strict }: Pick<InternalGetAbiParameters, 'strict'>) => Promise<InternalGetAbiReturnType>>;
 export default _getAbi;
 //# sourceMappingURL=_getAbi.d.ts.map

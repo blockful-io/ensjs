@@ -1,17 +1,17 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const viem_1 = require("viem");
-const publicResolver_1 = require("../../contracts/publicResolver");
-const consts_1 = require("../../utils/consts");
-const generateFunction_1 = require("../../utils/generateFunction");
-const normalise_1 = require("../../utils/normalise");
+const publicResolver_js_1 = require("../../contracts/publicResolver.js");
+const consts_js_1 = require("../../utils/consts.js");
+const generateFunction_js_1 = require("../../utils/generateFunction.js");
+const normalise_js_1 = require("../../utils/normalise.js");
 const encode = (_client, { name, supportedContentTypes = 0xfn, }) => {
     return {
-        to: consts_1.EMPTY_ADDRESS,
+        to: consts_js_1.EMPTY_ADDRESS,
         data: (0, viem_1.encodeFunctionData)({
-            abi: publicResolver_1.publicResolverAbiSnippet,
+            abi: publicResolver_js_1.publicResolverAbiSnippet,
             functionName: 'ABI',
-            args: [(0, normalise_1.namehash)(name), supportedContentTypes],
+            args: [(0, normalise_js_1.namehash)(name), supportedContentTypes],
         }),
     };
 };
@@ -20,7 +20,7 @@ const decode = async (_client, data, { strict }) => {
         return null;
     try {
         const [bigintContentType, encodedAbiData] = (0, viem_1.decodeFunctionResult)({
-            abi: publicResolver_1.publicResolverAbiSnippet,
+            abi: publicResolver_js_1.publicResolverAbiSnippet,
             functionName: 'ABI',
             data,
         });
@@ -38,6 +38,12 @@ const decode = async (_client, data, { strict }) => {
                 abiData = JSON.parse((0, viem_1.hexToString)(encodedAbiData));
                 decoded = true;
                 break;
+            case 2: {
+                const { inflate } = await Promise.resolve().then(() => require('pako/dist/pako_inflate.min.js'));
+                abiData = JSON.parse(inflate((0, viem_1.hexToBytes)(encodedAbiData), { to: 'string' }));
+                decoded = true;
+                break;
+            }
             case 4: {
                 const { cborDecode } = await Promise.resolve().then(() => require('@ensdomains/address-encoder/utils'));
                 abiData = await cborDecode((0, viem_1.hexToBytes)(encodedAbiData).buffer);
@@ -69,6 +75,6 @@ const decode = async (_client, data, { strict }) => {
         return null;
     }
 };
-const _getAbi = (0, generateFunction_1.generateFunction)({ encode, decode });
+const _getAbi = (0, generateFunction_js_1.generateFunction)({ encode, decode });
 exports.default = _getAbi;
 //# sourceMappingURL=_getAbi.js.map

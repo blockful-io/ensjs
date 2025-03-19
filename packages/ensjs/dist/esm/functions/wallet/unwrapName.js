@@ -1,10 +1,10 @@
 import { encodeFunctionData, } from 'viem';
 import { sendTransaction } from 'viem/actions';
-import { getChainContractAddress } from '../../contracts/getChainContractAddress';
-import { nameWrapperUnwrapEth2ldSnippet, nameWrapperUnwrapSnippet, } from '../../contracts/nameWrapper';
-import { AdditionalParameterSpecifiedError, RequiredParameterNotSpecifiedError, } from '../../errors/general';
-import { getNameType } from '../../utils/getNameType';
-import { makeLabelNodeAndParent } from '../../utils/makeLabelNodeAndParent';
+import { getChainContractAddress } from '../../contracts/getChainContractAddress.js';
+import { nameWrapperUnwrapEth2ldSnippet, nameWrapperUnwrapSnippet, } from '../../contracts/nameWrapper.js';
+import { AdditionalParameterSpecifiedError, RequiredParameterNotSpecifiedError, } from '../../errors/general.js';
+import { getNameType } from '../../utils/getNameType.js';
+import { makeLabelNodeAndParent } from '../../utils/makeLabelNodeAndParent.js';
 export const makeFunctionData = (wallet, { name, newOwnerAddress, newRegistrantAddress, }) => {
     const { labelhash, parentNode } = makeLabelNodeAndParent(name);
     const nameWrapperAddress = getChainContractAddress({

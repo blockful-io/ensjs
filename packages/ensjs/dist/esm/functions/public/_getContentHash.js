@@ -1,9 +1,9 @@
 import { decodeFunctionResult, encodeFunctionData } from 'viem';
-import { publicResolverContenthashSnippet } from '../../contracts/publicResolver';
-import { EMPTY_ADDRESS } from '../../utils/consts';
-import { decodeContentHash, } from '../../utils/contentHash';
-import { generateFunction } from '../../utils/generateFunction';
-import { namehash } from '../../utils/normalise';
+import { publicResolverContenthashSnippet } from '../../contracts/publicResolver.js';
+import { EMPTY_ADDRESS } from '../../utils/consts.js';
+import { decodeContentHash, } from '../../utils/contentHash.js';
+import { generateFunction } from '../../utils/generateFunction.js';
+import { namehash } from '../../utils/normalise.js';
 const encode = (_client, { name }) => {
     return {
         to: EMPTY_ADDRESS,

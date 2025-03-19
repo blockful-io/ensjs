@@ -1,5 +1,5 @@
 import { CallExecutionError, decodeErrorResult, getContractError, } from 'viem';
-import { getRevertErrorData } from './getRevertErrorData';
+import { getRevertErrorData } from './getRevertErrorData.js';
 /**
  * Checks if the data returned from a universal resolver is safe to use, or if it is a known revert error
  * @param parameters - {@link CheckSafeUniversalResolverDataParameters}

@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const graphql_request_1 = require("graphql-request");
-const normalise_1 = require("../../utils/normalise");
-const client_1 = require("./client");
+const normalise_js_1 = require("../../utils/normalise.js");
+const client_js_1 = require("./client.js");
 const inheritedResolverQuery = (0, graphql_request_1.gql) `
   query getSubgraphRecords($id: String!) {
     domain(id: $id) {
@@ -55,8 +55,8 @@ const getInheritedResolverResult = async (subgraphClient, { id, }) => {
     };
 };
 const getSubgraphRecords = async (client, { name, resolverAddress }) => {
-    const subgraphClient = (0, client_1.createSubgraphClient)({ client });
-    const id = (0, normalise_1.namehash)(name);
+    const subgraphClient = (0, client_js_1.createSubgraphClient)({ client });
+    const id = (0, normalise_js_1.namehash)(name);
     const result = resolverAddress
         ? await getCustomResolverResult(subgraphClient, { id, resolverAddress })
         : await getInheritedResolverResult(subgraphClient, { id });

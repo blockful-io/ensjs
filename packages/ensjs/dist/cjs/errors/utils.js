@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ResolverAddressRequiredError = exports.UnknownContentTypeError = exports.InvalidContentHashError = exports.CampaignReferenceTooLargeError = exports.WrappedLabelTooLargeError = exports.RootNameIncludesOtherLabelsError = exports.NameWithEmptyLabelsError = exports.InvalidLabelhashError = exports.InvalidEncodedLabelError = exports.FusesInvalidUnnamedFuseError = exports.FusesFuseNotAllowedError = exports.FusesInvalidNamedFuseError = exports.FusesValueRequiredError = exports.FusesInvalidFuseObjectError = exports.FusesRestrictionNotAllowedError = exports.FusesOutOfRangeError = void 0;
-const base_1 = require("./base");
-class FusesOutOfRangeError extends base_1.BaseError {
+const base_js_1 = require("./base.js");
+class FusesOutOfRangeError extends base_js_1.BaseError {
     constructor({ fuses, minimum = 0n, maximum = 2n ** 32n, details, }) {
         super('Fuse value out of range', {
             metaMessages: [
@@ -20,7 +20,7 @@ class FusesOutOfRangeError extends base_1.BaseError {
     }
 }
 exports.FusesOutOfRangeError = FusesOutOfRangeError;
-class FusesRestrictionNotAllowedError extends base_1.BaseError {
+class FusesRestrictionNotAllowedError extends base_js_1.BaseError {
     constructor({ fuses, details, }) {
         super('Restriction not allowed', {
             metaMessages: [`- Fuse value: ${fuses}`],
@@ -35,7 +35,7 @@ class FusesRestrictionNotAllowedError extends base_1.BaseError {
     }
 }
 exports.FusesRestrictionNotAllowedError = FusesRestrictionNotAllowedError;
-class FusesInvalidFuseObjectError extends base_1.BaseError {
+class FusesInvalidFuseObjectError extends base_js_1.BaseError {
     constructor({ fuses, details }) {
         super('Invalid fuse value', {
             metaMessages: [`- Fuse value: ${fuses}`],
@@ -50,7 +50,7 @@ class FusesInvalidFuseObjectError extends base_1.BaseError {
     }
 }
 exports.FusesInvalidFuseObjectError = FusesInvalidFuseObjectError;
-class FusesValueRequiredError extends base_1.BaseError {
+class FusesValueRequiredError extends base_js_1.BaseError {
     constructor() {
         super('Must specify at least one fuse');
         Object.defineProperty(this, "name", {
@@ -62,7 +62,7 @@ class FusesValueRequiredError extends base_1.BaseError {
     }
 }
 exports.FusesValueRequiredError = FusesValueRequiredError;
-class FusesInvalidNamedFuseError extends base_1.BaseError {
+class FusesInvalidNamedFuseError extends base_js_1.BaseError {
     constructor({ fuse }) {
         super(`${fuse} is not a valid named fuse`);
         Object.defineProperty(this, "name", {
@@ -74,7 +74,7 @@ class FusesInvalidNamedFuseError extends base_1.BaseError {
     }
 }
 exports.FusesInvalidNamedFuseError = FusesInvalidNamedFuseError;
-class FusesFuseNotAllowedError extends base_1.BaseError {
+class FusesFuseNotAllowedError extends base_js_1.BaseError {
     constructor({ fuse }) {
         super(`${fuse} is not allowed for this operation`);
         Object.defineProperty(this, "name", {
@@ -86,7 +86,7 @@ class FusesFuseNotAllowedError extends base_1.BaseError {
     }
 }
 exports.FusesFuseNotAllowedError = FusesFuseNotAllowedError;
-class FusesInvalidUnnamedFuseError extends base_1.BaseError {
+class FusesInvalidUnnamedFuseError extends base_js_1.BaseError {
     constructor({ fuse }) {
         super(`${fuse} is not a valid unnamed fuse`, {
             metaMessages: [
@@ -102,7 +102,7 @@ class FusesInvalidUnnamedFuseError extends base_1.BaseError {
     }
 }
 exports.FusesInvalidUnnamedFuseError = FusesInvalidUnnamedFuseError;
-class InvalidEncodedLabelError extends base_1.BaseError {
+class InvalidEncodedLabelError extends base_js_1.BaseError {
     constructor({ label, details }) {
         super('Invalid encoded label', {
             metaMessages: [`- Supplied label: ${label}`],
@@ -117,7 +117,7 @@ class InvalidEncodedLabelError extends base_1.BaseError {
     }
 }
 exports.InvalidEncodedLabelError = InvalidEncodedLabelError;
-class InvalidLabelhashError extends base_1.BaseError {
+class InvalidLabelhashError extends base_js_1.BaseError {
     constructor({ labelhash, details }) {
         super('Invalid labelhash', {
             metaMessages: [`- Supplied labelhash: ${labelhash}`],
@@ -132,7 +132,7 @@ class InvalidLabelhashError extends base_1.BaseError {
     }
 }
 exports.InvalidLabelhashError = InvalidLabelhashError;
-class NameWithEmptyLabelsError extends base_1.BaseError {
+class NameWithEmptyLabelsError extends base_js_1.BaseError {
     constructor({ name, details }) {
         super('Name cannot have empty labels', {
             metaMessages: [`- Supplied name: ${name}`],
@@ -147,7 +147,7 @@ class NameWithEmptyLabelsError extends base_1.BaseError {
     }
 }
 exports.NameWithEmptyLabelsError = NameWithEmptyLabelsError;
-class RootNameIncludesOtherLabelsError extends base_1.BaseError {
+class RootNameIncludesOtherLabelsError extends base_js_1.BaseError {
     constructor({ name }) {
         super('Root name cannot have other labels', {
             metaMessages: [`- Supplied name: ${name}`],
@@ -161,7 +161,7 @@ class RootNameIncludesOtherLabelsError extends base_1.BaseError {
     }
 }
 exports.RootNameIncludesOtherLabelsError = RootNameIncludesOtherLabelsError;
-class WrappedLabelTooLargeError extends base_1.BaseError {
+class WrappedLabelTooLargeError extends base_js_1.BaseError {
     constructor({ label, byteLength }) {
         super('Supplied label was too long', {
             metaMessages: [
@@ -179,7 +179,7 @@ class WrappedLabelTooLargeError extends base_1.BaseError {
     }
 }
 exports.WrappedLabelTooLargeError = WrappedLabelTooLargeError;
-class CampaignReferenceTooLargeError extends base_1.BaseError {
+class CampaignReferenceTooLargeError extends base_js_1.BaseError {
     constructor({ campaign }) {
         super(`Campaign reference ${campaign} is too large`, {
             metaMessages: [`- Max campaign reference: ${0xffffffff}`],
@@ -193,7 +193,7 @@ class CampaignReferenceTooLargeError extends base_1.BaseError {
     }
 }
 exports.CampaignReferenceTooLargeError = CampaignReferenceTooLargeError;
-class InvalidContentHashError extends base_1.BaseError {
+class InvalidContentHashError extends base_js_1.BaseError {
     constructor() {
         super('Invalid content hash');
         Object.defineProperty(this, "name", {
@@ -205,7 +205,7 @@ class InvalidContentHashError extends base_1.BaseError {
     }
 }
 exports.InvalidContentHashError = InvalidContentHashError;
-class UnknownContentTypeError extends base_1.BaseError {
+class UnknownContentTypeError extends base_js_1.BaseError {
     constructor({ contentType }) {
         super(`Unknown content type: ${contentType}`);
         Object.defineProperty(this, "name", {
@@ -217,7 +217,7 @@ class UnknownContentTypeError extends base_1.BaseError {
     }
 }
 exports.UnknownContentTypeError = UnknownContentTypeError;
-class ResolverAddressRequiredError extends base_1.BaseError {
+class ResolverAddressRequiredError extends base_js_1.BaseError {
     constructor({ data }) {
         super('Resolver address is required when data is supplied', {
             metaMessages: [

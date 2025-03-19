@@ -1,10 +1,10 @@
 import { BaseError, decodeFunctionResult, encodeFunctionData, labelhash, toBytes, toHex, } from 'viem';
-import { getChainContractAddress } from '../../contracts/getChainContractAddress';
-import { universalResolverResolveSnippet, universalResolverResolveWithGatewaysSnippet, } from '../../contracts/universalResolver';
-import { checkSafeUniversalResolverData } from '../../utils/checkSafeUniversalResolverData';
-import { generateFunction } from '../../utils/generateFunction';
-import { packetToBytes } from '../../utils/hexEncodedName';
-import { encodeLabelhash } from '../../utils/labels';
+import { getChainContractAddress } from '../../contracts/getChainContractAddress.js';
+import { universalResolverResolveSnippet, universalResolverResolveWithGatewaysSnippet, } from '../../contracts/universalResolver.js';
+import { checkSafeUniversalResolverData } from '../../utils/checkSafeUniversalResolverData.js';
+import { generateFunction } from '../../utils/generateFunction.js';
+import { packetToBytes } from '../../utils/hexEncodedName.js';
+import { encodeLabelhash } from '../../utils/labels.js';
 const encode = (client, { name, data, gatewayUrls }) => {
     const nameWithSizedLabels = name
         .split('.')

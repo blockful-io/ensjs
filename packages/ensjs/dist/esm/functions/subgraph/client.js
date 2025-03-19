@@ -1,6 +1,6 @@
 import { GraphQLClient } from 'graphql-request';
-import { parse, print, visit } from 'graphql/language/index';
-import { namehash } from '../../utils/normalise';
+import { parse, print, visit } from 'graphql/language/index.js';
+import { namehash } from '../../utils/normalise.js';
 const generateSelection = (selection) => ({
     kind: 'Field',
     name: {

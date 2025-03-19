@@ -1,14 +1,14 @@
 import { encodeFunctionData, labelhash, } from 'viem';
 import { sendTransaction } from 'viem/actions';
 import { parseAccount } from 'viem/utils';
-import { baseRegistrarReclaimSnippet, baseRegistrarSafeTransferFromSnippet, } from '../../contracts/baseRegistrar';
-import { getChainContractAddress } from '../../contracts/getChainContractAddress';
-import { nameWrapperSafeTransferFromSnippet, nameWrapperSetSubnodeOwnerSnippet, } from '../../contracts/nameWrapper';
-import { registrySetOwnerSnippet, registrySetSubnodeOwnerSnippet, } from '../../contracts/registry';
-import { AdditionalParameterSpecifiedError, InvalidContractTypeError, UnsupportedNameTypeError, } from '../../errors/general';
-import { getNameType } from '../../utils/getNameType';
-import { makeLabelNodeAndParent } from '../../utils/makeLabelNodeAndParent';
-import { namehash } from '../../utils/normalise';
+import { baseRegistrarReclaimSnippet, baseRegistrarSafeTransferFromSnippet, } from '../../contracts/baseRegistrar.js';
+import { getChainContractAddress } from '../../contracts/getChainContractAddress.js';
+import { nameWrapperSafeTransferFromSnippet, nameWrapperSetSubnodeOwnerSnippet, } from '../../contracts/nameWrapper.js';
+import { registrySetOwnerSnippet, registrySetSubnodeOwnerSnippet, } from '../../contracts/registry.js';
+import { AdditionalParameterSpecifiedError, InvalidContractTypeError, UnsupportedNameTypeError, } from '../../errors/general.js';
+import { getNameType } from '../../utils/getNameType.js';
+import { makeLabelNodeAndParent } from '../../utils/makeLabelNodeAndParent.js';
+import { namehash } from '../../utils/normalise.js';
 export const makeFunctionData = (wallet, { name, newOwnerAddress, contract, reclaim, asParent, }) => {
     if (reclaim && contract !== 'registrar')
         throw new AdditionalParameterSpecifiedError({

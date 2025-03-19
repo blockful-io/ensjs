@@ -1,5 +1,5 @@
-import type { ClientWithEns } from '../../contracts/consts';
-import type { BaseResolverEvent, ContenthashChanged, DomainEvent, MulticoinAddrChanged, RegistrationEvent, ResolverEvent } from './events';
+import type { ClientWithEns } from '../../contracts/consts.js';
+import type { BaseResolverEvent, ContenthashChanged, DomainEvent, MulticoinAddrChanged, RegistrationEvent, ResolverEvent } from './events.js';
 export type GetNameHistoryParameters = {
     /** Name to get history for */
     name: string;

@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.shouldEscape = exports.isCombiningMark = exports.tokenise = exports.split = exports.normaliseFragment = exports.emoji = exports.beautify = exports.namehash = exports.normalise = void 0;
 const ens_normalize_1 = require("@adraffy/ens-normalize");
 const viem_1 = require("viem");
-const labels_1 = require("./labels");
+const labels_js_1 = require("./labels.js");
 const zeros = new Uint8Array(32);
 zeros.fill(0);
 const normalise = (name) => (name ? (0, ens_normalize_1.ens_normalize)(name) : name);
@@ -15,8 +15,8 @@ function namehash(name) {
     const labels = name.split('.');
     for (let i = labels.length - 1; i >= 0; i -= 1) {
         let labelSha;
-        if ((0, labels_1.isEncodedLabelhash)(labels[i])) {
-            labelSha = (0, viem_1.hexToBytes)((0, labels_1.decodeLabelhash)(labels[i]));
+        if ((0, labels_js_1.isEncodedLabelhash)(labels[i])) {
+            labelSha = (0, viem_1.hexToBytes)((0, labels_js_1.decodeLabelhash)(labels[i]));
         }
         else {
             const normalised = (0, exports.normalise)(labels[i]);

@@ -1,7 +1,7 @@
 import { type Account, type Hash, type Transport } from 'viem';
-import type { ChainWithEns, ClientWithAccount } from '../../contracts/consts';
-import type { Prettify, SimpleTransactionRequest, WriteTransactionParameters } from '../../types';
-import { type RegistrationParameters } from '../../utils/registerHelpers';
+import type { ChainWithEns, ClientWithAccount } from '../../contracts/consts.js';
+import type { Prettify, SimpleTransactionRequest, WriteTransactionParameters } from '../../types.js';
+import { type RegistrationParameters } from '../../utils/registerHelpers.js';
 export type CommitNameDataParameters = RegistrationParameters;
 export type CommitNameDataReturnType = SimpleTransactionRequest;
 export type CommitNameParameters<TChain extends ChainWithEns, TAccount extends Account | undefined, TChainOverride extends ChainWithEns | undefined> = Prettify<CommitNameDataParameters & WriteTransactionParameters<TChain, TAccount, TChainOverride>>;

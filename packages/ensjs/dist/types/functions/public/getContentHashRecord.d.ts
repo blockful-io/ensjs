@@ -1,8 +1,8 @@
 import type { BaseError, Hex } from 'viem';
-import type { ClientWithEns } from '../../contracts/consts';
-import type { GenericPassthrough, Prettify, TransactionRequestWithPassthrough } from '../../types';
-import { type GeneratedFunction } from '../../utils/generateFunction';
-import { type InternalGetContentHashParameters, type InternalGetContentHashReturnType } from './_getContentHash';
+import type { ClientWithEns } from '../../contracts/consts.js';
+import type { GenericPassthrough, Prettify, TransactionRequestWithPassthrough } from '../../types.js';
+import { type GeneratedFunction } from '../../utils/generateFunction.js';
+import { type InternalGetContentHashParameters, type InternalGetContentHashReturnType } from './_getContentHash.js';
 export type GetContentHashRecordParameters = Prettify<InternalGetContentHashParameters & {
     /** Batch gateway URLs to use for resolving CCIP-read requests. */
     gatewayUrls?: string[];

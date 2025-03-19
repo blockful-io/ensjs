@@ -1,17 +1,17 @@
-import batch, {} from '../../functions/public/batch';
-import getAbiRecord, {} from '../../functions/public/getAbiRecord';
-import getAddressRecord, {} from '../../functions/public/getAddressRecord';
-import getAvailable, {} from '../../functions/public/getAvailable';
-import getContentHashRecord, {} from '../../functions/public/getContentHashRecord';
-import getExpiry, {} from '../../functions/public/getExpiry';
-import getName, {} from '../../functions/public/getName';
-import getOwner, {} from '../../functions/public/getOwner';
-import getPrice, {} from '../../functions/public/getPrice';
-import getRecords, {} from '../../functions/public/getRecords';
-import getResolver, {} from '../../functions/public/getResolver';
-import getTextRecord, {} from '../../functions/public/getTextRecord';
-import getWrapperData, {} from '../../functions/public/getWrapperData';
-import getWrapperName, {} from '../../functions/public/getWrapperName';
+import batch, {} from '../../functions/public/batch.js';
+import getAbiRecord, {} from '../../functions/public/getAbiRecord.js';
+import getAddressRecord, {} from '../../functions/public/getAddressRecord.js';
+import getAvailable, {} from '../../functions/public/getAvailable.js';
+import getContentHashRecord, {} from '../../functions/public/getContentHashRecord.js';
+import getExpiry, {} from '../../functions/public/getExpiry.js';
+import getName, {} from '../../functions/public/getName.js';
+import getOwner, {} from '../../functions/public/getOwner.js';
+import getPrice, {} from '../../functions/public/getPrice.js';
+import getRecords, {} from '../../functions/public/getRecords.js';
+import getResolver, {} from '../../functions/public/getResolver.js';
+import getTextRecord, {} from '../../functions/public/getTextRecord.js';
+import getWrapperData, {} from '../../functions/public/getWrapperData.js';
+import getWrapperName, {} from '../../functions/public/getWrapperName.js';
 /**
  * Extends the viem client with ENS public actions
  * @param client - The viem {@link Client} object to add the ENS public actions to

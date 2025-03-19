@@ -1,9 +1,9 @@
-import getDecodedName, {} from '../../functions/subgraph/getDecodedName';
-import getNameHistory, {} from '../../functions/subgraph/getNameHistory';
-import getNamesForAddress, {} from '../../functions/subgraph/getNamesForAddress';
-import getSubgraphRecords, {} from '../../functions/subgraph/getSubgraphRecords';
-import getSubgraphRegistrant, {} from '../../functions/subgraph/getSubgraphRegistrant';
-import getSubnames, {} from '../../functions/subgraph/getSubnames';
+import getDecodedName, {} from '../../functions/subgraph/getDecodedName.js';
+import getNameHistory, {} from '../../functions/subgraph/getNameHistory.js';
+import getNamesForAddress, {} from '../../functions/subgraph/getNamesForAddress.js';
+import getSubgraphRecords, {} from '../../functions/subgraph/getSubgraphRecords.js';
+import getSubgraphRegistrant, {} from '../../functions/subgraph/getSubgraphRegistrant.js';
+import getSubnames, {} from '../../functions/subgraph/getSubnames.js';
 /**
  * Extends the viem client with ENS subgraph actions
  * @param client - The viem {@link Client} object to add the ENS subgraph actions to

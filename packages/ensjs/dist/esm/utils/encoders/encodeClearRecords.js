@@ -1,5 +1,5 @@
 import { encodeFunctionData } from 'viem';
-import { publicResolverClearRecordsSnippet } from '../../contracts/publicResolver';
+import { publicResolverClearRecordsSnippet } from '../../contracts/publicResolver.js';
 export const encodeClearRecords = (namehash) => encodeFunctionData({
     abi: publicResolverClearRecordsSnippet,
     functionName: 'clearRecords',

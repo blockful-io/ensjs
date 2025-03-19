@@ -1,8 +1,8 @@
 import type { BaseError, Hex } from 'viem';
-import type { ClientWithEns } from '../../contracts/consts';
-import type { GenericPassthrough, Prettify, SimpleTransactionRequest } from '../../types';
-import { type GeneratedFunction } from '../../utils/generateFunction';
-import { type InternalGetAbiParameters, type InternalGetAbiReturnType } from './_getAbi';
+import type { ClientWithEns } from '../../contracts/consts.js';
+import type { GenericPassthrough, Prettify, SimpleTransactionRequest } from '../../types.js';
+import { type GeneratedFunction } from '../../utils/generateFunction.js';
+import { type InternalGetAbiParameters, type InternalGetAbiReturnType } from './_getAbi.js';
 export type GetAbiRecordParameters = Prettify<InternalGetAbiParameters & {
     /** Batch gateway URLs to use for resolving CCIP-read requests. */
     gatewayUrls?: string[];

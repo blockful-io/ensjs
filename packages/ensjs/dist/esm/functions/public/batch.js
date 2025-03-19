@@ -1,6 +1,6 @@
-import { FunctionNotBatchableError } from '../../errors/public';
-import { generateFunction, } from '../../utils/generateFunction';
-import multicallWrapper from './multicallWrapper';
+import { FunctionNotBatchableError } from '../../errors/public.js';
+import { generateFunction, } from '../../utils/generateFunction.js';
+import multicallWrapper from './multicallWrapper.js';
 const encode = (client, ...items) => {
     const rawDataArr = items.map(({ args, encode: encodeRef }, i) => {
         if (!encodeRef)

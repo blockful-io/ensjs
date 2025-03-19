@@ -1,6 +1,6 @@
 import { createClient, } from 'viem';
-import { addEnsContracts } from '../contracts/addEnsContracts';
-import { ensSubgraphActions, } from './decorators/subgraph';
+import { addEnsContracts } from '../contracts/addEnsContracts.js';
+import { ensSubgraphActions, } from './decorators/subgraph.js';
 /**
  * Creates a ENS Subgraph Client with a given [Transport](https://viem.sh/docs/clients/intro.html) configured for a [Chain](https://viem.sh/docs/clients/chains.html).
  *

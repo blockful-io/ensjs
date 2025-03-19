@@ -3,25 +3,25 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.makeFunctionData = void 0;
 const viem_1 = require("viem");
 const actions_1 = require("viem/actions");
-const getChainContractAddress_1 = require("../../contracts/getChainContractAddress");
-const nameWrapper_1 = require("../../contracts/nameWrapper");
-const registry_1 = require("../../contracts/registry");
-const general_1 = require("../../errors/general");
-const consts_1 = require("../../utils/consts");
-const getNameType_1 = require("../../utils/getNameType");
-const makeLabelNodeAndParent_1 = require("../../utils/makeLabelNodeAndParent");
-const normalise_1 = require("../../utils/normalise");
+const getChainContractAddress_js_1 = require("../../contracts/getChainContractAddress.js");
+const nameWrapper_js_1 = require("../../contracts/nameWrapper.js");
+const registry_js_1 = require("../../contracts/registry.js");
+const general_js_1 = require("../../errors/general.js");
+const consts_js_1 = require("../../utils/consts.js");
+const getNameType_js_1 = require("../../utils/getNameType.js");
+const makeLabelNodeAndParent_js_1 = require("../../utils/makeLabelNodeAndParent.js");
+const normalise_js_1 = require("../../utils/normalise.js");
 const makeFunctionData = (wallet, { name, contract, asOwner }) => {
-    const nameType = (0, getNameType_1.getNameType)(name);
+    const nameType = (0, getNameType_js_1.getNameType)(name);
     if (nameType !== 'eth-subname' && nameType !== 'other-subname')
-        throw new general_1.UnsupportedNameTypeError({
+        throw new general_js_1.UnsupportedNameTypeError({
             nameType,
             supportedNameTypes: ['eth-subname', 'other-subname'],
             details: 'Cannot delete a name that is not a subname',
         });
     switch (contract) {
         case 'registry': {
-            const registryAddress = (0, getChainContractAddress_1.getChainContractAddress)({
+            const registryAddress = (0, getChainContractAddress_js_1.getChainContractAddress)({
                 client: wallet,
                 contract: 'ensRegistry',
             });
@@ -29,29 +29,29 @@ const makeFunctionData = (wallet, { name, contract, asOwner }) => {
                 return {
                     to: registryAddress,
                     data: (0, viem_1.encodeFunctionData)({
-                        abi: registry_1.registrySetRecordSnippet,
+                        abi: registry_js_1.registrySetRecordSnippet,
                         functionName: 'setRecord',
-                        args: [(0, normalise_1.namehash)(name), consts_1.EMPTY_ADDRESS, consts_1.EMPTY_ADDRESS, BigInt(0)],
+                        args: [(0, normalise_js_1.namehash)(name), consts_js_1.EMPTY_ADDRESS, consts_js_1.EMPTY_ADDRESS, BigInt(0)],
                     }),
                 };
-            const { labelhash, parentNode } = (0, makeLabelNodeAndParent_1.makeLabelNodeAndParent)(name);
+            const { labelhash, parentNode } = (0, makeLabelNodeAndParent_js_1.makeLabelNodeAndParent)(name);
             return {
                 to: registryAddress,
                 data: (0, viem_1.encodeFunctionData)({
-                    abi: registry_1.registrySetSubnodeRecordSnippet,
+                    abi: registry_js_1.registrySetSubnodeRecordSnippet,
                     functionName: 'setSubnodeRecord',
                     args: [
                         parentNode,
                         labelhash,
-                        consts_1.EMPTY_ADDRESS,
-                        consts_1.EMPTY_ADDRESS,
+                        consts_js_1.EMPTY_ADDRESS,
+                        consts_js_1.EMPTY_ADDRESS,
                         BigInt(0),
                     ],
                 }),
             };
         }
         case 'nameWrapper': {
-            const nameWrapperAddress = (0, getChainContractAddress_1.getChainContractAddress)({
+            const nameWrapperAddress = (0, getChainContractAddress_js_1.getChainContractAddress)({
                 client: wallet,
                 contract: 'ensNameWrapper',
             });
@@ -59,22 +59,22 @@ const makeFunctionData = (wallet, { name, contract, asOwner }) => {
                 return {
                     to: nameWrapperAddress,
                     data: (0, viem_1.encodeFunctionData)({
-                        abi: nameWrapper_1.nameWrapperSetRecordSnippet,
+                        abi: nameWrapper_js_1.nameWrapperSetRecordSnippet,
                         functionName: 'setRecord',
-                        args: [(0, normalise_1.namehash)(name), consts_1.EMPTY_ADDRESS, consts_1.EMPTY_ADDRESS, BigInt(0)],
+                        args: [(0, normalise_js_1.namehash)(name), consts_js_1.EMPTY_ADDRESS, consts_js_1.EMPTY_ADDRESS, BigInt(0)],
                     }),
                 };
-            const { label, parentNode } = (0, makeLabelNodeAndParent_1.makeLabelNodeAndParent)(name);
+            const { label, parentNode } = (0, makeLabelNodeAndParent_js_1.makeLabelNodeAndParent)(name);
             return {
                 to: nameWrapperAddress,
                 data: (0, viem_1.encodeFunctionData)({
-                    abi: nameWrapper_1.nameWrapperSetSubnodeRecordSnippet,
+                    abi: nameWrapper_js_1.nameWrapperSetSubnodeRecordSnippet,
                     functionName: 'setSubnodeRecord',
                     args: [
                         parentNode,
                         label,
-                        consts_1.EMPTY_ADDRESS,
-                        consts_1.EMPTY_ADDRESS,
+                        consts_js_1.EMPTY_ADDRESS,
+                        consts_js_1.EMPTY_ADDRESS,
                         BigInt(0),
                         0,
                         BigInt(0),
@@ -83,7 +83,7 @@ const makeFunctionData = (wallet, { name, contract, asOwner }) => {
             };
         }
         default:
-            throw new general_1.InvalidContractTypeError({
+            throw new general_js_1.InvalidContractTypeError({
                 contractType: contract,
                 supportedContractTypes: ['registry', 'nameWrapper'],
             });

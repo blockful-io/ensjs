@@ -1,11 +1,11 @@
 import { BaseError, decodeFunctionResult, encodeFunctionData, } from 'viem';
-import { bulkRenewalRentPriceSnippet } from '../../contracts/bulkRenewal';
-import { ethRegistrarControllerRentPriceSnippet } from '../../contracts/ethRegistrarController';
-import { getChainContractAddress } from '../../contracts/getChainContractAddress';
-import { UnsupportedNameTypeError } from '../../errors/general';
-import { generateFunction, } from '../../utils/generateFunction';
-import { getNameType } from '../../utils/getNameType';
-import multicallWrapper from './multicallWrapper';
+import { bulkRenewalRentPriceSnippet } from '../../contracts/bulkRenewal.js';
+import { ethRegistrarControllerRentPriceSnippet } from '../../contracts/ethRegistrarController.js';
+import { getChainContractAddress } from '../../contracts/getChainContractAddress.js';
+import { UnsupportedNameTypeError } from '../../errors/general.js';
+import { generateFunction, } from '../../utils/generateFunction.js';
+import { getNameType } from '../../utils/getNameType.js';
+import multicallWrapper from './multicallWrapper.js';
 const encode = (client, { nameOrNames, duration }) => {
     const names = (Array.isArray(nameOrNames) ? nameOrNames : [nameOrNames]).map((name) => {
         const labels = name.split('.');

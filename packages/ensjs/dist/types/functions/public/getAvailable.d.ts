@@ -1,7 +1,7 @@
 import { BaseError, type Hex } from 'viem';
-import type { ClientWithEns } from '../../contracts/consts';
-import type { SimpleTransactionRequest } from '../../types';
-import { type GeneratedFunction } from '../../utils/generateFunction';
+import type { ClientWithEns } from '../../contracts/consts.js';
+import type { SimpleTransactionRequest } from '../../types.js';
+import { type GeneratedFunction } from '../../utils/generateFunction.js';
 export type GetAvailableParameters = {
     /** Name to check availability for, only compatible for eth 2ld */
     name: string;

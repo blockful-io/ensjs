@@ -1,6 +1,6 @@
 import { type Account, type Address, type Hash, type Transport } from 'viem';
-import type { ChainWithEns, ClientWithAccount } from '../../contracts/consts';
-import type { Prettify, SimpleTransactionRequest, WriteTransactionParameters } from '../../types';
+import type { ChainWithEns, ClientWithAccount } from '../../contracts/consts.js';
+import type { Prettify, SimpleTransactionRequest, WriteTransactionParameters } from '../../types.js';
 type BaseSetPrimaryNameDataParameters = {
     /** The name to set as primary */
     name: string;

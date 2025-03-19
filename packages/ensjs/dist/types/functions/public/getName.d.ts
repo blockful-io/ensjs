@@ -1,7 +1,7 @@
 import { BaseError, type Address, type Hex } from 'viem';
-import type { ClientWithEns } from '../../contracts/consts';
-import type { GenericPassthrough, TransactionRequestWithPassthrough } from '../../types';
-import { type GeneratedFunction } from '../../utils/generateFunction';
+import type { ClientWithEns } from '../../contracts/consts.js';
+import type { GenericPassthrough, TransactionRequestWithPassthrough } from '../../types.js';
+import { type GeneratedFunction } from '../../utils/generateFunction.js';
 export type GetNameParameters = {
     /** Address to get name for */
     address: Address;

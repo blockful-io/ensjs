@@ -1,12 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const graphql_request_1 = require("graphql-request");
-const subgraph_1 = require("../../errors/subgraph");
-const consts_1 = require("../../utils/consts");
-const client_1 = require("./client");
-const filters_1 = require("./filters");
-const fragments_1 = require("./fragments");
-const utils_1 = require("./utils");
+const subgraph_js_1 = require("../../errors/subgraph.js");
+const consts_js_1 = require("../../utils/consts.js");
+const client_js_1 = require("./client.js");
+const filters_js_1 = require("./filters.js");
+const fragments_js_1 = require("./fragments.js");
+const utils_js_1 = require("./utils.js");
 const supportedOwnerFilters = [
     'owner',
     'registrant',
@@ -18,7 +18,7 @@ const getOrderByFilter = ({ orderBy, orderDirection, previousPage, }) => {
     const operator = orderDirection === 'asc' ? 'gt' : 'lt';
     switch (orderBy) {
         case 'expiryDate': {
-            return (0, filters_1.getExpiryDateOrderFilter)({
+            return (0, filters_js_1.getExpiryDateOrderFilter)({
                 orderDirection,
                 lastDomain,
             });
@@ -34,10 +34,10 @@ const getOrderByFilter = ({ orderBy, orderDirection, previousPage, }) => {
             };
         }
         case 'createdAt': {
-            return (0, filters_1.getCreatedAtOrderFilter)({ lastDomain, orderDirection });
+            return (0, filters_js_1.getCreatedAtOrderFilter)({ lastDomain, orderDirection });
         }
         default:
-            throw new subgraph_1.InvalidOrderByError({
+            throw new subgraph_js_1.InvalidOrderByError({
                 orderBy: orderBy || '<no orderBy provided>',
                 supportedOrderBys: ['expiryDate', 'name', 'labelName', 'createdAt'],
             });
@@ -55,12 +55,12 @@ const getNamesForAddress = async (client, { address, filter: _filter, orderBy = 
         searchType: 'labelName',
         ..._filter,
     };
-    const subgraphClient = (0, client_1.createSubgraphClient)({ client });
+    const subgraphClient = (0, client_js_1.createSubgraphClient)({ client });
     const { allowExpired, allowDeleted, allowReverseRecord, searchString, searchType, ...filters } = filter;
     const ownerWhereFilters = Object.entries(filters).reduce((prev, [key, value]) => {
         if (value) {
             if (!supportedOwnerFilters.includes(key))
-                throw new subgraph_1.InvalidFilterKeyError({
+                throw new subgraph_js_1.InvalidFilterKeyError({
                     filterKey: key,
                     supportedFilterKeys: supportedOwnerFilters,
                 });
@@ -75,7 +75,7 @@ const getNamesForAddress = async (client, { address, filter: _filter, orderBy = 
     }, []);
     const hasFilterApplied = ownerWhereFilters.length > 0;
     if (!hasFilterApplied)
-        throw new subgraph_1.FilterKeyRequiredError({
+        throw new subgraph_js_1.FilterKeyRequiredError({
             supportedFilterKeys: supportedOwnerFilters,
             details: 'At least one ownership filter must be enabled',
         });
@@ -107,7 +107,7 @@ const getNamesForAddress = async (client, { address, filter: _filter, orderBy = 
         whereFilters.push({
             or: [
                 {
-                    owner_not: consts_1.EMPTY_ADDRESS,
+                    owner_not: consts_js_1.EMPTY_ADDRESS,
                 },
                 {
                     resolver_not: null,
@@ -115,7 +115,7 @@ const getNamesForAddress = async (client, { address, filter: _filter, orderBy = 
                 {
                     and: [
                         {
-                            registrant_not: consts_1.EMPTY_ADDRESS,
+                            registrant_not: consts_js_1.EMPTY_ADDRESS,
                         },
                         {
                             registrant_not: null,
@@ -153,9 +153,9 @@ const getNamesForAddress = async (client, { address, filter: _filter, orderBy = 
         }
       }
     }
-    ${fragments_1.domainDetailsFragment}
-    ${fragments_1.registrationDetailsFragment}
-    ${fragments_1.wrappedDomainDetailsFragment}
+    ${fragments_js_1.domainDetailsFragment}
+    ${fragments_js_1.registrationDetailsFragment}
+    ${fragments_js_1.wrappedDomainDetailsFragment}
   `;
     const result = await subgraphClient.request(query, {
         orderBy,
@@ -181,7 +181,7 @@ const getNamesForAddress = async (client, { address, filter: _filter, orderBy = 
                 domain.resolvedAddress.id === address.toLowerCase();
         }
         return {
-            ...(0, utils_1.makeNameObject)(domain),
+            ...(0, utils_js_1.makeNameObject)(domain),
             relation,
         };
     });

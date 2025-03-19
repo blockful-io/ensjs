@@ -1,7 +1,7 @@
 import { BaseError, decodeFunctionResult, encodeFunctionData, getContractError, offchainLookup, } from 'viem';
-import { getChainContractAddress } from '../../contracts/getChainContractAddress';
-import { multicallTryAggregateSnippet } from '../../contracts/multicall';
-import { generateFunction } from '../../utils/generateFunction';
+import { getChainContractAddress } from '../../contracts/getChainContractAddress.js';
+import { multicallTryAggregateSnippet } from '../../contracts/multicall.js';
+import { generateFunction } from '../../utils/generateFunction.js';
 const encode = (client, { transactions, requireSuccess = false }) => {
     return {
         to: getChainContractAddress({ client, contract: 'multicall3' }),

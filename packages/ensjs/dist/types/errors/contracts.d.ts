@@ -1,4 +1,4 @@
-import { BaseError } from './base';
+import { BaseError } from './base.js';
 export declare class UnsupportedChainError extends BaseError {
     chainId: number;
     supportedChains: readonly number[];

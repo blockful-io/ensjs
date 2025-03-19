@@ -1,5 +1,5 @@
 import { type Hex } from 'viem';
-import type { ClientWithEns } from '../contracts/consts';
+import type { ClientWithEns } from '../contracts/consts.js';
 export type OwnerContract = 'nameWrapper' | 'registry' | 'registrar';
 export type OwnerFromContractArgs = {
     client: ClientWithEns;

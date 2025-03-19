@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.baseRegistrarOwnerOfSnippet = exports.baseRegistrarSafeTransferFromWithDataSnippet = exports.baseRegistrarSafeTransferFromSnippet = exports.baseRegistrarReclaimSnippet = exports.baseRegistrarGracePeriodSnippet = exports.baseRegistrarNameExpiresSnippet = exports.baseRegistrarAvailableSnippet = void 0;
-const erc721_1 = require("./erc721");
+const erc721_js_1 = require("./erc721.js");
 exports.baseRegistrarAvailableSnippet = [
     {
         inputs: [
@@ -73,10 +73,10 @@ exports.baseRegistrarReclaimSnippet = [
     },
 ];
 exports.baseRegistrarSafeTransferFromSnippet = [
-    ...erc721_1.erc721SafeTransferFromSnippet,
+    ...erc721_js_1.erc721SafeTransferFromSnippet,
 ];
 exports.baseRegistrarSafeTransferFromWithDataSnippet = [
-    ...erc721_1.erc721SafeTransferFromWithDataSnippet,
+    ...erc721_js_1.erc721SafeTransferFromWithDataSnippet,
 ];
-exports.baseRegistrarOwnerOfSnippet = [...erc721_1.erc721OwnerOfSnippet];
+exports.baseRegistrarOwnerOfSnippet = [...erc721_js_1.erc721OwnerOfSnippet];
 //# sourceMappingURL=baseRegistrar.js.map

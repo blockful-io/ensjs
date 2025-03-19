@@ -3,17 +3,17 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.makeFunctionData = void 0;
 const viem_1 = require("viem");
 const actions_1 = require("viem/actions");
-const publicResolver_1 = require("../../contracts/publicResolver");
-const public_1 = require("../../errors/public");
-const generateRecordCallArray_1 = require("../../utils/generateRecordCallArray");
-const normalise_1 = require("../../utils/normalise");
+const publicResolver_js_1 = require("../../contracts/publicResolver.js");
+const public_js_1 = require("../../errors/public.js");
+const generateRecordCallArray_js_1 = require("../../utils/generateRecordCallArray.js");
+const normalise_js_1 = require("../../utils/normalise.js");
 const makeFunctionData = (_wallet, { name, resolverAddress, ...records }) => {
-    const callArray = (0, generateRecordCallArray_1.generateRecordCallArray)({
-        namehash: (0, normalise_1.namehash)(name),
+    const callArray = (0, generateRecordCallArray_js_1.generateRecordCallArray)({
+        namehash: (0, normalise_js_1.namehash)(name),
         ...records,
     });
     if (callArray.length === 0)
-        throw new public_1.NoRecordsSpecifiedError();
+        throw new public_js_1.NoRecordsSpecifiedError();
     if (callArray.length === 1)
         return {
             to: resolverAddress,
@@ -22,7 +22,7 @@ const makeFunctionData = (_wallet, { name, resolverAddress, ...records }) => {
     return {
         to: resolverAddress,
         data: (0, viem_1.encodeFunctionData)({
-            abi: publicResolver_1.publicResolverMulticallSnippet,
+            abi: publicResolver_js_1.publicResolverMulticallSnippet,
             functionName: 'multicall',
             args: [callArray],
         }),

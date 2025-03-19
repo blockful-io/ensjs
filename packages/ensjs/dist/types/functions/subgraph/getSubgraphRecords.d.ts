@@ -1,6 +1,6 @@
 import type { Address } from 'viem';
-import type { ClientWithEns } from '../../contracts/consts';
-import type { DateWithValue } from '../../types';
+import type { ClientWithEns } from '../../contracts/consts.js';
+import type { DateWithValue } from '../../types.js';
 export type GetSubgraphRecordsParameters = {
     /** Name to get records for */
     name: string;

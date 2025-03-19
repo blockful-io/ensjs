@@ -1,5 +1,5 @@
 import { getContractError, type BaseError, type Hex } from 'viem';
-import type { Prettify } from '../types';
+import type { Prettify } from '../types.js';
 type CheckSafeUniversalResolverDataParameters = Prettify<{
     strict: boolean | undefined;
     args: any[] | (() => any[]);

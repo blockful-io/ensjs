@@ -1,20 +1,20 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const graphql_request_1 = require("graphql-request");
-const labels_1 = require("../../utils/labels");
-const normalise_1 = require("../../utils/normalise");
-const client_1 = require("./client");
+const labels_js_1 = require("../../utils/labels.js");
+const normalise_js_1 = require("../../utils/normalise.js");
+const client_js_1 = require("./client.js");
 const getDecodedName = async (client, { name, allowIncomplete }) => {
-    if ((0, labels_1.checkIsDecrypted)(name))
+    if ((0, labels_js_1.checkIsDecrypted)(name))
         return name;
     const labels = name.split('.');
-    const subgraphClient = (0, client_1.createSubgraphClient)({ client });
+    const subgraphClient = (0, client_js_1.createSubgraphClient)({ client });
     let labelsQuery = '';
     for (let i = 0; i < labels.length; i += 1) {
         const label = labels[i];
-        if ((0, labels_1.isEncodedLabelhash)(label)) {
+        if ((0, labels_js_1.isEncodedLabelhash)(label)) {
             labelsQuery += (0, graphql_request_1.gql) `
-        labels${i}: domains(first: 1, where: { labelhash: "${(0, labels_1.decodeLabelhash)(label).toLowerCase()}", labelName_not: null }) {
+        labels${i}: domains(first: 1, where: { labelhash: "${(0, labels_js_1.decodeLabelhash)(label).toLowerCase()}", labelName_not: null }) {
           labelName
         }
       `;
@@ -29,7 +29,7 @@ const getDecodedName = async (client, { name, allowIncomplete }) => {
     }
   `;
     const decodedNameResult = await subgraphClient.request(decodedNameQuery, {
-        id: (0, normalise_1.namehash)(name),
+        id: (0, normalise_js_1.namehash)(name),
     });
     if (!decodedNameResult)
         return null;
@@ -39,12 +39,12 @@ const getDecodedName = async (client, { name, allowIncomplete }) => {
         const namehashLookupLabels = namehashLookupResult.split('.');
         for (let i = 0; i < namehashLookupLabels.length; i += 1) {
             const label = namehashLookupLabels[i];
-            if (!(0, labels_1.isEncodedLabelhash)(label)) {
+            if (!(0, labels_js_1.isEncodedLabelhash)(label)) {
                 attemptedDecodedLabels[i] = label;
             }
         }
         const joinedResult = attemptedDecodedLabels.join('.');
-        if ((0, labels_1.checkIsDecrypted)(joinedResult))
+        if ((0, labels_js_1.checkIsDecrypted)(joinedResult))
             return joinedResult;
     }
     if (Object.keys(labelResults).length !== 0) {
@@ -56,7 +56,7 @@ const getDecodedName = async (client, { name, allowIncomplete }) => {
         }
     }
     const joinedResult = attemptedDecodedLabels.join('.');
-    if ((0, labels_1.checkIsDecrypted)(joinedResult) || allowIncomplete)
+    if ((0, labels_js_1.checkIsDecrypted)(joinedResult) || allowIncomplete)
         return joinedResult;
     return null;
 };

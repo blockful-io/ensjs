@@ -1,6 +1,6 @@
 import { BaseError, type Address, type Hex } from 'viem';
-import type { ClientWithEns } from '../../contracts/consts';
-import type { SimpleTransactionRequest, TransactionRequestWithPassthrough } from '../../types';
+import type { ClientWithEns } from '../../contracts/consts.js';
+import type { SimpleTransactionRequest, TransactionRequestWithPassthrough } from '../../types.js';
 export type GetSupportedInterfacesParameters<TInterfaces extends readonly Hex[]> = {
     address: Address;
     interfaces: TInterfaces;

@@ -1,4 +1,4 @@
-import {} from './misc';
+import {} from './misc.js';
 /**
  * Gets the DNS record response of a name, via DNS record lookup
  * @param parameters - {@link GetDnsTxtRecordsParameters}

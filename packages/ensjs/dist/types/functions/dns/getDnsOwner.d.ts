@@ -1,5 +1,5 @@
 import { type Address } from 'viem';
-import type { Endpoint } from './types';
+import type { Endpoint } from './types.js';
 export type GetDnsOwnerParameters = {
     /** Name to get the owner for */
     name: string;

@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DnsNewerRecordTypeAvailableError = exports.DnsInvalidAddressChecksumError = exports.DnsInvalidTxtRecordError = exports.DnsNoTxtRecordError = exports.DnsDnssecWildcardExpansionError = exports.DnsDnssecVerificationFailedError = exports.DnsResponseStatusError = void 0;
-const base_1 = require("./base");
-class DnsResponseStatusError extends base_1.BaseError {
+const base_js_1 = require("./base.js");
+class DnsResponseStatusError extends base_js_1.BaseError {
     constructor({ responseStatus }) {
         super(`DNS query failed with status: ${responseStatus}`);
         Object.defineProperty(this, "responseStatus", {
@@ -21,7 +21,7 @@ class DnsResponseStatusError extends base_1.BaseError {
     }
 }
 exports.DnsResponseStatusError = DnsResponseStatusError;
-class DnsDnssecVerificationFailedError extends base_1.BaseError {
+class DnsDnssecVerificationFailedError extends base_js_1.BaseError {
     constructor({ record }) {
         super('DNSSEC verification failed');
         Object.defineProperty(this, "record", {
@@ -40,7 +40,7 @@ class DnsDnssecVerificationFailedError extends base_1.BaseError {
     }
 }
 exports.DnsDnssecVerificationFailedError = DnsDnssecVerificationFailedError;
-class DnsDnssecWildcardExpansionError extends base_1.BaseError {
+class DnsDnssecWildcardExpansionError extends base_js_1.BaseError {
     constructor() {
         super('DNSSEC wildcard expansion not supported');
         Object.defineProperty(this, "name", {
@@ -52,7 +52,7 @@ class DnsDnssecWildcardExpansionError extends base_1.BaseError {
     }
 }
 exports.DnsDnssecWildcardExpansionError = DnsDnssecWildcardExpansionError;
-class DnsNoTxtRecordError extends base_1.BaseError {
+class DnsNoTxtRecordError extends base_js_1.BaseError {
     constructor() {
         super('No TXT record found');
         Object.defineProperty(this, "name", {
@@ -64,7 +64,7 @@ class DnsNoTxtRecordError extends base_1.BaseError {
     }
 }
 exports.DnsNoTxtRecordError = DnsNoTxtRecordError;
-class DnsInvalidTxtRecordError extends base_1.BaseError {
+class DnsInvalidTxtRecordError extends base_js_1.BaseError {
     constructor({ record }) {
         super(`Invalid TXT record: ${record}`);
         Object.defineProperty(this, "record", {
@@ -83,7 +83,7 @@ class DnsInvalidTxtRecordError extends base_1.BaseError {
     }
 }
 exports.DnsInvalidTxtRecordError = DnsInvalidTxtRecordError;
-class DnsInvalidAddressChecksumError extends base_1.BaseError {
+class DnsInvalidAddressChecksumError extends base_js_1.BaseError {
     constructor({ address }) {
         super(`Invalid address checksum: ${address}`);
         Object.defineProperty(this, "address", {
@@ -102,7 +102,7 @@ class DnsInvalidAddressChecksumError extends base_1.BaseError {
     }
 }
 exports.DnsInvalidAddressChecksumError = DnsInvalidAddressChecksumError;
-class DnsNewerRecordTypeAvailableError extends base_1.BaseError {
+class DnsNewerRecordTypeAvailableError extends base_js_1.BaseError {
     constructor({ typeCovered, signatureName, onchainInception, dnsInception, }) {
         super(`DNSSEC Oracle has a newer version of the ${typeCovered} RRSET on ${signatureName}`, {
             metaMessages: [

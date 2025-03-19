@@ -1,5 +1,5 @@
 import { bytesToHex, stringToHex } from 'viem';
-import { UnknownContentTypeError } from '../../errors/utils';
+import { UnknownContentTypeError } from '../../errors/utils.js';
 const abiEncodeMap = {
     json: 1,
     zlib: 2,
@@ -39,7 +39,7 @@ export const encodeAbi = async ({ encodeAs, data, }) => {
         case 'zlib': {
             contentType = 2;
             if (data) {
-                const { deflate } = await import('pako/dist/pako_deflate.min');
+                const { deflate } = await import('pako/dist/pako_deflate.min.js');
                 encodedData = bytesToHex(deflate(JSON.stringify(data)));
             }
             break;

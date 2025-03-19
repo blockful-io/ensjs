@@ -1,9 +1,9 @@
 import { encodeFunctionData, } from 'viem';
 import { sendTransaction } from 'viem/actions';
-import { publicResolverMulticallSnippet } from '../../contracts/publicResolver';
-import { NoRecordsSpecifiedError } from '../../errors/public';
-import { generateRecordCallArray, } from '../../utils/generateRecordCallArray';
-import { namehash } from '../../utils/normalise';
+import { publicResolverMulticallSnippet } from '../../contracts/publicResolver.js';
+import { NoRecordsSpecifiedError } from '../../errors/public.js';
+import { generateRecordCallArray, } from '../../utils/generateRecordCallArray.js';
+import { namehash } from '../../utils/normalise.js';
 export const makeFunctionData = (_wallet, { name, resolverAddress, ...records }) => {
     const callArray = generateRecordCallArray({
         namehash: namehash(name),

@@ -1,21 +1,21 @@
-import clearRecords, {} from '../../functions/wallet/clearRecords';
-import commitName, {} from '../../functions/wallet/commitName';
-import createSubname, {} from '../../functions/wallet/createSubname';
-import deleteSubname, {} from '../../functions/wallet/deleteSubname';
-import registerName, {} from '../../functions/wallet/registerName';
-import renewNames, {} from '../../functions/wallet/renewNames';
-import setAbiRecord, {} from '../../functions/wallet/setAbiRecord';
-import setAddressRecord, {} from '../../functions/wallet/setAddressRecord';
-import setChildFuses, {} from '../../functions/wallet/setChildFuses';
-import setContentHashRecord, {} from '../../functions/wallet/setContentHashRecord';
-import setFuses, {} from '../../functions/wallet/setFuses';
-import setPrimaryName, {} from '../../functions/wallet/setPrimaryName';
-import setRecords, {} from '../../functions/wallet/setRecords';
-import setResolver, {} from '../../functions/wallet/setResolver';
-import setTextRecord, {} from '../../functions/wallet/setTextRecord';
-import transferName, {} from '../../functions/wallet/transferName';
-import unwrapName, {} from '../../functions/wallet/unwrapName';
-import wrapName, {} from '../../functions/wallet/wrapName';
+import clearRecords, {} from '../../functions/wallet/clearRecords.js';
+import commitName, {} from '../../functions/wallet/commitName.js';
+import createSubname, {} from '../../functions/wallet/createSubname.js';
+import deleteSubname, {} from '../../functions/wallet/deleteSubname.js';
+import registerName, {} from '../../functions/wallet/registerName.js';
+import renewNames, {} from '../../functions/wallet/renewNames.js';
+import setAbiRecord, {} from '../../functions/wallet/setAbiRecord.js';
+import setAddressRecord, {} from '../../functions/wallet/setAddressRecord.js';
+import setChildFuses, {} from '../../functions/wallet/setChildFuses.js';
+import setContentHashRecord, {} from '../../functions/wallet/setContentHashRecord.js';
+import setFuses, {} from '../../functions/wallet/setFuses.js';
+import setPrimaryName, {} from '../../functions/wallet/setPrimaryName.js';
+import setRecords, {} from '../../functions/wallet/setRecords.js';
+import setResolver, {} from '../../functions/wallet/setResolver.js';
+import setTextRecord, {} from '../../functions/wallet/setTextRecord.js';
+import transferName, {} from '../../functions/wallet/transferName.js';
+import unwrapName, {} from '../../functions/wallet/unwrapName.js';
+import wrapName, {} from '../../functions/wallet/wrapName.js';
 /**
  * Extends the viem client with ENS wallet actions
  * @param client - The viem {@link WalletClient} object to add the ENS wallet actions to

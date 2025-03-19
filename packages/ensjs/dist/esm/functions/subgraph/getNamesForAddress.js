@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import { gql } from 'graphql-request';
-import { FilterKeyRequiredError, InvalidFilterKeyError, InvalidOrderByError, } from '../../errors/subgraph';
-import { EMPTY_ADDRESS } from '../../utils/consts';
-import { createSubgraphClient } from './client';
-import { getExpiryDateOrderFilter, getCreatedAtOrderFilter, } from './filters';
-import { domainDetailsFragment, registrationDetailsFragment, wrappedDomainDetailsFragment, } from './fragments';
-import { makeNameObject } from './utils';
+import { FilterKeyRequiredError, InvalidFilterKeyError, InvalidOrderByError, } from '../../errors/subgraph.js';
+import { EMPTY_ADDRESS } from '../../utils/consts.js';
+import { createSubgraphClient } from './client.js';
+import { getExpiryDateOrderFilter, getCreatedAtOrderFilter, } from './filters.js';
+import { domainDetailsFragment, registrationDetailsFragment, wrappedDomainDetailsFragment, } from './fragments.js';
+import { makeNameObject } from './utils.js';
 const supportedOwnerFilters = [
     'owner',
     'registrant',

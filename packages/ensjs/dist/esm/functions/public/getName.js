@@ -1,10 +1,10 @@
 import { BaseError, decodeFunctionResult, encodeFunctionData, getAddress, toHex, } from 'viem';
-import { getChainContractAddress } from '../../contracts/getChainContractAddress';
-import { universalResolverReverseSnippet, universalResolverReverseWithGatewaysSnippet, } from '../../contracts/universalResolver';
-import { checkSafeUniversalResolverData } from '../../utils/checkSafeUniversalResolverData';
-import { generateFunction, } from '../../utils/generateFunction';
-import { packetToBytes } from '../../utils/hexEncodedName';
-import { normalise } from '../../utils/normalise';
+import { getChainContractAddress } from '../../contracts/getChainContractAddress.js';
+import { universalResolverReverseSnippet, universalResolverReverseWithGatewaysSnippet, } from '../../contracts/universalResolver.js';
+import { checkSafeUniversalResolverData } from '../../utils/checkSafeUniversalResolverData.js';
+import { generateFunction, } from '../../utils/generateFunction.js';
+import { packetToBytes } from '../../utils/hexEncodedName.js';
+import { normalise } from '../../utils/normalise.js';
 const encode = (client, { address, gatewayUrls }) => {
     const reverseNode = `${address.toLowerCase().substring(2)}.addr.reverse`;
     const to = getChainContractAddress({

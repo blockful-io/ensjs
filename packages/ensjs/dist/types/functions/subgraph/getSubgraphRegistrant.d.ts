@@ -1,5 +1,5 @@
 import { type Address } from 'viem';
-import type { ClientWithEns } from '../../contracts/consts';
+import type { ClientWithEns } from '../../contracts/consts.js';
 export type GetSubgraphRegistrantParameters = {
     /** Name to get registrant for */
     name: string;

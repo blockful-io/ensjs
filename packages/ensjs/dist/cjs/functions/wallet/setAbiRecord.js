@@ -2,13 +2,13 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.makeFunctionData = void 0;
 const actions_1 = require("viem/actions");
-const encodeSetAbi_1 = require("../../utils/encoders/encodeSetAbi");
-const normalise_1 = require("../../utils/normalise");
+const encodeSetAbi_js_1 = require("../../utils/encoders/encodeSetAbi.js");
+const normalise_js_1 = require("../../utils/normalise.js");
 const makeFunctionData = (_wallet, { name, encodedAbi, resolverAddress }) => {
     return {
         to: resolverAddress,
-        data: (0, encodeSetAbi_1.encodeSetAbi)({
-            namehash: (0, normalise_1.namehash)(name),
+        data: (0, encodeSetAbi_js_1.encodeSetAbi)({
+            namehash: (0, normalise_js_1.namehash)(name),
             ...encodedAbi,
         }),
     };

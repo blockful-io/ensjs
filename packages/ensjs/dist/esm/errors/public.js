@@ -1,4 +1,4 @@
-import { BaseError } from './base';
+import { BaseError } from './base.js';
 export class CoinFormatterNotFoundError extends BaseError {
     constructor({ coinType }) {
         super(`Coin formatter not found for ${coinType}`);

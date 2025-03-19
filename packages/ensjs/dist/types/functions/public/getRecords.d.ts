@@ -1,8 +1,8 @@
 import { BaseError, type Address, type Hex } from 'viem';
-import type { ClientWithEns } from '../../contracts/consts';
-import type { DecodedAddr, DecodedText, Prettify, SimpleTransactionRequest, TransactionRequestWithPassthrough } from '../../types';
-import { type InternalGetAbiReturnType } from './_getAbi';
-import { type InternalGetContentHashReturnType } from './_getContentHash';
+import type { ClientWithEns } from '../../contracts/consts.js';
+import type { DecodedAddr, DecodedText, Prettify, SimpleTransactionRequest, TransactionRequestWithPassthrough } from '../../types.js';
+import { type InternalGetAbiReturnType } from './_getAbi.js';
+import { type InternalGetContentHashReturnType } from './_getContentHash.js';
 export type GetRecordsParameters<TTexts extends readonly string[] | undefined = readonly string[], TCoins extends readonly (string | number)[] | undefined = readonly (string | number)[], TContentHash extends boolean | undefined = true, TAbi extends boolean | undefined = true> = {
     /** Name to get records for */
     name: string;

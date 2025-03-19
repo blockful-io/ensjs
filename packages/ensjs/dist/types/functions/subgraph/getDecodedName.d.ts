@@ -1,4 +1,4 @@
-import type { ClientWithEns } from '../../contracts/consts';
+import type { ClientWithEns } from '../../contracts/consts.js';
 export type GetDecodedNameParameters = {
     /** Name with unknown labels */
     name: string;

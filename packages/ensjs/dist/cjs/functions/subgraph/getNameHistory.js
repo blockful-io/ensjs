@@ -3,11 +3,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const address_encoder_1 = require("@ensdomains/address-encoder");
 const graphql_request_1 = require("graphql-request");
 const viem_1 = require("viem");
-const contentHash_1 = require("../../utils/contentHash");
-const normalise_1 = require("../../utils/normalise");
-const client_1 = require("./client");
+const contentHash_js_1 = require("../../utils/contentHash.js");
+const normalise_js_1 = require("../../utils/normalise.js");
+const client_js_1 = require("./client.js");
 const getNameHistory = async (client, { name }) => {
-    const subgraphClient = (0, client_1.createSubgraphClient)({ client });
+    const subgraphClient = (0, client_js_1.createSubgraphClient)({ client });
     const query = (0, graphql_request_1.gql) `
     query getNameHistory($id: String!) {
       domain(id: $id) {
@@ -130,7 +130,7 @@ const getNameHistory = async (client, { name }) => {
     }
   `;
     const queryVars = {
-        id: (0, normalise_1.namehash)(name),
+        id: (0, normalise_js_1.namehash)(name),
     };
     const result = await subgraphClient.request(query, queryVars);
     if (!result.domain)
@@ -210,7 +210,7 @@ const getNameHistory = async (client, { name }) => {
                 };
             }
             case 'ContenthashChanged': {
-                const { decoded: contentHash, protocolType } = (0, contentHash_1.decodeContentHash)(event.hash) || { protocolType: null, decoded: null };
+                const { decoded: contentHash, protocolType } = (0, contentHash_js_1.decodeContentHash)(event.hash) || { protocolType: null, decoded: null };
                 return {
                     ...event,
                     decoded: contentHash !== null,

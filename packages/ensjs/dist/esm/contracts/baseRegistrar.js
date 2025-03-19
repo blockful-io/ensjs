@@ -1,4 +1,4 @@
-import { erc721OwnerOfSnippet, erc721SafeTransferFromSnippet, erc721SafeTransferFromWithDataSnippet, } from './erc721';
+import { erc721OwnerOfSnippet, erc721SafeTransferFromSnippet, erc721SafeTransferFromWithDataSnippet, } from './erc721.js';
 export const baseRegistrarAvailableSnippet = [
     {
         inputs: [

@@ -1,7 +1,7 @@
 import { type Account, type Address, type Hash, type Transport, type Hex } from 'viem';
-import type { ChainWithEns, ClientWithAccount, WalletClientWithAccount } from '../../contracts/consts';
-import type { AnyDate, Prettify, SimpleTransactionRequest, WriteTransactionParameters } from '../../types';
-import { type EncodeFusesInputObject } from '../../utils/fuses';
+import type { ChainWithEns, ClientWithAccount, WalletClientWithAccount } from '../../contracts/consts.js';
+import type { AnyDate, Prettify, SimpleTransactionRequest, WriteTransactionParameters } from '../../types.js';
+import { type EncodeFusesInputObject } from '../../utils/fuses.js';
 type BaseCreateSubnameDataParameters = {
     /** Subname to create */
     name: string;

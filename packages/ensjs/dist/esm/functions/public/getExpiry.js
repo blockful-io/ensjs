@@ -1,13 +1,13 @@
 import { BaseError, decodeFunctionResult, encodeFunctionData, labelhash, } from 'viem';
-import { baseRegistrarGracePeriodSnippet, baseRegistrarNameExpiresSnippet, } from '../../contracts/baseRegistrar';
-import { getChainContractAddress } from '../../contracts/getChainContractAddress';
-import { multicallGetCurrentBlockTimestampSnippet } from '../../contracts/multicall';
-import { nameWrapperGetDataSnippet } from '../../contracts/nameWrapper';
-import { generateFunction, } from '../../utils/generateFunction';
-import { makeSafeSecondsDate } from '../../utils/makeSafeSecondsDate';
-import { namehash } from '../../utils/normalise';
-import { checkIsDotEth } from '../../utils/validation';
-import multicallWrapper from './multicallWrapper';
+import { baseRegistrarGracePeriodSnippet, baseRegistrarNameExpiresSnippet, } from '../../contracts/baseRegistrar.js';
+import { getChainContractAddress } from '../../contracts/getChainContractAddress.js';
+import { multicallGetCurrentBlockTimestampSnippet } from '../../contracts/multicall.js';
+import { nameWrapperGetDataSnippet } from '../../contracts/nameWrapper.js';
+import { generateFunction, } from '../../utils/generateFunction.js';
+import { makeSafeSecondsDate } from '../../utils/makeSafeSecondsDate.js';
+import { namehash } from '../../utils/normalise.js';
+import { checkIsDotEth } from '../../utils/validation.js';
+import multicallWrapper from './multicallWrapper.js';
 const getContractToUse = (contract, labels) => {
     if (contract)
         return contract;

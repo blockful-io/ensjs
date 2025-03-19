@@ -1,8 +1,8 @@
 import { type Client, type ClientConfig, type PublicRpcSchema, type Transport } from 'viem';
-import type { ChainWithBaseContracts, ChainWithEns } from '../contracts/consts';
-import type { Prettify } from '../types';
-import { type EnsPublicActions } from './decorators/public';
-import { type EnsSubgraphActions } from './decorators/subgraph';
+import type { ChainWithBaseContracts, ChainWithEns } from '../contracts/consts.js';
+import type { Prettify } from '../types.js';
+import { type EnsPublicActions } from './decorators/public.js';
+import { type EnsSubgraphActions } from './decorators/subgraph.js';
 export type EnsPublicClientConfig<TTransport extends Transport = Transport, TChain extends ChainWithBaseContracts = ChainWithBaseContracts> = Pick<ClientConfig<TTransport, TChain>, 'batch' | 'key' | 'name' | 'pollingInterval' | 'transport'> & {
     chain: TChain;
 };
@@ -43,69 +43,69 @@ export declare const createEnsPublicClient: <TTransport extends Transport, TChai
     transport: ReturnType<TTransport>["config"] & ReturnType<TTransport>["value"];
     type: string;
     uid: string;
-    ensBatch: <TBatchFunctions extends import("../public").BatchParameters>(...parameters: TBatchFunctions) => Promise<import("../public").BatchReturnType<TBatchFunctions>>;
+    ensBatch: <TBatchFunctions extends import("../public.js").BatchParameters>(...parameters: TBatchFunctions) => Promise<import("../public.js").BatchReturnType<TBatchFunctions>>;
     getAbiRecord: ({ name, gatewayUrls, strict, supportedContentTypes, }: {
         name: string;
         supportedContentTypes?: bigint | undefined;
         strict?: boolean | undefined;
         gatewayUrls?: string[] | undefined;
-    }) => Promise<import("../public").GetAbiRecordReturnType>;
+    }) => Promise<import("../public.js").GetAbiRecordReturnType>;
     getAddressRecord: ({ name, coin, bypassFormat, gatewayUrls, strict, }: {
         name: string;
         coin?: string | number | undefined;
         bypassFormat?: boolean | undefined;
         strict?: boolean | undefined;
         gatewayUrls?: string[] | undefined;
-    }) => Promise<import("../public").GetAddressRecordReturnType>;
-    getAvailable: ({ name, }: import("../public").GetAvailableParameters) => Promise<boolean>;
+    }) => Promise<import("../public.js").GetAddressRecordReturnType>;
+    getAvailable: ({ name, }: import("../public.js").GetAvailableParameters) => Promise<boolean>;
     getContentHashRecord: ({ name, gatewayUrls, strict, }: {
         name: string;
         strict?: boolean | undefined;
         gatewayUrls?: string[] | undefined;
-    }) => Promise<import("../public").GetContentHashRecordReturnType>;
+    }) => Promise<import("../public.js").GetContentHashRecordReturnType>;
     getExpiry: ({ name, contract, }: {
         name: string;
         contract?: ("registrar" | "nameWrapper") | undefined;
-    }) => Promise<import("../public").GetExpiryReturnType>;
-    getName: ({ address, allowMismatch, gatewayUrls, strict, }: import("../public").GetNameParameters) => Promise<import("../public").GetNameReturnType>;
-    getOwner: ({ name, contract, }: import("../public").GetOwnerParameters) => Promise<import("../public").GetOwnerReturnType>;
-    getPrice: ({ nameOrNames, duration, }: import("../public").GetPriceParameters) => Promise<import("../public").GetPriceReturnType>;
-    getRecords: <const TTexts extends readonly string[] = readonly string[], const TCoins extends readonly (string | number)[] = readonly (string | number)[], const TContentHash extends boolean = true, const TAbi extends boolean = true>({ name, texts, coins, contentHash, abi, resolver, gatewayUrls, }: import("../public").GetRecordsParameters<TTexts, TCoins, TContentHash, TAbi>) => Promise<(TContentHash extends true ? {
-        contentHash: import("../public").InternalGetContentHashReturnType;
+    }) => Promise<import("../public.js").GetExpiryReturnType>;
+    getName: ({ address, allowMismatch, gatewayUrls, strict, }: import("../public.js").GetNameParameters) => Promise<import("../public.js").GetNameReturnType>;
+    getOwner: ({ name, contract, }: import("../public.js").GetOwnerParameters) => Promise<import("../public.js").GetOwnerReturnType>;
+    getPrice: ({ nameOrNames, duration, }: import("../public.js").GetPriceParameters) => Promise<import("../public.js").GetPriceReturnType>;
+    getRecords: <const TTexts extends readonly string[] = readonly string[], const TCoins extends readonly (string | number)[] = readonly (string | number)[], const TContentHash extends boolean = true, const TAbi extends boolean = true>({ name, texts, coins, contentHash, abi, resolver, gatewayUrls, }: import("../public.js").GetRecordsParameters<TTexts, TCoins, TContentHash, TAbi>) => Promise<(TContentHash extends true ? {
+        contentHash: import("../public.js").InternalGetContentHashReturnType;
     } : {}) & (TAbi extends true ? {
-        abi: import("../public").InternalGetAbiReturnType;
+        abi: import("../public.js").InternalGetAbiReturnType;
     } : {}) & (TTexts extends readonly string[] ? {
-        texts: import("../types").DecodedText[];
+        texts: import("../types.js").DecodedText[];
     } : {}) & (TCoins extends readonly (string | number)[] ? {
-        coins: import("../types").DecodedAddr[];
+        coins: import("../types.js").DecodedAddr[];
     } : {}) & {
         resolverAddress: `0x${string}`;
     } extends infer T ? { [K in keyof T]: ((TContentHash extends true ? {
-        contentHash: import("../public").InternalGetContentHashReturnType;
+        contentHash: import("../public.js").InternalGetContentHashReturnType;
     } : {}) & (TAbi extends true ? {
-        abi: import("../public").InternalGetAbiReturnType;
+        abi: import("../public.js").InternalGetAbiReturnType;
     } : {}) & (TTexts extends readonly string[] ? {
-        texts: import("../types").DecodedText[];
+        texts: import("../types.js").DecodedText[];
     } : {}) & (TCoins extends readonly (string | number)[] ? {
-        coins: import("../types").DecodedAddr[];
+        coins: import("../types.js").DecodedAddr[];
     } : {}) & {
         resolverAddress: `0x${string}`;
     })[K]; } : never>;
-    getResolver: ({ name, }: import("../public").GetResolverParameters) => Promise<import("../public").GetResolverReturnType>;
+    getResolver: ({ name, }: import("../public.js").GetResolverParameters) => Promise<import("../public.js").GetResolverReturnType>;
     getTextRecord: ({ name, key, gatewayUrls, strict, }: {
         name: string;
         key: string;
         strict?: boolean | undefined;
         gatewayUrls?: string[] | undefined;
-    }) => Promise<import("../public").GetTextRecordReturnType>;
-    getWrapperData: ({ name, }: import("../public").GetWrapperDataParameters) => Promise<import("../public").GetWrapperDataReturnType>;
-    getWrapperName: ({ name, }: import("../functions/public/getWrapperName").GetWrapperNameParameters) => Promise<import("../functions/public/getWrapperName").GetWrapperNameReturnType>;
-    getDecodedName: ({ name, allowIncomplete, }: import("../subgraph").GetDecodedNameParameters) => Promise<import("../subgraph").GetDecodedNameReturnType>;
-    getNameHistory: ({ name, }: import("../subgraph").GetNameHistoryParameters) => Promise<import("../subgraph").GetNameHistoryReturnType>;
-    getNamesForAddress: ({ address, filter, orderBy, orderDirection, pageSize, previousPage, }: import("../subgraph").GetNamesForAddressParameters) => Promise<import("../subgraph").GetNamesForAddressReturnType>;
-    getSubgraphRecords: ({ name, resolverAddress, }: import("../subgraph").GetSubgraphRecordsParameters) => Promise<import("../subgraph").GetSubgraphRecordsReturnType>;
-    getSubgraphRegistrant: ({ name, }: import("../subgraph").GetSubgraphRegistrantParameters) => Promise<import("../subgraph").GetSubgraphRegistrantReturnType>;
-    getSubnames: ({ name, searchString, allowExpired, allowDeleted, orderBy, orderDirection, pageSize, previousPage, }: import("../subgraph").GetSubnamesParameters) => Promise<import("../subgraph").GetSubnamesReturnType>;
+    }) => Promise<import("../public.js").GetTextRecordReturnType>;
+    getWrapperData: ({ name, }: import("../public.js").GetWrapperDataParameters) => Promise<import("../public.js").GetWrapperDataReturnType>;
+    getWrapperName: ({ name, }: import("../functions/public/getWrapperName.js").GetWrapperNameParameters) => Promise<import("../functions/public/getWrapperName.js").GetWrapperNameReturnType>;
+    getDecodedName: ({ name, allowIncomplete, }: import("../subgraph.js").GetDecodedNameParameters) => Promise<import("../subgraph.js").GetDecodedNameReturnType>;
+    getNameHistory: ({ name, }: import("../subgraph.js").GetNameHistoryParameters) => Promise<import("../subgraph.js").GetNameHistoryReturnType>;
+    getNamesForAddress: ({ address, filter, orderBy, orderDirection, pageSize, previousPage, }: import("../subgraph.js").GetNamesForAddressParameters) => Promise<import("../subgraph.js").GetNamesForAddressReturnType>;
+    getSubgraphRecords: ({ name, resolverAddress, }: import("../subgraph.js").GetSubgraphRecordsParameters) => Promise<import("../subgraph.js").GetSubgraphRecordsReturnType>;
+    getSubgraphRegistrant: ({ name, }: import("../subgraph.js").GetSubgraphRegistrantParameters) => Promise<import("../subgraph.js").GetSubgraphRegistrantReturnType>;
+    getSubnames: ({ name, searchString, allowExpired, allowDeleted, orderBy, orderDirection, pageSize, previousPage, }: import("../subgraph.js").GetSubnamesParameters) => Promise<import("../subgraph.js").GetSubnamesReturnType>;
     extend: <const client extends {
         [x: string]: unknown;
         account?: undefined;

@@ -1,6 +1,6 @@
 import { encodeFunctionData } from 'viem';
-import { publicResolverSetContenthashSnippet } from '../../contracts/publicResolver';
-import { encodeContentHash } from '../contentHash';
+import { publicResolverSetContenthashSnippet } from '../../contracts/publicResolver.js';
+import { encodeContentHash } from '../contentHash.js';
 export const encodeSetContentHash = ({ namehash, contentHash, }) => {
     let encodedHash = '0x';
     if (contentHash) {

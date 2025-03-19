@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-redeclare, @typescript-eslint/naming-convention  */
-import { FusesInvalidFuseObjectError, FusesInvalidNamedFuseError, FusesInvalidUnnamedFuseError, FusesOutOfRangeError, FusesRestrictionNotAllowedError, } from '../errors/utils';
+import { FusesInvalidFuseObjectError, FusesInvalidNamedFuseError, FusesInvalidUnnamedFuseError, FusesOutOfRangeError, FusesRestrictionNotAllowedError, } from '../errors/utils.js';
 export const ChildFuses = {
     CANNOT_UNWRAP: 1n,
     CANNOT_BURN_FUSES: 2n,

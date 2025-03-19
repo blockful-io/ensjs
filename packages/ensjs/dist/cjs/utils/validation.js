@@ -1,26 +1,26 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.checkIsDotEth = exports.parseInput = exports.validateName = void 0;
-const utils_1 = require("../errors/utils");
-const consts_1 = require("./consts");
-const labels_1 = require("./labels");
-const normalise_1 = require("./normalise");
+const utils_js_1 = require("../errors/utils.js");
+const consts_js_1 = require("./consts.js");
+const labels_js_1 = require("./labels.js");
+const normalise_js_1 = require("./normalise.js");
 const validateName = (name) => {
     const nameArray = name.split('.');
     const normalisedArray = nameArray.map((label) => {
         if (label.length === 0)
-            throw new utils_1.NameWithEmptyLabelsError({ name });
+            throw new utils_js_1.NameWithEmptyLabelsError({ name });
         if (label === '[root]') {
             if (name !== label)
-                throw new utils_1.RootNameIncludesOtherLabelsError({ name });
+                throw new utils_js_1.RootNameIncludesOtherLabelsError({ name });
             return label;
         }
-        return (0, labels_1.isEncodedLabelhash)(label)
-            ? (0, labels_1.checkLabel)(label) || label
-            : (0, normalise_1.normalise)(label);
+        return (0, labels_js_1.isEncodedLabelhash)(label)
+            ? (0, labels_js_1.checkLabel)(label) || label
+            : (0, normalise_js_1.normalise)(label);
     });
     const normalisedName = normalisedArray.join('.');
-    (0, labels_1.saveName)(normalisedName);
+    (0, labels_js_1.saveName)(normalisedName);
     return normalisedName;
 };
 exports.validateName = validateName;
@@ -36,8 +36,8 @@ const parseInput = (input) => {
     const labels = nameReference.split('.');
     const tld = labels[labels.length - 1];
     const isETH = tld === 'eth';
-    const labelDataArray = (0, normalise_1.split)(nameReference);
-    const isShort = (labelDataArray[0].output?.length || 0) < consts_1.MINIMUM_DOT_ETH_CHARS;
+    const labelDataArray = (0, normalise_js_1.split)(nameReference);
+    const isShort = (labelDataArray[0].output?.length || 0) < consts_js_1.MINIMUM_DOT_ETH_CHARS;
     if (labels.length === 1) {
         return {
             type: 'label',

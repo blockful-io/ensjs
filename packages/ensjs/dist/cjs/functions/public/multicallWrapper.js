@@ -1,14 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const viem_1 = require("viem");
-const getChainContractAddress_1 = require("../../contracts/getChainContractAddress");
-const multicall_1 = require("../../contracts/multicall");
-const generateFunction_1 = require("../../utils/generateFunction");
+const getChainContractAddress_js_1 = require("../../contracts/getChainContractAddress.js");
+const multicall_js_1 = require("../../contracts/multicall.js");
+const generateFunction_js_1 = require("../../utils/generateFunction.js");
 const encode = (client, { transactions, requireSuccess = false }) => {
     return {
-        to: (0, getChainContractAddress_1.getChainContractAddress)({ client, contract: 'multicall3' }),
+        to: (0, getChainContractAddress_js_1.getChainContractAddress)({ client, contract: 'multicall3' }),
         data: (0, viem_1.encodeFunctionData)({
-            abi: multicall_1.multicallTryAggregateSnippet,
+            abi: multicall_js_1.multicallTryAggregateSnippet,
             functionName: 'tryAggregate',
             args: [
                 requireSuccess,
@@ -20,13 +20,13 @@ const encode = (client, { transactions, requireSuccess = false }) => {
 const decode = async (client, data, transactions) => {
     if (typeof data === 'object') {
         throw (0, viem_1.getContractError)(data, {
-            abi: multicall_1.multicallTryAggregateSnippet,
+            abi: multicall_js_1.multicallTryAggregateSnippet,
             functionName: 'tryAggregate',
             args: [],
         });
     }
     const result = (0, viem_1.decodeFunctionResult)({
-        abi: multicall_1.multicallTryAggregateSnippet,
+        abi: multicall_js_1.multicallTryAggregateSnippet,
         functionName: 'tryAggregate',
         data,
     });
@@ -51,6 +51,6 @@ const decode = async (client, data, transactions) => {
     }));
     return ccipChecked;
 };
-const multicallWrapper = (0, generateFunction_1.generateFunction)({ encode, decode });
+const multicallWrapper = (0, generateFunction_js_1.generateFunction)({ encode, decode });
 exports.default = multicallWrapper;
 //# sourceMappingURL=multicallWrapper.js.map

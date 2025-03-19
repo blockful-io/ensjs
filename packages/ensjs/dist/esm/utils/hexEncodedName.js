@@ -1,6 +1,6 @@
 // Adapted from https://github.com/mafintosh/dns-packet
 import { bytesToString, labelhash, stringToBytes } from 'viem';
-import { encodeLabelhash } from './labels';
+import { encodeLabelhash } from './labels.js';
 /*
  * @description Encodes a DNS packet into a ByteArray containing a UDP payload.
  */

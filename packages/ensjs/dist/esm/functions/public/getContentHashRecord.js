@@ -1,6 +1,6 @@
-import { generateFunction, } from '../../utils/generateFunction';
-import _getContentHash, {} from './_getContentHash';
-import universalWrapper from './universalWrapper';
+import { generateFunction, } from '../../utils/generateFunction.js';
+import _getContentHash, {} from './_getContentHash.js';
+import universalWrapper from './universalWrapper.js';
 const encode = (client, { name, gatewayUrls }) => {
     const prData = _getContentHash.encode(client, { name });
     return universalWrapper.encode(client, {

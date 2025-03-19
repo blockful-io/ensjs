@@ -1,7 +1,7 @@
 import { type Account, type Address, type Client, type ClientConfig, type ParseAccount, type Transport, type WalletActions, type WalletRpcSchema } from 'viem';
-import type { ChainWithBaseContracts, ChainWithEns, CheckedChainWithEns } from '../contracts/consts';
-import type { Assign, Prettify } from '../types';
-import { type EnsWalletActions } from './decorators/wallet';
+import type { ChainWithBaseContracts, ChainWithEns, CheckedChainWithEns } from '../contracts/consts.js';
+import type { Assign, Prettify } from '../types.js';
+import { type EnsWalletActions } from './decorators/wallet.js';
 export type EnsWalletClientConfig<TTransport extends Transport, TChain extends ChainWithBaseContracts, TAccountOrAddress extends Account | Address | undefined = Account | Address | undefined> = Assign<Pick<ClientConfig<TTransport, TChain, TAccountOrAddress>, 'account' | 'chain' | 'key' | 'name' | 'pollingInterval' | 'transport'>, {
     chain: TChain;
 }>;
@@ -25,6 +25,22 @@ export type EnsWalletClient<TTransport extends Transport = Transport, TChain ext
 export declare const createEnsWalletClient: <TTransport extends Transport, TChain extends ChainWithBaseContracts, TAccountOrAddress extends `0x${string}` | Account | undefined = undefined>({ account, chain, key, name, transport, pollingInterval, }: EnsWalletClientConfig<TTransport, TChain, TAccountOrAddress>) => {
     account: ParseAccount<TAccountOrAddress>;
     batch?: {
+        /**
+         * Creates an ENS Wallet Client with a given [Transport](https://viem.sh/docs/clients/intro.html) configured for a [Chain](https://viem.sh/docs/clients/chains.html).
+         *
+         * @param config - {@link EnsWalletClientConfig}
+         * @returns An ENS Wallet Client. {@link EnsWalletClient}
+         *
+         * @example
+         * import { custom } from 'viem'
+         * import { mainnet } from 'viem/chains'
+         * import { createEnsWalletClient } from '@ensdomains/ensjs'
+         *
+         * const client = createEnsWalletClient({
+         *   chain: mainnet,
+         *   transport: custom(window.ethereum),
+         * })
+         */
         multicall?: boolean | {
             batchSize?: number | undefined;
             wait?: number | undefined;
@@ -4871,12 +4887,12 @@ export declare const createEnsWalletClient: <TTransport extends Transport, TChai
         records?: {
             clearRecords?: boolean | undefined;
             contentHash?: string | null | undefined;
-            texts?: Omit<import("../utils").EncodeSetTextParameters, "namehash">[] | undefined;
-            coins?: Omit<import("../utils").EncodeSetAddrParameters, "namehash">[] | undefined;
-            abi?: import("../utils").EncodedAbi | import("../utils").EncodedAbi[] | undefined;
+            texts?: Omit<import("../utils/index.js").EncodeSetTextParameters, "namehash">[] | undefined;
+            coins?: Omit<import("../utils/index.js").EncodeSetAddrParameters, "namehash">[] | undefined;
+            abi?: import("../utils/index.js").EncodedAbi | import("../utils/index.js").EncodedAbi[] | undefined;
         } | undefined;
         reverseRecord?: boolean | undefined;
-        fuses?: import("../utils").EncodeChildFusesInputObject | undefined;
+        fuses?: import("../utils/fuses.js").EncodeChildFusesInputObject | undefined;
         gas?: import("viem").SendTransactionParameters<CheckedChainWithEns<TChain>, ParseAccount<TAccountOrAddress>, CheckedChainWithEns<TChain>>["gas"] | undefined;
         nonce?: import("viem").SendTransactionParameters<CheckedChainWithEns<TChain>, ParseAccount<TAccountOrAddress>, CheckedChainWithEns<TChain>>["nonce"] | undefined;
         gasPrice?: import("viem").SendTransactionParameters<CheckedChainWithEns<TChain>, ParseAccount<TAccountOrAddress>, CheckedChainWithEns<TChain>>["gasPrice"] | undefined;
@@ -4884,7 +4900,7 @@ export declare const createEnsWalletClient: <TTransport extends Transport, TChai
         maxPriorityFeePerGas?: import("viem").SendTransactionParameters<CheckedChainWithEns<TChain>, ParseAccount<TAccountOrAddress>, CheckedChainWithEns<TChain>>["maxPriorityFeePerGas"] | undefined;
         account?: import("viem").SendTransactionParameters<CheckedChainWithEns<TChain>, ParseAccount<TAccountOrAddress>, CheckedChainWithEns<TChain>>["account"] | undefined;
     }) => Promise<`0x${string}`>;
-    createSubname: ({ name, contract, owner, resolverAddress, expiry, fuses, ...txArgs }: import("../wallet").CreateSubnameParameters<CheckedChainWithEns<TChain>, ParseAccount<TAccountOrAddress>, CheckedChainWithEns<TChain>>) => Promise<`0x${string}`>;
+    createSubname: ({ name, contract, owner, resolverAddress, expiry, fuses, ...txArgs }: import("../wallet.js").CreateSubnameParameters<CheckedChainWithEns<TChain>, ParseAccount<TAccountOrAddress>, CheckedChainWithEns<TChain>>) => Promise<`0x${string}`>;
     deleteSubname: ({ name, contract, asOwner, ...txArgs }: {
         name: string;
         contract: "nameWrapper" | "registry";
@@ -4905,12 +4921,12 @@ export declare const createEnsWalletClient: <TTransport extends Transport, TChai
         records?: {
             clearRecords?: boolean | undefined;
             contentHash?: string | null | undefined;
-            texts?: Omit<import("../utils").EncodeSetTextParameters, "namehash">[] | undefined;
-            coins?: Omit<import("../utils").EncodeSetAddrParameters, "namehash">[] | undefined;
-            abi?: import("../utils").EncodedAbi | import("../utils").EncodedAbi[] | undefined;
+            texts?: Omit<import("../utils/index.js").EncodeSetTextParameters, "namehash">[] | undefined;
+            coins?: Omit<import("../utils/index.js").EncodeSetAddrParameters, "namehash">[] | undefined;
+            abi?: import("../utils/index.js").EncodedAbi | import("../utils/index.js").EncodedAbi[] | undefined;
         } | undefined;
         reverseRecord?: boolean | undefined;
-        fuses?: import("../utils").EncodeChildFusesInputObject | undefined;
+        fuses?: import("../utils/fuses.js").EncodeChildFusesInputObject | undefined;
         value: bigint;
         gas?: import("viem").SendTransactionParameters<CheckedChainWithEns<TChain>, ParseAccount<TAccountOrAddress>, CheckedChainWithEns<TChain>>["gas"] | undefined;
         nonce?: import("viem").SendTransactionParameters<CheckedChainWithEns<TChain>, ParseAccount<TAccountOrAddress>, CheckedChainWithEns<TChain>>["nonce"] | undefined;
@@ -4932,7 +4948,7 @@ export declare const createEnsWalletClient: <TTransport extends Transport, TChai
     }) => Promise<`0x${string}`>;
     setAbiRecord: ({ name, encodedAbi, resolverAddress, ...txArgs }: {
         name: string;
-        encodedAbi: import("../utils").EncodedAbi;
+        encodedAbi: import("../utils/index.js").EncodedAbi;
         resolverAddress: `0x${string}`;
         gas?: import("viem").SendTransactionParameters<CheckedChainWithEns<TChain>, ParseAccount<TAccountOrAddress>, CheckedChainWithEns<TChain>>["gas"] | undefined;
         nonce?: import("viem").SendTransactionParameters<CheckedChainWithEns<TChain>, ParseAccount<TAccountOrAddress>, CheckedChainWithEns<TChain>>["nonce"] | undefined;
@@ -4955,7 +4971,7 @@ export declare const createEnsWalletClient: <TTransport extends Transport, TChai
     }) => Promise<`0x${string}`>;
     setChildFuses: ({ name, fuses, expiry, ...txArgs }: {
         name: string;
-        fuses: import("../utils").EncodeFusesInputObject;
+        fuses: import("../utils/fuses.js").EncodeFusesInputObject;
         expiry?: number | bigint | undefined;
         gas?: import("viem").SendTransactionParameters<CheckedChainWithEns<TChain>, ParseAccount<TAccountOrAddress>, CheckedChainWithEns<TChain>>["gas"] | undefined;
         nonce?: import("viem").SendTransactionParameters<CheckedChainWithEns<TChain>, ParseAccount<TAccountOrAddress>, CheckedChainWithEns<TChain>>["nonce"] | undefined;
@@ -4977,7 +4993,7 @@ export declare const createEnsWalletClient: <TTransport extends Transport, TChai
     }) => Promise<`0x${string}`>;
     setFuses: ({ name, fuses, ...txArgs }: {
         name: string;
-        fuses: import("../utils").EncodeChildFusesInputObject;
+        fuses: import("../utils/fuses.js").EncodeChildFusesInputObject;
         gas?: import("viem").SendTransactionParameters<CheckedChainWithEns<TChain>, ParseAccount<TAccountOrAddress>, CheckedChainWithEns<TChain>>["gas"] | undefined;
         nonce?: import("viem").SendTransactionParameters<CheckedChainWithEns<TChain>, ParseAccount<TAccountOrAddress>, CheckedChainWithEns<TChain>>["nonce"] | undefined;
         gasPrice?: import("viem").SendTransactionParameters<CheckedChainWithEns<TChain>, ParseAccount<TAccountOrAddress>, CheckedChainWithEns<TChain>>["gasPrice"] | undefined;
@@ -4985,15 +5001,15 @@ export declare const createEnsWalletClient: <TTransport extends Transport, TChai
         maxPriorityFeePerGas?: import("viem").SendTransactionParameters<CheckedChainWithEns<TChain>, ParseAccount<TAccountOrAddress>, CheckedChainWithEns<TChain>>["maxPriorityFeePerGas"] | undefined;
         account?: import("viem").SendTransactionParameters<CheckedChainWithEns<TChain>, ParseAccount<TAccountOrAddress>, CheckedChainWithEns<TChain>>["account"] | undefined;
     }) => Promise<`0x${string}`>;
-    setPrimaryName: ({ name, address, resolverAddress, ...txArgs }: import("../wallet").SetPrimaryNameParameters<CheckedChainWithEns<TChain>, ParseAccount<TAccountOrAddress>, CheckedChainWithEns<TChain>>) => Promise<`0x${string}`>;
+    setPrimaryName: ({ name, address, resolverAddress, ...txArgs }: import("../wallet.js").SetPrimaryNameParameters<CheckedChainWithEns<TChain>, ParseAccount<TAccountOrAddress>, CheckedChainWithEns<TChain>>) => Promise<`0x${string}`>;
     setRecords: ({ name, resolverAddress, clearRecords, contentHash, texts, coins, abi, ...txArgs }: {
         name: string;
         resolverAddress: `0x${string}`;
         clearRecords?: boolean | undefined;
         contentHash?: string | null | undefined;
-        texts?: Omit<import("../utils").EncodeSetTextParameters, "namehash">[] | undefined;
-        coins?: Omit<import("../utils").EncodeSetAddrParameters, "namehash">[] | undefined;
-        abi?: import("../utils").EncodedAbi | import("../utils").EncodedAbi[] | undefined;
+        texts?: Omit<import("../utils/index.js").EncodeSetTextParameters, "namehash">[] | undefined;
+        coins?: Omit<import("../utils/index.js").EncodeSetAddrParameters, "namehash">[] | undefined;
+        abi?: import("../utils/index.js").EncodedAbi | import("../utils/index.js").EncodedAbi[] | undefined;
         gas?: import("viem").SendTransactionParameters<CheckedChainWithEns<TChain>, ParseAccount<TAccountOrAddress>, CheckedChainWithEns<TChain>>["gas"] | undefined;
         nonce?: import("viem").SendTransactionParameters<CheckedChainWithEns<TChain>, ParseAccount<TAccountOrAddress>, CheckedChainWithEns<TChain>>["nonce"] | undefined;
         gasPrice?: import("viem").SendTransactionParameters<CheckedChainWithEns<TChain>, ParseAccount<TAccountOrAddress>, CheckedChainWithEns<TChain>>["gasPrice"] | undefined;
@@ -5024,12 +5040,12 @@ export declare const createEnsWalletClient: <TTransport extends Transport, TChai
         maxPriorityFeePerGas?: import("viem").SendTransactionParameters<CheckedChainWithEns<TChain>, ParseAccount<TAccountOrAddress>, CheckedChainWithEns<TChain>>["maxPriorityFeePerGas"] | undefined;
         account?: import("viem").SendTransactionParameters<CheckedChainWithEns<TChain>, ParseAccount<TAccountOrAddress>, CheckedChainWithEns<TChain>>["account"] | undefined;
     }) => Promise<`0x${string}`>;
-    transferName: ({ name, newOwnerAddress, contract, reclaim, asParent, ...txArgs }: import("../wallet").TransferNameParameters<CheckedChainWithEns<TChain>, ParseAccount<TAccountOrAddress>, CheckedChainWithEns<TChain>>) => Promise<`0x${string}`>;
-    unwrapName: <TName extends string>({ name, newOwnerAddress, newRegistrantAddress, ...txArgs }: import("../wallet").UnwrapNameParameters<TName, CheckedChainWithEns<TChain>, ParseAccount<TAccountOrAddress>, CheckedChainWithEns<TChain>>) => Promise<`0x${string}`>;
+    transferName: ({ name, newOwnerAddress, contract, reclaim, asParent, ...txArgs }: import("../wallet.js").TransferNameParameters<CheckedChainWithEns<TChain>, ParseAccount<TAccountOrAddress>, CheckedChainWithEns<TChain>>) => Promise<`0x${string}`>;
+    unwrapName: <TName extends string>({ name, newOwnerAddress, newRegistrantAddress, ...txArgs }: import("../wallet.js").UnwrapNameParameters<TName, CheckedChainWithEns<TChain>, ParseAccount<TAccountOrAddress>, CheckedChainWithEns<TChain>>) => Promise<`0x${string}`>;
     wrapName: <TName_1 extends string>({ name, newOwnerAddress, fuses, resolverAddress, ...txArgs }: {
         name: TName_1;
         newOwnerAddress: `0x${string}`;
-        fuses?: (import("../types").GetNameType<TName_1> extends infer T_27 ? T_27 extends import("../types").GetNameType<TName_1> ? T_27 extends "eth-2ld" ? import("../utils").EncodeChildFusesInputObject : never : never : never) | undefined;
+        fuses?: (import("../types.js").GetNameType<TName_1> extends infer T_27 ? T_27 extends import("../types.js").GetNameType<TName_1> ? T_27 extends "eth-2ld" ? import("../utils/fuses.js").EncodeChildFusesInputObject : never : never : never) | undefined;
         resolverAddress?: `0x${string}` | undefined;
         gas?: import("viem").SendTransactionParameters<CheckedChainWithEns<TChain>, ParseAccount<TAccountOrAddress>, CheckedChainWithEns<TChain>>["gas"] | undefined;
         nonce?: import("viem").SendTransactionParameters<CheckedChainWithEns<TChain>, ParseAccount<TAccountOrAddress>, CheckedChainWithEns<TChain>>["nonce"] | undefined;

@@ -1,13 +1,13 @@
 import { encodeFunctionData, } from 'viem';
 import { sendTransaction } from 'viem/actions';
-import { getChainContractAddress } from '../../contracts/getChainContractAddress';
-import { nameWrapperSetRecordSnippet, nameWrapperSetSubnodeRecordSnippet, } from '../../contracts/nameWrapper';
-import { registrySetRecordSnippet, registrySetSubnodeRecordSnippet, } from '../../contracts/registry';
-import { InvalidContractTypeError, UnsupportedNameTypeError, } from '../../errors/general';
-import { EMPTY_ADDRESS } from '../../utils/consts';
-import { getNameType } from '../../utils/getNameType';
-import { makeLabelNodeAndParent } from '../../utils/makeLabelNodeAndParent';
-import { namehash } from '../../utils/normalise';
+import { getChainContractAddress } from '../../contracts/getChainContractAddress.js';
+import { nameWrapperSetRecordSnippet, nameWrapperSetSubnodeRecordSnippet, } from '../../contracts/nameWrapper.js';
+import { registrySetRecordSnippet, registrySetSubnodeRecordSnippet, } from '../../contracts/registry.js';
+import { InvalidContractTypeError, UnsupportedNameTypeError, } from '../../errors/general.js';
+import { EMPTY_ADDRESS } from '../../utils/consts.js';
+import { getNameType } from '../../utils/getNameType.js';
+import { makeLabelNodeAndParent } from '../../utils/makeLabelNodeAndParent.js';
+import { namehash } from '../../utils/normalise.js';
 export const makeFunctionData = (wallet, { name, contract, asOwner }) => {
     const nameType = getNameType(name);
     if (nameType !== 'eth-subname' && nameType !== 'other-subname')

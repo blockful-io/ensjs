@@ -1,19 +1,19 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const viem_1 = require("viem");
-const baseRegistrar_1 = require("../../contracts/baseRegistrar");
-const getChainContractAddress_1 = require("../../contracts/getChainContractAddress");
-const multicall_1 = require("../../contracts/multicall");
-const nameWrapper_1 = require("../../contracts/nameWrapper");
-const generateFunction_1 = require("../../utils/generateFunction");
-const makeSafeSecondsDate_1 = require("../../utils/makeSafeSecondsDate");
-const normalise_1 = require("../../utils/normalise");
-const validation_1 = require("../../utils/validation");
-const multicallWrapper_1 = require("./multicallWrapper");
+const baseRegistrar_js_1 = require("../../contracts/baseRegistrar.js");
+const getChainContractAddress_js_1 = require("../../contracts/getChainContractAddress.js");
+const multicall_js_1 = require("../../contracts/multicall.js");
+const nameWrapper_js_1 = require("../../contracts/nameWrapper.js");
+const generateFunction_js_1 = require("../../utils/generateFunction.js");
+const makeSafeSecondsDate_js_1 = require("../../utils/makeSafeSecondsDate.js");
+const normalise_js_1 = require("../../utils/normalise.js");
+const validation_js_1 = require("../../utils/validation.js");
+const multicallWrapper_js_1 = require("./multicallWrapper.js");
 const getContractToUse = (contract, labels) => {
     if (contract)
         return contract;
-    if ((0, validation_1.checkIsDotEth)(labels)) {
+    if ((0, validation_js_1.checkIsDotEth)(labels)) {
         return 'registrar';
     }
     return 'nameWrapper';
@@ -23,32 +23,32 @@ const encode = (client, { name, contract }) => {
     const contractToUse = getContractToUse(contract, labels);
     const calls = [
         {
-            to: (0, getChainContractAddress_1.getChainContractAddress)({ client, contract: 'multicall3' }),
+            to: (0, getChainContractAddress_js_1.getChainContractAddress)({ client, contract: 'multicall3' }),
             data: (0, viem_1.encodeFunctionData)({
-                abi: multicall_1.multicallGetCurrentBlockTimestampSnippet,
+                abi: multicall_js_1.multicallGetCurrentBlockTimestampSnippet,
                 functionName: 'getCurrentBlockTimestamp',
             }),
         },
     ];
     if (contractToUse === 'nameWrapper') {
         calls.push({
-            to: (0, getChainContractAddress_1.getChainContractAddress)({ client, contract: 'ensNameWrapper' }),
+            to: (0, getChainContractAddress_js_1.getChainContractAddress)({ client, contract: 'ensNameWrapper' }),
             data: (0, viem_1.encodeFunctionData)({
-                abi: nameWrapper_1.nameWrapperGetDataSnippet,
+                abi: nameWrapper_js_1.nameWrapperGetDataSnippet,
                 functionName: 'getData',
-                args: [BigInt((0, normalise_1.namehash)(labels.join('.')))],
+                args: [BigInt((0, normalise_js_1.namehash)(labels.join('.')))],
             }),
         });
     }
     else {
-        const baseRegistrarImplementationAddress = (0, getChainContractAddress_1.getChainContractAddress)({
+        const baseRegistrarImplementationAddress = (0, getChainContractAddress_js_1.getChainContractAddress)({
             client,
             contract: 'ensBaseRegistrarImplementation',
         });
         calls.push({
             to: baseRegistrarImplementationAddress,
             data: (0, viem_1.encodeFunctionData)({
-                abi: baseRegistrar_1.baseRegistrarNameExpiresSnippet,
+                abi: baseRegistrar_js_1.baseRegistrarNameExpiresSnippet,
                 functionName: 'nameExpires',
                 args: [BigInt((0, viem_1.labelhash)(labels[0]))],
             }),
@@ -56,20 +56,20 @@ const encode = (client, { name, contract }) => {
         calls.push({
             to: baseRegistrarImplementationAddress,
             data: (0, viem_1.encodeFunctionData)({
-                abi: baseRegistrar_1.baseRegistrarGracePeriodSnippet,
+                abi: baseRegistrar_js_1.baseRegistrarGracePeriodSnippet,
                 functionName: 'GRACE_PERIOD',
             }),
         });
     }
-    return multicallWrapper_1.default.encode(client, { transactions: calls });
+    return multicallWrapper_js_1.default.encode(client, { transactions: calls });
 };
 const decode = async (client, data, { name, contract }) => {
     if (typeof data === 'object')
         throw data;
     const labels = name.split('.');
-    const result = await multicallWrapper_1.default.decode(client, data, []);
+    const result = await multicallWrapper_js_1.default.decode(client, data, []);
     const blockTimestamp = (0, viem_1.decodeFunctionResult)({
-        abi: multicall_1.multicallGetCurrentBlockTimestampSnippet,
+        abi: multicall_js_1.multicallGetCurrentBlockTimestampSnippet,
         functionName: 'getCurrentBlockTimestamp',
         data: result[0].returnData,
     });
@@ -79,19 +79,19 @@ const decode = async (client, data, { name, contract }) => {
     if (contractToUse === 'nameWrapper') {
         ;
         [, , expiry] = (0, viem_1.decodeFunctionResult)({
-            abi: nameWrapper_1.nameWrapperGetDataSnippet,
+            abi: nameWrapper_js_1.nameWrapperGetDataSnippet,
             functionName: 'getData',
             data: result[1].returnData,
         });
     }
     else {
         expiry = (0, viem_1.decodeFunctionResult)({
-            abi: baseRegistrar_1.baseRegistrarNameExpiresSnippet,
+            abi: baseRegistrar_js_1.baseRegistrarNameExpiresSnippet,
             functionName: 'nameExpires',
             data: result[1].returnData,
         });
         gracePeriod = (0, viem_1.decodeFunctionResult)({
-            abi: baseRegistrar_1.baseRegistrarGracePeriodSnippet,
+            abi: baseRegistrar_js_1.baseRegistrarGracePeriodSnippet,
             functionName: 'GRACE_PERIOD',
             data: result[2].returnData,
         });
@@ -108,13 +108,13 @@ const decode = async (client, data, { name, contract }) => {
     }
     return {
         expiry: {
-            date: (0, makeSafeSecondsDate_1.makeSafeSecondsDate)(expiry),
+            date: (0, makeSafeSecondsDate_js_1.makeSafeSecondsDate)(expiry),
             value: expiry,
         },
         gracePeriod: Number(gracePeriod),
         status,
     };
 };
-const getExpiry = (0, generateFunction_1.generateFunction)({ encode, decode });
+const getExpiry = (0, generateFunction_js_1.generateFunction)({ encode, decode });
 exports.default = getExpiry;
 //# sourceMappingURL=getExpiry.js.map

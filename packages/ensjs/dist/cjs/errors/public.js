@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.NoRecordsSpecifiedError = exports.FunctionNotBatchableError = exports.CoinFormatterNotFoundError = void 0;
-const base_1 = require("./base");
-class CoinFormatterNotFoundError extends base_1.BaseError {
+const base_js_1 = require("./base.js");
+class CoinFormatterNotFoundError extends base_js_1.BaseError {
     constructor({ coinType }) {
         super(`Coin formatter not found for ${coinType}`);
         Object.defineProperty(this, "coinType", {
@@ -21,7 +21,7 @@ class CoinFormatterNotFoundError extends base_1.BaseError {
     }
 }
 exports.CoinFormatterNotFoundError = CoinFormatterNotFoundError;
-class FunctionNotBatchableError extends base_1.BaseError {
+class FunctionNotBatchableError extends base_js_1.BaseError {
     constructor({ functionIndex }) {
         super(`Function at index ${functionIndex} is not batchable`);
         Object.defineProperty(this, "functionIndex", {
@@ -40,7 +40,7 @@ class FunctionNotBatchableError extends base_1.BaseError {
     }
 }
 exports.FunctionNotBatchableError = FunctionNotBatchableError;
-class NoRecordsSpecifiedError extends base_1.BaseError {
+class NoRecordsSpecifiedError extends base_js_1.BaseError {
     constructor() {
         super('No records specified');
         Object.defineProperty(this, "name", {

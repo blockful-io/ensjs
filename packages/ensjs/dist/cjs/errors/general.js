@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.InvalidContractTypeError = exports.UnsupportedNameTypeError = exports.RequiredParameterNotSpecifiedError = exports.AdditionalParameterSpecifiedError = void 0;
-const base_1 = require("./base");
-class AdditionalParameterSpecifiedError extends base_1.BaseError {
+const base_js_1 = require("./base.js");
+class AdditionalParameterSpecifiedError extends base_js_1.BaseError {
     constructor({ parameter, allowedParameters, details, }) {
         super(`Additional parameter specified: ${parameter}`, {
             metaMessages: [`- Allowed parameters: ${allowedParameters.join(', ')}`],
@@ -31,7 +31,7 @@ class AdditionalParameterSpecifiedError extends base_1.BaseError {
     }
 }
 exports.AdditionalParameterSpecifiedError = AdditionalParameterSpecifiedError;
-class RequiredParameterNotSpecifiedError extends base_1.BaseError {
+class RequiredParameterNotSpecifiedError extends base_js_1.BaseError {
     constructor({ parameter, details }) {
         super(`Required parameter not specified: ${parameter}`, { details });
         Object.defineProperty(this, "parameter", {
@@ -50,7 +50,7 @@ class RequiredParameterNotSpecifiedError extends base_1.BaseError {
     }
 }
 exports.RequiredParameterNotSpecifiedError = RequiredParameterNotSpecifiedError;
-class UnsupportedNameTypeError extends base_1.BaseError {
+class UnsupportedNameTypeError extends base_js_1.BaseError {
     constructor({ nameType, supportedNameTypes, details, }) {
         super(`Unsupported name type: ${nameType}`, {
             metaMessages: [
@@ -81,7 +81,7 @@ class UnsupportedNameTypeError extends base_1.BaseError {
     }
 }
 exports.UnsupportedNameTypeError = UnsupportedNameTypeError;
-class InvalidContractTypeError extends base_1.BaseError {
+class InvalidContractTypeError extends base_js_1.BaseError {
     constructor({ contractType, supportedContractTypes, details, }) {
         super(`Invalid contract type: ${contractType}`, {
             metaMessages: [

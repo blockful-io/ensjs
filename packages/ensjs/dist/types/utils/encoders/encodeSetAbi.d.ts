@@ -1,5 +1,5 @@
 import { type Hex } from 'viem';
-import type { EncodedAbi } from './encodeAbi';
+import type { EncodedAbi } from './encodeAbi.js';
 export type EncodeSetAbiParameters = {
     namehash: Hex;
 } & EncodedAbi;

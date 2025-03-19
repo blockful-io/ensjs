@@ -1,4 +1,4 @@
-import { BaseError } from './base';
+import { BaseError } from './base.js';
 export class InvalidFilterKeyError extends BaseError {
     constructor({ filterKey, supportedFilterKeys, }) {
         super(`Invalid filter key: ${filterKey}`, {

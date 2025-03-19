@@ -1,8 +1,8 @@
 import { decodeFunctionResult, encodeFunctionData, hexToBytes, hexToString, } from 'viem';
-import { publicResolverAbiSnippet } from '../../contracts/publicResolver';
-import { EMPTY_ADDRESS } from '../../utils/consts';
-import { generateFunction } from '../../utils/generateFunction';
-import { namehash } from '../../utils/normalise';
+import { publicResolverAbiSnippet } from '../../contracts/publicResolver.js';
+import { EMPTY_ADDRESS } from '../../utils/consts.js';
+import { generateFunction } from '../../utils/generateFunction.js';
+import { namehash } from '../../utils/normalise.js';
 const encode = (_client, { name, supportedContentTypes = 0xfn, }) => {
     return {
         to: EMPTY_ADDRESS,
@@ -37,6 +37,13 @@ const decode = async (_client, data, { strict }) => {
                 abiData = JSON.parse(hexToString(encodedAbiData));
                 decoded = true;
                 break;
+            // zlib compressed JSON
+            case 2: {
+                const { inflate } = await import('pako/dist/pako_inflate.min.js');
+                abiData = JSON.parse(inflate(hexToBytes(encodedAbiData), { to: 'string' }));
+                decoded = true;
+                break;
+            }
             // CBOR
             case 4: {
                 const { cborDecode } = await import('@ensdomains/address-encoder/utils');

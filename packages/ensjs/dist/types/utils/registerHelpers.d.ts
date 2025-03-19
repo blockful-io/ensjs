@@ -1,6 +1,6 @@
 import { type Address, type Hex, type TypedDataDefinition } from 'viem';
-import { type EncodeChildFusesInputObject } from './fuses';
-import { type RecordOptions } from './generateRecordCallArray';
+import { type EncodeChildFusesInputObject } from './fuses.js';
+import { type RecordOptions } from './generateRecordCallArray.js';
 export type RegistrationParameters = {
     /** Name to register */
     name: string;

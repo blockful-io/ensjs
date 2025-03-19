@@ -1,4 +1,4 @@
-import { BaseError } from './base';
+import { BaseError } from './base.js';
 export class UnsupportedChainError extends BaseError {
     constructor({ chainId, supportedChains, details, }) {
         super(`Unsupported chain: ${chainId}`, {

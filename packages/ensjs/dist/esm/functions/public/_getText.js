@@ -1,8 +1,8 @@
 import { decodeFunctionResult, encodeFunctionData } from 'viem';
-import { publicResolverTextSnippet } from '../../contracts/publicResolver';
-import { EMPTY_ADDRESS } from '../../utils/consts';
-import { generateFunction } from '../../utils/generateFunction';
-import { namehash } from '../../utils/normalise';
+import { publicResolverTextSnippet } from '../../contracts/publicResolver.js';
+import { EMPTY_ADDRESS } from '../../utils/consts.js';
+import { generateFunction } from '../../utils/generateFunction.js';
+import { namehash } from '../../utils/normalise.js';
 const encode = (_client, { name, key }) => {
     return {
         to: EMPTY_ADDRESS,
