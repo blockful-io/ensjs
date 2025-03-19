@@ -1,0 +1,19 @@
+export { default as clearRecords, type ClearRecordsDataParameters, type ClearRecordsDataReturnType, type ClearRecordsParameters, type ClearRecordsReturnType, } from './functions/wallet/clearRecords';
+export { default as commitName, type CommitNameDataParameters, type CommitNameDataReturnType, type CommitNameParameters, type CommitNameReturnType, } from './functions/wallet/commitName';
+export { default as createSubname, type CreateSubnameDataParameters, type CreateSubnameDataReturnType, type CreateSubnameParameters, type CreateSubnameReturnType, } from './functions/wallet/createSubname';
+export { default as deleteSubname, type DeleteSubnameDataParameters, type DeleteSubnameDataReturnType, type DeleteSubnameParameters, type DeleteSubnameReturnType, } from './functions/wallet/deleteSubname';
+export { default as registerName, type RegisterNameDataParameters, type RegisterNameDataReturnType, type RegisterNameParameters, type RegisterNameReturnType, } from './functions/wallet/registerName';
+export { default as renewNames, type RenewNamesDataParameters, type RenewNamesDataReturnType, type RenewNamesParameters, type RenewNamesReturnType, } from './functions/wallet/renewNames';
+export { default as setAbiRecord, type SetAbiRecordDataParameters, type SetAbiRecordDataReturnType, type SetAbiRecordParameters, type SetAbiRecordReturnType, } from './functions/wallet/setAbiRecord';
+export { default as setAddressRecord, type SetAddressRecordDataParameters, type SetAddressRecordDataReturnType, type SetAddressRecordParameters, type SetAddressRecordReturnType, } from './functions/wallet/setAddressRecord';
+export { default as setChildFuses, type SetChildFusesDataParameters, type SetChildFusesDataReturnType, type SetChildFusesParameters, type SetChildFusesReturnType, } from './functions/wallet/setChildFuses';
+export { default as setContentHashRecord, type SetContentHashRecordDataParameters, type SetContentHashRecordDataReturnType, type SetContentHashRecordParameters, type SetContentHashRecordReturnType, } from './functions/wallet/setContentHashRecord';
+export { default as setFuses, type SetFusesDataParameters, type SetFusesDataReturnType, type SetFusesParameters, type SetFusesReturnType, } from './functions/wallet/setFuses';
+export { default as setPrimaryName, type SetPrimaryNameDataParameters, type SetPrimaryNameDataReturnType, type SetPrimaryNameParameters, type SetPrimaryNameReturnType, } from './functions/wallet/setPrimaryName';
+export { default as setRecords, type SetRecordsDataParameters, type SetRecordsDataReturnType, type SetRecordsParameters, type SetRecordsReturnType, } from './functions/wallet/setRecords';
+export { default as setResolver, type SetResolverDataParameters, type SetResolverDataReturnType, type SetResolverParameters, type SetResolverReturnType, } from './functions/wallet/setResolver';
+export { default as setTextRecord, type SetTextRecordDataParameters, type SetTextRecordDataReturnType, type SetTextRecordParameters, type SetTextRecordReturnType, } from './functions/wallet/setTextRecord';
+export { default as transferName, type TransferNameDataParameters, type TransferNameDataReturnType, type TransferNameParameters, type TransferNameReturnType, } from './functions/wallet/transferName';
+export { default as unwrapName, type UnwrapNameDataParameters, type UnwrapNameDataReturnType, type UnwrapNameParameters, type UnwrapNameReturnType, } from './functions/wallet/unwrapName';
+export { default as wrapName, type WrapNameDataParameters, type WrapNameDataReturnType, type WrapNameParameters, type WrapNameReturnType, } from './functions/wallet/wrapName';
+//# sourceMappingURL=wallet.d.ts.map
