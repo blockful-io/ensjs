@@ -1,7 +1,7 @@
 import { type Account, type Hash, type Transport } from 'viem';
-import type { ChainWithEns, ClientWithAccount } from '../../contracts/consts';
-import type { Prettify, SimpleTransactionRequest, WriteTransactionParameters } from '../../types';
-import { type EncodeChildFusesInputObject } from '../../utils/fuses';
+import type { ChainWithEns, ClientWithAccount } from '../../contracts/consts.js';
+import type { Prettify, SimpleTransactionRequest, WriteTransactionParameters } from '../../types.js';
+import { type EncodeChildFusesInputObject } from '../../utils/fuses.js';
 export type SetFusesDataParameters = {
     /** Name to set fuses for */
     name: string;

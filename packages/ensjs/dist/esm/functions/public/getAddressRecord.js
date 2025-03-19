@@ -1,6 +1,6 @@
-import { generateFunction, } from '../../utils/generateFunction';
-import _getAddr, {} from './_getAddr';
-import universalWrapper from './universalWrapper';
+import { generateFunction, } from '../../utils/generateFunction.js';
+import _getAddr, {} from './_getAddr.js';
+import universalWrapper from './universalWrapper.js';
 const encode = (client, { name, coin, gatewayUrls, }) => {
     const prData = _getAddr.encode(client, { name, coin });
     return universalWrapper.encode(client, {

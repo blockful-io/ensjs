@@ -1,6 +1,6 @@
 import { sendTransaction } from 'viem/actions';
-import { encodeClearRecords } from '../../utils/encoders/encodeClearRecords';
-import { namehash } from '../../utils/normalise';
+import { encodeClearRecords } from '../../utils/encoders/encodeClearRecords.js';
+import { namehash } from '../../utils/normalise.js';
 export const makeFunctionData = (_wallet, { name, resolverAddress }) => {
     return {
         to: resolverAddress,

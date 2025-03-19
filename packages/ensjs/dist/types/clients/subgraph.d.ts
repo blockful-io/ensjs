@@ -1,7 +1,7 @@
 import { type Client, type ClientConfig, type PublicRpcSchema, type Transport } from 'viem';
-import type { ChainWithBaseContracts, ChainWithEns } from '../contracts/consts';
-import type { Prettify } from '../types';
-import { type EnsSubgraphActions } from './decorators/subgraph';
+import type { ChainWithBaseContracts, ChainWithEns } from '../contracts/consts.js';
+import type { Prettify } from '../types.js';
+import { type EnsSubgraphActions } from './decorators/subgraph.js';
 export type EnsSubgraphClientConfig<TTransport extends Transport = Transport, TChain extends ChainWithBaseContracts = ChainWithBaseContracts> = Pick<ClientConfig<TTransport, TChain>, 'batch' | 'key' | 'name' | 'pollingInterval' | 'transport'> & {
     chain: TChain;
 };
@@ -42,12 +42,12 @@ export declare const createEnsSubgraphClient: <TTransport extends Transport, TCh
     transport: ReturnType<TTransport>["config"] & ReturnType<TTransport>["value"];
     type: string;
     uid: string;
-    getDecodedName: ({ name, allowIncomplete, }: import("../subgraph").GetDecodedNameParameters) => Promise<import("../subgraph").GetDecodedNameReturnType>;
-    getNameHistory: ({ name, }: import("../subgraph").GetNameHistoryParameters) => Promise<import("../subgraph").GetNameHistoryReturnType>;
-    getNamesForAddress: ({ address, filter, orderBy, orderDirection, pageSize, previousPage, }: import("../subgraph").GetNamesForAddressParameters) => Promise<import("../subgraph").GetNamesForAddressReturnType>;
-    getSubgraphRecords: ({ name, resolverAddress, }: import("../subgraph").GetSubgraphRecordsParameters) => Promise<import("../subgraph").GetSubgraphRecordsReturnType>;
-    getSubgraphRegistrant: ({ name, }: import("../subgraph").GetSubgraphRegistrantParameters) => Promise<import("../subgraph").GetSubgraphRegistrantReturnType>;
-    getSubnames: ({ name, searchString, allowExpired, allowDeleted, orderBy, orderDirection, pageSize, previousPage, }: import("../subgraph").GetSubnamesParameters) => Promise<import("../subgraph").GetSubnamesReturnType>;
+    getDecodedName: ({ name, allowIncomplete, }: import("../subgraph.js").GetDecodedNameParameters) => Promise<import("../subgraph.js").GetDecodedNameReturnType>;
+    getNameHistory: ({ name, }: import("../subgraph.js").GetNameHistoryParameters) => Promise<import("../subgraph.js").GetNameHistoryReturnType>;
+    getNamesForAddress: ({ address, filter, orderBy, orderDirection, pageSize, previousPage, }: import("../subgraph.js").GetNamesForAddressParameters) => Promise<import("../subgraph.js").GetNamesForAddressReturnType>;
+    getSubgraphRecords: ({ name, resolverAddress, }: import("../subgraph.js").GetSubgraphRecordsParameters) => Promise<import("../subgraph.js").GetSubgraphRecordsReturnType>;
+    getSubgraphRegistrant: ({ name, }: import("../subgraph.js").GetSubgraphRegistrantParameters) => Promise<import("../subgraph.js").GetSubgraphRegistrantReturnType>;
+    getSubnames: ({ name, searchString, allowExpired, allowDeleted, orderBy, orderDirection, pageSize, previousPage, }: import("../subgraph.js").GetSubnamesParameters) => Promise<import("../subgraph.js").GetSubnamesReturnType>;
     extend: <const client extends {
         [x: string]: unknown;
         account?: undefined;

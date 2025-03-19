@@ -1,7 +1,7 @@
 import { getAddress } from 'viem';
-import { truncateFormat } from '../../utils/format';
-import { decodeFuses } from '../../utils/fuses';
-import { decryptName } from '../../utils/labels';
+import { truncateFormat } from '../../utils/format.js';
+import { decodeFuses } from '../../utils/fuses.js';
+import { decryptName } from '../../utils/labels.js';
 export const getChecksumAddressOrNull = (address) => (address ? getAddress(address) : null);
 export const makeNameObject = (domain) => {
     const decrypted = domain.name ? decryptName(domain.name) : null;

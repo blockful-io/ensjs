@@ -1,19 +1,19 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const graphql_request_1 = require("graphql-request");
-const subgraph_1 = require("../../errors/subgraph");
-const consts_1 = require("../../utils/consts");
-const normalise_1 = require("../../utils/normalise");
-const client_1 = require("./client");
-const filters_1 = require("./filters");
-const fragments_1 = require("./fragments");
-const utils_1 = require("./utils");
+const subgraph_js_1 = require("../../errors/subgraph.js");
+const consts_js_1 = require("../../utils/consts.js");
+const normalise_js_1 = require("../../utils/normalise.js");
+const client_js_1 = require("./client.js");
+const filters_js_1 = require("./filters.js");
+const fragments_js_1 = require("./fragments.js");
+const utils_js_1 = require("./utils.js");
 const getOrderByFilter = ({ orderBy, orderDirection, previousPage, }) => {
     const lastDomain = previousPage[previousPage.length - 1];
     const operator = orderDirection === 'asc' ? 'gt' : 'lt';
     switch (orderBy) {
         case 'expiryDate': {
-            return (0, filters_1.getExpiryDateOrderFilter)({
+            return (0, filters_js_1.getExpiryDateOrderFilter)({
                 lastDomain,
                 orderDirection,
             });
@@ -29,17 +29,17 @@ const getOrderByFilter = ({ orderBy, orderDirection, previousPage, }) => {
             };
         }
         case 'createdAt': {
-            return (0, filters_1.getCreatedAtOrderFilter)({ lastDomain, orderDirection });
+            return (0, filters_js_1.getCreatedAtOrderFilter)({ lastDomain, orderDirection });
         }
         default:
-            throw new subgraph_1.InvalidOrderByError({
+            throw new subgraph_js_1.InvalidOrderByError({
                 orderBy: orderBy || '<no orderBy provided>',
                 supportedOrderBys: ['expiryDate', 'name', 'labelName', 'createdAt'],
             });
     }
 };
 const getSubnames = async (client, { name, searchString, allowExpired = false, allowDeleted = false, orderBy = 'name', orderDirection = 'asc', pageSize = 100, previousPage, }) => {
-    const subgraphClient = (0, client_1.createSubgraphClient)({ client });
+    const subgraphClient = (0, client_js_1.createSubgraphClient)({ client });
     const whereFilters = [];
     if (previousPage?.length) {
         whereFilters.push(getOrderByFilter({
@@ -60,7 +60,7 @@ const getSubnames = async (client, { name, searchString, allowExpired = false, a
         whereFilters.push({
             or: [
                 {
-                    owner_not: consts_1.EMPTY_ADDRESS,
+                    owner_not: consts_js_1.EMPTY_ADDRESS,
                 },
                 {
                     resolver_not: null,
@@ -68,7 +68,7 @@ const getSubnames = async (client, { name, searchString, allowExpired = false, a
                 ...(name.toLowerCase() === 'eth'
                     ? [
                         {
-                            registrant_not: consts_1.EMPTY_ADDRESS,
+                            registrant_not: consts_js_1.EMPTY_ADDRESS,
                         },
                     ]
                     : []),
@@ -115,12 +115,12 @@ const getSubnames = async (client, { name, searchString, allowExpired = false, a
         }
       }
     }
-    ${fragments_1.domainDetailsWithoutParentFragment}
-    ${fragments_1.registrationDetailsFragment}
-    ${fragments_1.wrappedDomainDetailsFragment}
+    ${fragments_js_1.domainDetailsWithoutParentFragment}
+    ${fragments_js_1.registrationDetailsFragment}
+    ${fragments_js_1.wrappedDomainDetailsFragment}
   `;
     const queryVars = {
-        id: (0, normalise_1.namehash)(name),
+        id: (0, normalise_js_1.namehash)(name),
         orderBy,
         orderDirection,
         first: pageSize,
@@ -129,7 +129,7 @@ const getSubnames = async (client, { name, searchString, allowExpired = false, a
     const result = await subgraphClient.request(query, queryVars);
     if (!result.domain)
         return [];
-    const names = result.domain.subdomains.map((domain) => (0, utils_1.makeNameObject)({ ...domain, parent: { name } }));
+    const names = result.domain.subdomains.map((domain) => (0, utils_js_1.makeNameObject)({ ...domain, parent: { name } }));
     return names;
 };
 exports.default = getSubnames;

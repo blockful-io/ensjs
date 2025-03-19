@@ -1,8 +1,8 @@
 import { BaseError, type Address, type Hex } from 'viem';
-import type { ClientWithEns } from '../../contracts/consts';
-import type { DateWithValue, GenericPassthrough, Prettify, TransactionRequestWithPassthrough } from '../../types';
-import { type DecodedFuses } from '../../utils/fuses';
-import { type GeneratedFunction } from '../../utils/generateFunction';
+import type { ClientWithEns } from '../../contracts/consts.js';
+import type { DateWithValue, GenericPassthrough, Prettify, TransactionRequestWithPassthrough } from '../../types.js';
+import { type DecodedFuses } from '../../utils/fuses.js';
+import { type GeneratedFunction } from '../../utils/generateFunction.js';
 export type GetWrapperDataParameters = {
     /** Name to get wrapper data for */
     name: string;

@@ -1,6 +1,6 @@
 import { bytesToHex, encodeFunctionData } from 'viem';
-import { publicResolverSetAddrSnippet } from '../../contracts/publicResolver';
-import { getCoderFromCoin } from '../normaliseCoinId';
+import { publicResolverSetAddrSnippet } from '../../contracts/publicResolver.js';
+import { getCoderFromCoin } from '../normaliseCoinId.js';
 export const encodeSetAddr = ({ namehash, coin, value, }) => {
     const coder = getCoderFromCoin(coin);
     const inputCoinType = coder.coinType;

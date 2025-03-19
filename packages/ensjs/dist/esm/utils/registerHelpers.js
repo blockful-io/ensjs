@@ -1,9 +1,9 @@
 import { encodeAbiParameters, keccak256, labelhash, pad, toBytes, toHex, RawContractError, BaseError, } from 'viem';
-import { CampaignReferenceTooLargeError, ResolverAddressRequiredError, } from '../errors/utils';
-import { EMPTY_ADDRESS } from './consts';
-import { encodeFuses } from './fuses';
-import { generateRecordCallArray, } from './generateRecordCallArray';
-import { namehash } from './normalise';
+import { CampaignReferenceTooLargeError, ResolverAddressRequiredError, } from '../errors/utils.js';
+import { EMPTY_ADDRESS } from './consts.js';
+import { encodeFuses } from './fuses.js';
+import { generateRecordCallArray, } from './generateRecordCallArray.js';
+import { namehash } from './normalise.js';
 const cryptoRef = (typeof crypto !== 'undefined' && crypto) ||
     (typeof window !== 'undefined' &&
         typeof window.crypto !== 'undefined' &&

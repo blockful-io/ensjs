@@ -3,24 +3,24 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.makeFunctionData = void 0;
 const viem_1 = require("viem");
 const actions_1 = require("viem/actions");
-const getChainContractAddress_1 = require("../../contracts/getChainContractAddress");
-const nameWrapper_1 = require("../../contracts/nameWrapper");
-const registry_1 = require("../../contracts/registry");
-const normalise_1 = require("../../utils/normalise");
+const getChainContractAddress_js_1 = require("../../contracts/getChainContractAddress.js");
+const nameWrapper_js_1 = require("../../contracts/nameWrapper.js");
+const registry_js_1 = require("../../contracts/registry.js");
+const normalise_js_1 = require("../../utils/normalise.js");
 const makeFunctionData = (wallet, { name, contract, resolverAddress }) => {
     if (contract !== 'registry' && contract !== 'nameWrapper')
         throw new Error(`Unknown contract: ${contract}`);
-    const to = (0, getChainContractAddress_1.getChainContractAddress)({
+    const to = (0, getChainContractAddress_js_1.getChainContractAddress)({
         client: wallet,
         contract: contract === 'nameWrapper' ? 'ensNameWrapper' : 'ensRegistry',
     });
-    const args = [(0, normalise_1.namehash)(name), resolverAddress];
+    const args = [(0, normalise_js_1.namehash)(name), resolverAddress];
     const functionName = 'setResolver';
     if (contract === 'nameWrapper')
         return {
             to,
             data: (0, viem_1.encodeFunctionData)({
-                abi: nameWrapper_1.nameWrapperSetResolverSnippet,
+                abi: nameWrapper_js_1.nameWrapperSetResolverSnippet,
                 functionName,
                 args,
             }),
@@ -28,7 +28,7 @@ const makeFunctionData = (wallet, { name, contract, resolverAddress }) => {
     return {
         to,
         data: (0, viem_1.encodeFunctionData)({
-            abi: registry_1.registrySetResolverSnippet,
+            abi: registry_js_1.registrySetResolverSnippet,
             functionName,
             args,
         }),

@@ -1,11 +1,11 @@
 import { BaseError, decodeAbiParameters } from 'viem';
-import { getChainContractAddress } from '../../contracts/getChainContractAddress';
-import { EMPTY_ADDRESS } from '../../utils/consts';
-import { generateFunction } from '../../utils/generateFunction';
-import { namehash as makeNamehash } from '../../utils/normalise';
-import { ownerFromContract, } from '../../utils/ownerFromContract';
-import { checkIsDotEth } from '../../utils/validation';
-import multicallWrapper from './multicallWrapper';
+import { getChainContractAddress } from '../../contracts/getChainContractAddress.js';
+import { EMPTY_ADDRESS } from '../../utils/consts.js';
+import { generateFunction } from '../../utils/generateFunction.js';
+import { namehash as makeNamehash } from '../../utils/normalise.js';
+import { ownerFromContract, } from '../../utils/ownerFromContract.js';
+import { checkIsDotEth } from '../../utils/validation.js';
+import multicallWrapper from './multicallWrapper.js';
 const encode = (client, { name, contract }) => {
     const namehash = makeNamehash(name);
     const labels = name.split('.');

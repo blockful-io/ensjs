@@ -1,8 +1,8 @@
 import { gql } from 'graphql-request';
 import { getAddress, labelhash } from 'viem';
-import { UnsupportedNameTypeError } from '../../errors/general';
-import { getNameType } from '../../utils/getNameType';
-import { createSubgraphClient } from './client';
+import { UnsupportedNameTypeError } from '../../errors/general.js';
+import { getNameType } from '../../utils/getNameType.js';
+import { createSubgraphClient } from './client.js';
 const query = gql `
   query getSubgraphRegistrant($id: String!) {
     registration(id: $id) {

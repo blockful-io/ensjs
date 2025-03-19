@@ -1,7 +1,7 @@
 import type { Account, Address, Hash, Transport } from 'viem';
-import type { ChainWithEns, ClientWithAccount } from '../../contracts/consts';
-import type { Prettify, SimpleTransactionRequest, WriteTransactionParameters } from '../../types';
-import type { EncodedAbi } from '../../utils/encoders/encodeAbi';
+import type { ChainWithEns, ClientWithAccount } from '../../contracts/consts.js';
+import type { Prettify, SimpleTransactionRequest, WriteTransactionParameters } from '../../types.js';
+import type { EncodedAbi } from '../../utils/encoders/encodeAbi.js';
 export type SetAbiRecordDataParameters = {
     /** Name to set ABI for */
     name: string;

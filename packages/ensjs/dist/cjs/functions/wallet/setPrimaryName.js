@@ -4,13 +4,13 @@ exports.makeFunctionData = void 0;
 const viem_1 = require("viem");
 const actions_1 = require("viem/actions");
 const utils_1 = require("viem/utils");
-const getChainContractAddress_1 = require("../../contracts/getChainContractAddress");
-const reverseRegistrar_1 = require("../../contracts/reverseRegistrar");
-const makeFunctionData = (wallet, { name, address, resolverAddress = (0, getChainContractAddress_1.getChainContractAddress)({
+const getChainContractAddress_js_1 = require("../../contracts/getChainContractAddress.js");
+const reverseRegistrar_js_1 = require("../../contracts/reverseRegistrar.js");
+const makeFunctionData = (wallet, { name, address, resolverAddress = (0, getChainContractAddress_js_1.getChainContractAddress)({
     client: wallet,
     contract: 'ensPublicResolver',
 }), }) => {
-    const reverseRegistrarAddress = (0, getChainContractAddress_1.getChainContractAddress)({
+    const reverseRegistrarAddress = (0, getChainContractAddress_js_1.getChainContractAddress)({
         client: wallet,
         contract: 'ensReverseRegistrar',
     });
@@ -18,13 +18,13 @@ const makeFunctionData = (wallet, { name, address, resolverAddress = (0, getChai
         return {
             to: reverseRegistrarAddress,
             data: (0, viem_1.encodeFunctionData)({
-                abi: reverseRegistrar_1.reverseRegistrarSetNameForAddrSnippet,
+                abi: reverseRegistrar_js_1.reverseRegistrarSetNameForAddrSnippet,
                 functionName: 'setNameForAddr',
                 args: [
                     address,
                     wallet.account.address,
                     resolverAddress ||
-                        (0, getChainContractAddress_1.getChainContractAddress)({
+                        (0, getChainContractAddress_js_1.getChainContractAddress)({
                             client: wallet,
                             contract: 'ensPublicResolver',
                         }),
@@ -36,7 +36,7 @@ const makeFunctionData = (wallet, { name, address, resolverAddress = (0, getChai
     return {
         to: reverseRegistrarAddress,
         data: (0, viem_1.encodeFunctionData)({
-            abi: reverseRegistrar_1.reverseRegistrarSetNameSnippet,
+            abi: reverseRegistrar_js_1.reverseRegistrarSetNameSnippet,
             functionName: 'setName',
             args: [name],
         }),

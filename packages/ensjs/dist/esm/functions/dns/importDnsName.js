@@ -1,9 +1,9 @@
 import { encodeFunctionData, toHex, } from 'viem';
 import { sendTransaction } from 'viem/actions';
-import { dnsRegistrarProveAndClaimSnippet, dnsRegistrarProveAndClaimWithResolverSnippet, } from '../../contracts/dnsRegistrar';
-import { getChainContractAddress } from '../../contracts/getChainContractAddress';
-import { AdditionalParameterSpecifiedError } from '../../errors/general';
-import { packetToBytes } from '../../utils/hexEncodedName';
+import { dnsRegistrarProveAndClaimSnippet, dnsRegistrarProveAndClaimWithResolverSnippet, } from '../../contracts/dnsRegistrar.js';
+import { getChainContractAddress } from '../../contracts/getChainContractAddress.js';
+import { AdditionalParameterSpecifiedError } from '../../errors/general.js';
+import { packetToBytes } from '../../utils/hexEncodedName.js';
 export const makeFunctionData = (wallet, { name, dnsImportData, address, resolverAddress, }) => {
     const hexEncodedName = toHex(packetToBytes(name));
     const dnsRegistrarAddress = getChainContractAddress({

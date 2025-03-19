@@ -1,11 +1,11 @@
 import { BaseError, decodeFunctionResult, encodeFunctionData, getContractError, } from 'viem';
-import { getChainContractAddress } from '../../contracts/getChainContractAddress';
-import { nameWrapperGetDataSnippet } from '../../contracts/nameWrapper';
-import { EMPTY_ADDRESS } from '../../utils/consts';
-import { decodeFuses } from '../../utils/fuses';
-import { generateFunction, } from '../../utils/generateFunction';
-import { makeSafeSecondsDate } from '../../utils/makeSafeSecondsDate';
-import { namehash } from '../../utils/normalise';
+import { getChainContractAddress } from '../../contracts/getChainContractAddress.js';
+import { nameWrapperGetDataSnippet } from '../../contracts/nameWrapper.js';
+import { EMPTY_ADDRESS } from '../../utils/consts.js';
+import { decodeFuses } from '../../utils/fuses.js';
+import { generateFunction, } from '../../utils/generateFunction.js';
+import { makeSafeSecondsDate } from '../../utils/makeSafeSecondsDate.js';
+import { namehash } from '../../utils/normalise.js';
 const encode = (client, { name }) => {
     const address = getChainContractAddress({
         client,

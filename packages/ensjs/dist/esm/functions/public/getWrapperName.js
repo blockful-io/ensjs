@@ -1,9 +1,9 @@
 import { BaseError, decodeFunctionResult, encodeFunctionData, getContractError, hexToBytes, } from 'viem';
-import { getChainContractAddress } from '../../contracts/getChainContractAddress';
-import { nameWrapperNamesSnippet } from '../../contracts/nameWrapper';
-import { generateFunction, } from '../../utils/generateFunction';
-import { bytesToPacket } from '../../utils/hexEncodedName';
-import { namehash } from '../../utils/normalise';
+import { getChainContractAddress } from '../../contracts/getChainContractAddress.js';
+import { nameWrapperNamesSnippet } from '../../contracts/nameWrapper.js';
+import { generateFunction, } from '../../utils/generateFunction.js';
+import { bytesToPacket } from '../../utils/hexEncodedName.js';
+import { namehash } from '../../utils/normalise.js';
 const encode = (client, { name }) => {
     const address = getChainContractAddress({
         client,

@@ -1,40 +1,40 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const viem_1 = require("viem");
-const getChainContractAddress_1 = require("../../contracts/getChainContractAddress");
-const universalResolver_1 = require("../../contracts/universalResolver");
-const checkSafeUniversalResolverData_1 = require("../../utils/checkSafeUniversalResolverData");
-const consts_1 = require("../../utils/consts");
-const generateFunction_1 = require("../../utils/generateFunction");
-const hexEncodedName_1 = require("../../utils/hexEncodedName");
-const _getAbi_1 = require("./_getAbi");
-const _getAddr_1 = require("./_getAddr");
-const _getContentHash_1 = require("./_getContentHash");
-const _getText_1 = require("./_getText");
-const multicallWrapper_1 = require("./multicallWrapper");
+const getChainContractAddress_js_1 = require("../../contracts/getChainContractAddress.js");
+const universalResolver_js_1 = require("../../contracts/universalResolver.js");
+const checkSafeUniversalResolverData_js_1 = require("../../utils/checkSafeUniversalResolverData.js");
+const consts_js_1 = require("../../utils/consts.js");
+const generateFunction_js_1 = require("../../utils/generateFunction.js");
+const hexEncodedName_js_1 = require("../../utils/hexEncodedName.js");
+const _getAbi_js_1 = require("./_getAbi.js");
+const _getAddr_js_1 = require("./_getAddr.js");
+const _getContentHash_js_1 = require("./_getContentHash.js");
+const _getText_js_1 = require("./_getText.js");
+const multicallWrapper_js_1 = require("./multicallWrapper.js");
 const createCalls = (client, { name, texts, coins, abi, contentHash, }) => [
     ...(texts ?? []).map((text) => ({
         key: text,
-        call: _getText_1.default.encode(client, { name, key: text }),
+        call: _getText_js_1.default.encode(client, { name, key: text }),
         type: 'text',
     })),
     ...(coins ?? []).map((coin) => ({
         key: coin,
-        call: _getAddr_1.default.encode(client, { name, coin }),
+        call: _getAddr_js_1.default.encode(client, { name, coin }),
         type: 'coin',
     })),
     ...(contentHash
         ? [
             {
                 key: 'contentHash',
-                call: _getContentHash_1.default.encode(client, { name }),
+                call: _getContentHash_js_1.default.encode(client, { name }),
                 type: 'contentHash',
             },
         ]
         : []),
     ...(abi
         ? [
-            { key: 'abi', call: _getAbi_1.default.encode(client, { name }), type: 'abi' },
+            { key: 'abi', call: _getAbi_js_1.default.encode(client, { name }), type: 'abi' },
         ]
         : []),
 ];
@@ -47,7 +47,7 @@ const encode = (client, { name, resolver, texts, coins, contentHash, abi, gatewa
         abi,
     });
     if (resolver?.address && !resolver.fallbackOnly) {
-        const encoded = multicallWrapper_1.default.encode(client, {
+        const encoded = multicallWrapper_js_1.default.encode(client, {
             transactions: calls.map((c) => ({
                 to: resolver.address,
                 data: c.call.data,
@@ -58,12 +58,12 @@ const encode = (client, { name, resolver, texts, coins, contentHash, abi, gatewa
             passthrough: { calls },
         };
     }
-    const to = (0, getChainContractAddress_1.getChainContractAddress)({
+    const to = (0, getChainContractAddress_js_1.getChainContractAddress)({
         client,
         contract: 'ensUniversalResolver',
     });
     const args = [
-        (0, viem_1.toHex)((0, hexEncodedName_1.packetToBytes)(name)),
+        (0, viem_1.toHex)((0, hexEncodedName_js_1.packetToBytes)(name)),
         calls.map((c) => c.call.data),
     ];
     return {
@@ -71,7 +71,7 @@ const encode = (client, { name, resolver, texts, coins, contentHash, abi, gatewa
         ...(gatewayUrls
             ? {
                 data: (0, viem_1.encodeFunctionData)({
-                    abi: universalResolver_1.universalResolverResolveArrayWithGatewaysSnippet,
+                    abi: universalResolver_js_1.universalResolverResolveArrayWithGatewaysSnippet,
                     functionName: 'resolve',
                     args: [...args, gatewayUrls],
                 }),
@@ -83,7 +83,7 @@ const encode = (client, { name, resolver, texts, coins, contentHash, abi, gatewa
             }
             : {
                 data: (0, viem_1.encodeFunctionData)({
-                    abi: universalResolver_1.universalResolverResolveArraySnippet,
+                    abi: universalResolver_js_1.universalResolverResolveArraySnippet,
                     functionName: 'resolve',
                     args,
                 }),
@@ -115,25 +115,25 @@ const decodeRecord = async (client, { item, call }) => {
         }
     }
     if (type === 'text') {
-        const decodedFromAbi = await _getText_1.default.decode(client, item, {
+        const decodedFromAbi = await _getText_js_1.default.decode(client, item, {
             strict: false,
         });
         return { ...baseItem, value: decodedFromAbi };
     }
     if (type === 'coin') {
-        const decodedFromAbi = await _getAddr_1.default.decode(client, item, {
+        const decodedFromAbi = await _getAddr_js_1.default.decode(client, item, {
             coin: key,
             strict: false,
         });
         return { ...baseItem, value: decodedFromAbi };
     }
     if (type === 'contentHash') {
-        const decodedFromAbi = await _getContentHash_1.default.decode(client, item, {
+        const decodedFromAbi = await _getContentHash_js_1.default.decode(client, item, {
             strict: false,
         });
         return { ...baseItem, value: decodedFromAbi };
     }
-    const decodedFromAbi = await _getAbi_1.default.decode(client, item, {
+    const decodedFromAbi = await _getAbi_js_1.default.decode(client, item, {
         strict: false,
     });
     return { ...baseItem, value: decodedFromAbi };
@@ -173,16 +173,16 @@ const decode = async (client, data, passthrough, { resolver, texts, coins, conte
     let resolverAddress;
     const emptyResult = createEmptyResult({ texts, coins, contentHash, abi });
     if (resolver?.address && !resolver.fallbackOnly) {
-        const result = await multicallWrapper_1.default.decode(client, data, passthrough.calls.filter((c) => c).map((c) => c.call));
+        const result = await multicallWrapper_js_1.default.decode(client, data, passthrough.calls.filter((c) => c).map((c) => c.call));
         resolverAddress = resolver.address;
         recordData = result.map((r) => r.returnData);
     }
     else {
-        const isSafe = (0, checkSafeUniversalResolverData_1.checkSafeUniversalResolverData)(data, {
+        const isSafe = (0, checkSafeUniversalResolverData_js_1.checkSafeUniversalResolverData)(data, {
             strict: false,
             abi: gatewayUrls
-                ? universalResolver_1.universalResolverResolveArrayWithGatewaysSnippet
-                : universalResolver_1.universalResolverResolveArraySnippet,
+                ? universalResolver_js_1.universalResolverResolveArrayWithGatewaysSnippet
+                : universalResolver_js_1.universalResolverResolveArraySnippet,
             args: passthrough.args,
             functionName: 'resolve',
             address: passthrough.address,
@@ -190,10 +190,10 @@ const decode = async (client, data, passthrough, { resolver, texts, coins, conte
         if (!isSafe)
             return {
                 ...emptyResult,
-                resolverAddress: consts_1.EMPTY_ADDRESS,
+                resolverAddress: consts_js_1.EMPTY_ADDRESS,
             };
         const result = (0, viem_1.decodeFunctionResult)({
-            abi: universalResolver_1.universalResolverResolveArraySnippet,
+            abi: universalResolver_js_1.universalResolverResolveArraySnippet,
             functionName: 'resolve',
             data,
         });
@@ -215,6 +215,6 @@ const decode = async (client, data, passthrough, { resolver, texts, coins, conte
     });
     return records;
 };
-const getRecords = (0, generateFunction_1.generateFunction)({ encode, decode });
+const getRecords = (0, generateFunction_js_1.generateFunction)({ encode, decode });
 exports.default = getRecords;
 //# sourceMappingURL=getRecords.js.map

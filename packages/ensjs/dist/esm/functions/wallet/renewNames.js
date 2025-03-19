@@ -1,10 +1,10 @@
 import { encodeFunctionData, } from 'viem';
 import { sendTransaction } from 'viem/actions';
-import { bulkRenewalRenewAllSnippet } from '../../contracts/bulkRenewal';
-import { ethRegistrarControllerRenewSnippet } from '../../contracts/ethRegistrarController';
-import { getChainContractAddress } from '../../contracts/getChainContractAddress';
-import { UnsupportedNameTypeError } from '../../errors/general';
-import { getNameType } from '../../utils/getNameType';
+import { bulkRenewalRenewAllSnippet } from '../../contracts/bulkRenewal.js';
+import { ethRegistrarControllerRenewSnippet } from '../../contracts/ethRegistrarController.js';
+import { getChainContractAddress } from '../../contracts/getChainContractAddress.js';
+import { UnsupportedNameTypeError } from '../../errors/general.js';
+import { getNameType } from '../../utils/getNameType.js';
 export const makeFunctionData = (wallet, { nameOrNames, duration, value }) => {
     const names = Array.isArray(nameOrNames) ? nameOrNames : [nameOrNames];
     const labels = names.map((name) => {

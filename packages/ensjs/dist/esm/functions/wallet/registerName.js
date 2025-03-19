@@ -1,11 +1,11 @@
 import { encodeFunctionData, } from 'viem';
 import { sendTransaction } from 'viem/actions';
-import { ethRegistrarControllerRegisterSnippet } from '../../contracts/ethRegistrarController';
-import { getChainContractAddress } from '../../contracts/getChainContractAddress';
-import { UnsupportedNameTypeError } from '../../errors/general';
-import { getNameType } from '../../utils/getNameType';
-import { makeRegistrationTuple, } from '../../utils/registerHelpers';
-import { wrappedLabelLengthCheck } from '../../utils/wrapper';
+import { ethRegistrarControllerRegisterSnippet } from '../../contracts/ethRegistrarController.js';
+import { getChainContractAddress } from '../../contracts/getChainContractAddress.js';
+import { UnsupportedNameTypeError } from '../../errors/general.js';
+import { getNameType } from '../../utils/getNameType.js';
+import { makeRegistrationTuple, } from '../../utils/registerHelpers.js';
+import { wrappedLabelLengthCheck } from '../../utils/wrapper.js';
 export const makeFunctionData = (wallet, { value, ...args }) => {
     const nameType = getNameType(args.name);
     if (nameType !== 'eth-2ld')

@@ -1,15 +1,15 @@
 import { BaseError, decodeAbiParameters, decodeFunctionResult, encodeFunctionData, hexToBigInt, toHex, } from 'viem';
-import { getChainContractAddress } from '../../contracts/getChainContractAddress';
-import { universalResolverResolveArraySnippet, universalResolverResolveArrayWithGatewaysSnippet, } from '../../contracts/universalResolver';
-import { checkSafeUniversalResolverData } from '../../utils/checkSafeUniversalResolverData';
-import { EMPTY_ADDRESS } from '../../utils/consts';
-import { generateFunction } from '../../utils/generateFunction';
-import { packetToBytes } from '../../utils/hexEncodedName';
-import _getAbi, {} from './_getAbi';
-import _getAddr from './_getAddr';
-import _getContentHash, {} from './_getContentHash';
-import _getText from './_getText';
-import multicallWrapper from './multicallWrapper';
+import { getChainContractAddress } from '../../contracts/getChainContractAddress.js';
+import { universalResolverResolveArraySnippet, universalResolverResolveArrayWithGatewaysSnippet, } from '../../contracts/universalResolver.js';
+import { checkSafeUniversalResolverData } from '../../utils/checkSafeUniversalResolverData.js';
+import { EMPTY_ADDRESS } from '../../utils/consts.js';
+import { generateFunction } from '../../utils/generateFunction.js';
+import { packetToBytes } from '../../utils/hexEncodedName.js';
+import _getAbi, {} from './_getAbi.js';
+import _getAddr from './_getAddr.js';
+import _getContentHash, {} from './_getContentHash.js';
+import _getText from './_getText.js';
+import multicallWrapper from './multicallWrapper.js';
 const createCalls = (client, { name, texts, coins, abi, contentHash, }) => [
     ...(texts ?? []).map((text) => ({
         key: text,

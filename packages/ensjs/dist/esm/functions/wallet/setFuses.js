@@ -1,9 +1,9 @@
 import { encodeFunctionData, } from 'viem';
 import { sendTransaction } from 'viem/actions';
-import { getChainContractAddress } from '../../contracts/getChainContractAddress';
-import { nameWrapperSetFusesSnippet } from '../../contracts/nameWrapper';
-import { encodeFuses, } from '../../utils/fuses';
-import { namehash } from '../../utils/normalise';
+import { getChainContractAddress } from '../../contracts/getChainContractAddress.js';
+import { nameWrapperSetFusesSnippet } from '../../contracts/nameWrapper.js';
+import { encodeFuses, } from '../../utils/fuses.js';
+import { namehash } from '../../utils/normalise.js';
 export const makeFunctionData = (wallet, { name, fuses }) => {
     const encodedFuses = encodeFuses({ restriction: 'child', input: fuses });
     return {

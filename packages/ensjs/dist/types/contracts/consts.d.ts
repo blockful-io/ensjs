@@ -1,5 +1,5 @@
 import type { Account, Address, Chain, Client, Transport, WalletClient } from 'viem';
-import type { Assign, Prettify } from '../types';
+import type { Assign, Prettify } from '../types.js';
 type ChainContract = {
     address: Address;
     blockCreated?: number;

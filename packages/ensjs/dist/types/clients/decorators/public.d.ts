@@ -1,19 +1,19 @@
 import type { Account, Client, Transport } from 'viem';
-import type { ChainWithEns } from '../../contracts/consts';
-import { type BatchParameters, type BatchReturnType } from '../../functions/public/batch';
-import { type GetAbiRecordParameters, type GetAbiRecordReturnType } from '../../functions/public/getAbiRecord';
-import { type GetAddressRecordParameters, type GetAddressRecordReturnType } from '../../functions/public/getAddressRecord';
-import { type GetAvailableParameters, type GetAvailableReturnType } from '../../functions/public/getAvailable';
-import { type GetContentHashRecordParameters, type GetContentHashRecordReturnType } from '../../functions/public/getContentHashRecord';
-import { type GetExpiryParameters, type GetExpiryReturnType } from '../../functions/public/getExpiry';
-import { type GetNameParameters, type GetNameReturnType } from '../../functions/public/getName';
-import { type GetOwnerParameters, type GetOwnerReturnType } from '../../functions/public/getOwner';
-import { type GetPriceParameters, type GetPriceReturnType } from '../../functions/public/getPrice';
-import { type GetRecordsParameters, type GetRecordsReturnType } from '../../functions/public/getRecords';
-import { type GetResolverParameters, type GetResolverReturnType } from '../../functions/public/getResolver';
-import { type GetTextRecordParameters, type GetTextRecordReturnType } from '../../functions/public/getTextRecord';
-import { type GetWrapperDataParameters, type GetWrapperDataReturnType } from '../../functions/public/getWrapperData';
-import { type GetWrapperNameParameters, type GetWrapperNameReturnType } from '../../functions/public/getWrapperName';
+import type { ChainWithEns } from '../../contracts/consts.js';
+import { type BatchParameters, type BatchReturnType } from '../../functions/public/batch.js';
+import { type GetAbiRecordParameters, type GetAbiRecordReturnType } from '../../functions/public/getAbiRecord.js';
+import { type GetAddressRecordParameters, type GetAddressRecordReturnType } from '../../functions/public/getAddressRecord.js';
+import { type GetAvailableParameters, type GetAvailableReturnType } from '../../functions/public/getAvailable.js';
+import { type GetContentHashRecordParameters, type GetContentHashRecordReturnType } from '../../functions/public/getContentHashRecord.js';
+import { type GetExpiryParameters, type GetExpiryReturnType } from '../../functions/public/getExpiry.js';
+import { type GetNameParameters, type GetNameReturnType } from '../../functions/public/getName.js';
+import { type GetOwnerParameters, type GetOwnerReturnType } from '../../functions/public/getOwner.js';
+import { type GetPriceParameters, type GetPriceReturnType } from '../../functions/public/getPrice.js';
+import { type GetRecordsParameters, type GetRecordsReturnType } from '../../functions/public/getRecords.js';
+import { type GetResolverParameters, type GetResolverReturnType } from '../../functions/public/getResolver.js';
+import { type GetTextRecordParameters, type GetTextRecordReturnType } from '../../functions/public/getTextRecord.js';
+import { type GetWrapperDataParameters, type GetWrapperDataReturnType } from '../../functions/public/getWrapperData.js';
+import { type GetWrapperNameParameters, type GetWrapperNameReturnType } from '../../functions/public/getWrapperName.js';
 export type EnsPublicActions = {
     /**
      * Batches multiple read functions into a single call.

@@ -1,7 +1,7 @@
 import { BaseError, encodeFunctionData, padHex, } from 'viem';
-import { erc165SupportsInterfaceSnippet } from '../../contracts/erc165';
-import { generateFunction } from '../../utils/generateFunction';
-import multicallWrapper from './multicallWrapper';
+import { erc165SupportsInterfaceSnippet } from '../../contracts/erc165.js';
+import { generateFunction } from '../../utils/generateFunction.js';
+import multicallWrapper from './multicallWrapper.js';
 const encodeInterface = (interfaceId) => encodeFunctionData({
     abi: erc165SupportsInterfaceSnippet,
     functionName: 'supportsInterface',

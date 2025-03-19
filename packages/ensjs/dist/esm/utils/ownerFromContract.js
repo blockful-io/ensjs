@@ -1,9 +1,9 @@
 import { encodeFunctionData, labelhash } from 'viem';
-import { baseRegistrarOwnerOfSnippet } from '../contracts/baseRegistrar';
-import { getChainContractAddress } from '../contracts/getChainContractAddress';
-import { nameWrapperOwnerOfSnippet } from '../contracts/nameWrapper';
-import { registryOwnerSnippet } from '../contracts/registry';
-import { InvalidContractTypeError } from '../errors/general';
+import { baseRegistrarOwnerOfSnippet } from '../contracts/baseRegistrar.js';
+import { getChainContractAddress } from '../contracts/getChainContractAddress.js';
+import { nameWrapperOwnerOfSnippet } from '../contracts/nameWrapper.js';
+import { registryOwnerSnippet } from '../contracts/registry.js';
+import { InvalidContractTypeError } from '../errors/general.js';
 export const ownerFromContract = ({ client, contract, namehash, labels, }) => {
     switch (contract) {
         case 'nameWrapper':

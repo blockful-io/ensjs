@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import { match, P } from 'ts-pattern';
-import { GRACE_PERIOD_SECONDS } from '../../utils/consts';
+import { GRACE_PERIOD_SECONDS } from '../../utils/consts.js';
 export const getExpiryDateOrderFilter = ({ orderDirection, lastDomain, }) => {
     let lastExpiryDate = lastDomain.expiryDate?.value
         ? lastDomain.expiryDate.value / 1000

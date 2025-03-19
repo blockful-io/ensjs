@@ -1,10 +1,10 @@
 import { isAddress } from 'viem';
-import { DnsDnssecVerificationFailedError, DnsDnssecWildcardExpansionError, DnsInvalidTxtRecordError, DnsNoTxtRecordError, DnsResponseStatusError, } from '../../errors/dns';
-import { UnsupportedNameTypeError } from '../../errors/general';
-import { getDnsTxtRecords } from '../../utils/dns/getDnsTxtRecords';
-import { DnsRecordType, DnsResponseStatus, } from '../../utils/dns/misc';
-import { getNameType } from '../../utils/getNameType';
-import getAddressRecord from '../public/getAddressRecord';
+import { DnsDnssecVerificationFailedError, DnsDnssecWildcardExpansionError, DnsInvalidTxtRecordError, DnsNoTxtRecordError, DnsResponseStatusError, } from '../../errors/dns.js';
+import { UnsupportedNameTypeError } from '../../errors/general.js';
+import { getDnsTxtRecords } from '../../utils/dns/getDnsTxtRecords.js';
+import { DnsRecordType, DnsResponseStatus, } from '../../utils/dns/misc.js';
+import { getNameType } from '../../utils/getNameType.js';
+import getAddressRecord from '../public/getAddressRecord.js';
 const checkValidEnsTxtRecord = async (client, record) => {
     if (record.type !== DnsRecordType.TXT)
         return null;

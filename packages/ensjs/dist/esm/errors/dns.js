@@ -1,4 +1,4 @@
-import { BaseError } from './base';
+import { BaseError } from './base.js';
 export class DnsResponseStatusError extends BaseError {
     constructor({ responseStatus }) {
         super(`DNS query failed with status: ${responseStatus}`);

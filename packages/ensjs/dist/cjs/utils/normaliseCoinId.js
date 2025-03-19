@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getCoderFromCoin = exports.normaliseCoinId = void 0;
 const address_encoder_1 = require("@ensdomains/address-encoder");
-const public_1 = require("../errors/public");
+const public_js_1 = require("../errors/public.js");
 const normaliseCoinId = (coinId) => {
     const isString = typeof coinId === 'string';
     if (isString && Number.isNaN(parseInt(coinId))) {
@@ -27,7 +27,7 @@ const getCoderFromCoin = (coinId) => {
                 : (0, address_encoder_1.getCoderByCoinName)(normalisedCoin.value);
     }
     catch {
-        throw new public_1.CoinFormatterNotFoundError({ coinType: coinId });
+        throw new public_js_1.CoinFormatterNotFoundError({ coinType: coinId });
     }
     return coder;
 };

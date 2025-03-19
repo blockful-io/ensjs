@@ -1,6 +1,6 @@
 import { gql } from 'graphql-request';
-import { namehash } from '../../utils/normalise';
-import { createSubgraphClient } from './client';
+import { namehash } from '../../utils/normalise.js';
+import { createSubgraphClient } from './client.js';
 const inheritedResolverQuery = gql `
   query getSubgraphRecords($id: String!) {
     domain(id: $id) {

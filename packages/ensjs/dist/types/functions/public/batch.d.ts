@@ -1,7 +1,7 @@
 import type { Hex } from 'viem';
-import type { ClientWithEns } from '../../contracts/consts';
-import type { TransactionRequestWithPassthrough } from '../../types';
-import { type BatchFunctionResult, type GeneratedFunction } from '../../utils/generateFunction';
+import type { ClientWithEns } from '../../contracts/consts.js';
+import type { TransactionRequestWithPassthrough } from '../../types.js';
+import { type BatchFunctionResult, type GeneratedFunction } from '../../utils/generateFunction.js';
 type ExtractResult<TFunction extends BatchFunctionResult> = TFunction extends {
     decode: (...args: any[]) => Promise<infer U>;
 } ? U : never;

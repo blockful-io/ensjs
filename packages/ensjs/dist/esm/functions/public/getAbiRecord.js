@@ -1,6 +1,6 @@
-import { generateFunction, } from '../../utils/generateFunction';
-import _getAbi, {} from './_getAbi';
-import universalWrapper from './universalWrapper';
+import { generateFunction, } from '../../utils/generateFunction.js';
+import _getAbi, {} from './_getAbi.js';
+import universalWrapper from './universalWrapper.js';
 const encode = (client, { name, supportedContentTypes, gatewayUrls, }) => {
     const prData = _getAbi.encode(client, { name, supportedContentTypes });
     return universalWrapper.encode(client, {

@@ -2,11 +2,11 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ccipRequest = exports.getRevertErrorData = exports.makeCommitment = exports.makeCommitmentFromTuple = exports.makeRegistrationTuple = exports.makeCommitmentTuple = exports.randomSecret = void 0;
 const viem_1 = require("viem");
-const utils_1 = require("../errors/utils");
-const consts_1 = require("./consts");
-const fuses_1 = require("./fuses");
-const generateRecordCallArray_1 = require("./generateRecordCallArray");
-const normalise_1 = require("./normalise");
+const utils_js_1 = require("../errors/utils.js");
+const consts_js_1 = require("./consts.js");
+const fuses_js_1 = require("./fuses.js");
+const generateRecordCallArray_js_1 = require("./generateRecordCallArray.js");
+const normalise_js_1 = require("./normalise.js");
 const cryptoRef = (typeof crypto !== 'undefined' && crypto) ||
     (typeof window !== 'undefined' &&
         typeof window.crypto !== 'undefined' &&
@@ -15,14 +15,14 @@ const cryptoRef = (typeof crypto !== 'undefined' && crypto) ||
 const randomSecret = ({ platformDomain, campaign, } = {}) => {
     const bytes = cryptoRef.getRandomValues(new Uint8Array(32));
     if (platformDomain) {
-        const hash = (0, viem_1.toBytes)((0, normalise_1.namehash)(platformDomain));
+        const hash = (0, viem_1.toBytes)((0, normalise_js_1.namehash)(platformDomain));
         for (let i = 0; i < 4; i += 1) {
             bytes[i] = hash[i];
         }
     }
     if (campaign) {
         if (campaign > 0xffffffff)
-            throw new utils_1.CampaignReferenceTooLargeError({ campaign });
+            throw new utils_js_1.CampaignReferenceTooLargeError({ campaign });
         const campaignBytes = (0, viem_1.pad)((0, viem_1.toBytes)(campaign), { size: 4 });
         for (let i = 0; i < 4; i += 1) {
             bytes[i + 4] = campaignBytes[i];
@@ -31,11 +31,11 @@ const randomSecret = ({ platformDomain, campaign, } = {}) => {
     return (0, viem_1.toHex)(bytes);
 };
 exports.randomSecret = randomSecret;
-const makeCommitmentTuple = ({ name, owner, duration, resolverAddress = consts_1.EMPTY_ADDRESS, records: { coins = [], ...records } = { texts: [], coins: [] }, reverseRecord, fuses, secret, }) => {
+const makeCommitmentTuple = ({ name, owner, duration, resolverAddress = consts_js_1.EMPTY_ADDRESS, records: { coins = [], ...records } = { texts: [], coins: [] }, reverseRecord, fuses, secret, }) => {
     const labelHash = (0, viem_1.labelhash)(name.split('.')[0]);
-    const hash = (0, normalise_1.namehash)(name);
+    const hash = (0, normalise_js_1.namehash)(name);
     const fuseData = fuses
-        ? (0, fuses_1.encodeFuses)({ restriction: 'child', input: fuses })
+        ? (0, fuses_js_1.encodeFuses)({ restriction: 'child', input: fuses })
         : 0;
     if (reverseRecord &&
         !coins.find((c) => (typeof c.coin === 'string' && c.coin.toLowerCase() === 'eth') ||
@@ -43,10 +43,10 @@ const makeCommitmentTuple = ({ name, owner, duration, resolverAddress = consts_1
         coins.push({ coin: 60, value: owner });
     }
     const data = records
-        ? (0, generateRecordCallArray_1.generateRecordCallArray)({ namehash: hash, coins, ...records })
+        ? (0, generateRecordCallArray_js_1.generateRecordCallArray)({ namehash: hash, coins, ...records })
         : [];
-    if (data.length > 0 && resolverAddress === consts_1.EMPTY_ADDRESS)
-        throw new utils_1.ResolverAddressRequiredError({
+    if (data.length > 0 && resolverAddress === consts_js_1.EMPTY_ADDRESS)
+        throw new utils_js_1.ResolverAddressRequiredError({
             data: {
                 name,
                 owner,

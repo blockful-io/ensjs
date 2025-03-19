@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.NoChainError = exports.UnsupportedChainError = void 0;
-const base_1 = require("./base");
-class UnsupportedChainError extends base_1.BaseError {
+const base_js_1 = require("./base.js");
+class UnsupportedChainError extends base_js_1.BaseError {
     constructor({ chainId, supportedChains, details, }) {
         super(`Unsupported chain: ${chainId}`, {
             metaMessages: [`- Supported chains: ${supportedChains.join(', ')}`],
@@ -31,7 +31,7 @@ class UnsupportedChainError extends base_1.BaseError {
     }
 }
 exports.UnsupportedChainError = UnsupportedChainError;
-class NoChainError extends base_1.BaseError {
+class NoChainError extends base_js_1.BaseError {
     constructor() {
         super('No chain provided');
         Object.defineProperty(this, "name", {

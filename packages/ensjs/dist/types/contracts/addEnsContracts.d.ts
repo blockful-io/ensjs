@@ -1,5 +1,5 @@
 import type { Chain } from 'viem';
-import { type CheckedChainWithEns } from './consts';
+import { type CheckedChainWithEns } from './consts.js';
 /**
  * Adds ENS contract addresses to the viem chain
  * @param chain - The viem {@link Chain} object to add the ENS contracts to

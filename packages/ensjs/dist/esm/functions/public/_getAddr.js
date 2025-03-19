@@ -1,9 +1,9 @@
 import { decodeFunctionResult, encodeFunctionData, hexToBytes, trim, } from 'viem';
-import { namehash } from '../../utils/normalise';
-import { publicResolverMultiAddrSnippet, publicResolverSingleAddrSnippet, } from '../../contracts/publicResolver';
-import { EMPTY_ADDRESS } from '../../utils/consts';
-import { generateFunction } from '../../utils/generateFunction';
-import { getCoderFromCoin } from '../../utils/normaliseCoinId';
+import { namehash } from '../../utils/normalise.js';
+import { publicResolverMultiAddrSnippet, publicResolverSingleAddrSnippet, } from '../../contracts/publicResolver.js';
+import { EMPTY_ADDRESS } from '../../utils/consts.js';
+import { generateFunction } from '../../utils/generateFunction.js';
+import { getCoderFromCoin } from '../../utils/normaliseCoinId.js';
 const encode = (_client, { name, coin = 60, bypassFormat }) => {
     const coder = getCoderFromCoin(coin);
     if (coder.coinType === 60) {

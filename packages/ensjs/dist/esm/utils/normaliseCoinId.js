@@ -1,5 +1,5 @@
 import { getCoderByCoinName, getCoderByCoinType, } from '@ensdomains/address-encoder';
-import { CoinFormatterNotFoundError } from '../errors/public';
+import { CoinFormatterNotFoundError } from '../errors/public.js';
 export const normaliseCoinId = (coinId) => {
     const isString = typeof coinId === 'string';
     if (isString && Number.isNaN(parseInt(coinId))) {

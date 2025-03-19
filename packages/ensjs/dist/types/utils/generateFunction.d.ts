@@ -1,5 +1,5 @@
-import type { ClientWithEns } from '../contracts/consts';
-import type { TransactionRequestWithPassthrough } from '../types';
+import type { ClientWithEns } from '../contracts/consts.js';
+import type { TransactionRequestWithPassthrough } from '../types.js';
 export type EncoderFunction = (...args: any[]) => TransactionRequestWithPassthrough;
 export type DecoderFunction = (...args: any[]) => Promise<any>;
 type OmitFirstArg<F> = F extends (x: any, ...args: infer P) => infer R ? (...args: P) => R : never;

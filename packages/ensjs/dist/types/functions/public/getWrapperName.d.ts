@@ -1,7 +1,7 @@
 import { BaseError, type Hex } from 'viem';
-import type { ClientWithEns } from '../../contracts/consts';
-import type { GenericPassthrough, TransactionRequestWithPassthrough } from '../../types';
-import { type GeneratedFunction } from '../../utils/generateFunction';
+import type { ClientWithEns } from '../../contracts/consts.js';
+import type { GenericPassthrough, TransactionRequestWithPassthrough } from '../../types.js';
+import { type GeneratedFunction } from '../../utils/generateFunction.js';
 export type GetWrapperNameParameters = {
     /** Name with unknown labels, e.g. "[4ca938ec1b323ca71c4fb47a712abb68cce1cabf39ea4d6789e42fbc1f95459b].eth" */
     name: string;

@@ -1,7 +1,7 @@
 import { gql } from 'graphql-request';
-import { checkIsDecrypted, decodeLabelhash, isEncodedLabelhash, } from '../../utils/labels';
-import { namehash } from '../../utils/normalise';
-import { createSubgraphClient } from './client';
+import { checkIsDecrypted, decodeLabelhash, isEncodedLabelhash, } from '../../utils/labels.js';
+import { namehash } from '../../utils/normalise.js';
+import { createSubgraphClient } from './client.js';
 /**
  * Gets the full name for a name with unknown labels from the subgraph.
  * @param client - {@link ClientWithEns}

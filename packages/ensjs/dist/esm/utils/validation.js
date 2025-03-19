@@ -1,7 +1,7 @@
-import { NameWithEmptyLabelsError, RootNameIncludesOtherLabelsError, } from '../errors/utils';
-import { MINIMUM_DOT_ETH_CHARS } from './consts';
-import { checkLabel, isEncodedLabelhash, saveName } from './labels';
-import { normalise, split } from './normalise';
+import { NameWithEmptyLabelsError, RootNameIncludesOtherLabelsError, } from '../errors/utils.js';
+import { MINIMUM_DOT_ETH_CHARS } from './consts.js';
+import { checkLabel, isEncodedLabelhash, saveName } from './labels.js';
+import { normalise, split } from './normalise.js';
 export const validateName = (name) => {
     const nameArray = name.split('.');
     const normalisedArray = nameArray.map((label) => {

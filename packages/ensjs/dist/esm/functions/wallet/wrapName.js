@@ -1,14 +1,14 @@
 import { encodeAbiParameters, encodeFunctionData, labelhash, toHex, } from 'viem';
 import { sendTransaction } from 'viem/actions';
 import { parseAccount } from 'viem/utils';
-import { baseRegistrarSafeTransferFromWithDataSnippet } from '../../contracts/baseRegistrar';
-import { getChainContractAddress } from '../../contracts/getChainContractAddress';
-import { nameWrapperWrapSnippet } from '../../contracts/nameWrapper';
-import { AdditionalParameterSpecifiedError } from '../../errors/general';
-import { encodeFuses, } from '../../utils/fuses';
-import { packetToBytes } from '../../utils/hexEncodedName';
-import { checkIsDotEth } from '../../utils/validation';
-import { wrappedLabelLengthCheck } from '../../utils/wrapper';
+import { baseRegistrarSafeTransferFromWithDataSnippet } from '../../contracts/baseRegistrar.js';
+import { getChainContractAddress } from '../../contracts/getChainContractAddress.js';
+import { nameWrapperWrapSnippet } from '../../contracts/nameWrapper.js';
+import { AdditionalParameterSpecifiedError } from '../../errors/general.js';
+import { encodeFuses, } from '../../utils/fuses.js';
+import { packetToBytes } from '../../utils/hexEncodedName.js';
+import { checkIsDotEth } from '../../utils/validation.js';
+import { wrappedLabelLengthCheck } from '../../utils/wrapper.js';
 export const makeFunctionData = (wallet, { name, newOwnerAddress, fuses, resolverAddress = getChainContractAddress({
     client: wallet,
     contract: 'ensPublicResolver',

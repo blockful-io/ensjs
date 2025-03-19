@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.encodeContentHash = exports.getProtocolType = exports.isValidContentHash = exports.decodeContentHash = exports.getInternalCodec = exports.getDisplayCodec = void 0;
 const content_hash_1 = require("@ensdomains/content-hash");
 const viem_1 = require("viem");
-const utils_1 = require("../errors/utils");
+const utils_js_1 = require("../errors/utils.js");
 function matchProtocol(text) {
     return (text.match(/^(ipfs|sia|ipns|bzz|onion|onion3|arweave|ar):\/\/(.*)/) ||
         text.match(/\/(ipfs)\/(.*)/) ||
@@ -68,12 +68,12 @@ exports.getProtocolType = getProtocolType;
 function encodeContentHash(text) {
     const typeData = getProtocolType(text);
     if (!typeData)
-        throw new utils_1.InvalidContentHashError();
+        throw new utils_js_1.InvalidContentHashError();
     const internalCodec = (0, exports.getInternalCodec)(typeData.protocolType);
     if (internalCodec === 'onion' && typeData.decoded.length !== 16)
-        throw new utils_1.InvalidContentHashError();
+        throw new utils_js_1.InvalidContentHashError();
     if (internalCodec === 'onion3' && typeData.decoded.length !== 56)
-        throw new utils_1.InvalidContentHashError();
+        throw new utils_js_1.InvalidContentHashError();
     return `0x${(0, content_hash_1.encode)(internalCodec, typeData.decoded)}`;
 }
 exports.encodeContentHash = encodeContentHash;

@@ -2,12 +2,12 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.makeFunctionData = void 0;
 const actions_1 = require("viem/actions");
-const encodeSetContentHash_1 = require("../../utils/encoders/encodeSetContentHash");
-const normalise_1 = require("../../utils/normalise");
+const encodeSetContentHash_js_1 = require("../../utils/encoders/encodeSetContentHash.js");
+const normalise_js_1 = require("../../utils/normalise.js");
 const makeFunctionData = (_wallet, { name, contentHash, resolverAddress }) => {
     return {
         to: resolverAddress,
-        data: (0, encodeSetContentHash_1.encodeSetContentHash)({ namehash: (0, normalise_1.namehash)(name), contentHash }),
+        data: (0, encodeSetContentHash_js_1.encodeSetContentHash)({ namehash: (0, normalise_js_1.namehash)(name), contentHash }),
     };
 };
 exports.makeFunctionData = makeFunctionData;

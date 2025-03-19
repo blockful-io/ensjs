@@ -1,6 +1,6 @@
 import { stringToBytes } from 'viem';
-import { WrappedLabelTooLargeError } from '../errors/utils';
-import { ParentFuses } from './fuses';
+import { WrappedLabelTooLargeError } from '../errors/utils.js';
+import { ParentFuses } from './fuses.js';
 export const MAX_EXPIRY = 2n ** 64n - 1n;
 export const expiryToBigInt = (expiry, defaultValue = 0n) => {
     if (!expiry)

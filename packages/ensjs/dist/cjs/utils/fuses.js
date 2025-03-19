@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.checkPccBurned = exports.decodeFuses = exports.encodeFuses = exports.FullParentFuseReference = exports.ParentFuseReference = exports.ChildFuseReference = exports.FuseRanges = exports.UnnamedParentFuseKeys = exports.UnnamedParentFuses = exports.UnnamedChildFuseKeys = exports.UnnamedChildFuses = exports.FullParentFuseKeys = exports.FullParentFuses = exports.UserSettableFuseKeys = exports.UserSettableFuses = exports.ParentFuseKeys = exports.ParentFuses = exports.ChildFuseKeys = exports.ChildFuses = void 0;
-const utils_1 = require("../errors/utils");
+const utils_js_1 = require("../errors/utils.js");
 exports.ChildFuses = {
     CANNOT_UNWRAP: 1n,
     CANNOT_BURN_FUSES: 2n,
@@ -109,12 +109,12 @@ exports.FullParentFuseReference = {
 };
 const validateFuseNumber = (fuses) => {
     if (fuses > 2n ** 32n || fuses < 0n)
-        throw new utils_1.FusesOutOfRangeError({
+        throw new utils_js_1.FusesOutOfRangeError({
             fuses,
             details: `Fuse number must be limited to uint32, the supplied value was too ${fuses < 0 ? 'low' : 'high'}`,
         });
     else if ((fuses & exports.FuseRanges.USER_SETTABLE_FUSES) !== fuses)
-        throw new utils_1.FusesOutOfRangeError({
+        throw new utils_js_1.FusesOutOfRangeError({
             fuses,
             details: `Fuse number must be limited to user settable fuses, the supplied value was not`,
         });
@@ -124,13 +124,13 @@ const checkFuseObject = ({ reference, object, }) => {
         return 0;
     if ('number' in object) {
         if ('named' in object || 'unnamed' in object)
-            throw new utils_1.FusesInvalidFuseObjectError({
+            throw new utils_js_1.FusesInvalidFuseObjectError({
                 fuses: object,
                 details: 'Cannot specify both a fuse number and named/unnamed fuses.',
             });
         validateFuseNumber(object.number);
         if ((object.number & reference.Range) !== object.number)
-            throw new utils_1.FusesOutOfRangeError({
+            throw new utils_js_1.FusesOutOfRangeError({
                 fuses: object.number,
                 minimum: reference.Minimum,
                 maximum: reference.Maximum,
@@ -142,14 +142,14 @@ const checkFuseObject = ({ reference, object, }) => {
     if ('named' in object && object.named) {
         for (const fuse of object.named) {
             if (!reference.Keys.includes(fuse))
-                throw new utils_1.FusesInvalidNamedFuseError({ fuse });
+                throw new utils_js_1.FusesInvalidNamedFuseError({ fuse });
             fuseNumber |= reference.Object[fuse];
         }
     }
     if ('unnamed' in object && object.unnamed) {
         for (const fuse of object.unnamed) {
             if (!reference.Unnamed.includes(fuse))
-                throw new utils_1.FusesInvalidUnnamedFuseError({ fuse });
+                throw new utils_js_1.FusesInvalidUnnamedFuseError({ fuse });
             fuseNumber |= fuse;
         }
     }
@@ -158,7 +158,7 @@ const checkFuseObject = ({ reference, object, }) => {
 const encodeFuses = ({ restriction, input, }) => {
     if (restriction) {
         if ('parent' in input || 'child' in input)
-            throw new utils_1.FusesRestrictionNotAllowedError({
+            throw new utils_js_1.FusesRestrictionNotAllowedError({
                 fuses: input,
                 details: 'Fuse restriction cannot be used when fuse category is specified',
             });
@@ -169,7 +169,7 @@ const encodeFuses = ({ restriction, input, }) => {
     }
     if ('number' in input) {
         if ('parent' in input || 'child' in input)
-            throw new utils_1.FusesInvalidFuseObjectError({
+            throw new utils_js_1.FusesInvalidFuseObjectError({
                 fuses: input,
                 details: 'Cannot specify both a fuse number and named/unnamed fuses.',
             });

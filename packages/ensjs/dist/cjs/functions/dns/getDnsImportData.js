@@ -2,9 +2,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const viem_1 = require("viem");
 const actions_1 = require("viem/actions");
-const dnssecImpl_1 = require("../../contracts/dnssecImpl");
-const getChainContractAddress_1 = require("../../contracts/getChainContractAddress");
-const index_1 = require("../../index");
+const dnssecImpl_js_1 = require("../../contracts/dnssecImpl.js");
+const getChainContractAddress_js_1 = require("../../contracts/getChainContractAddress.js");
+const index_js_1 = require("../../index.js");
 const serialNumberGt = (i1, i2) => (i1 < i2 && i2 - i1 > 0x7fffffff) || (i1 > i2 && i1 - i2 < 0x7fffffff);
 const encodeProofs = (proofs) => proofs.map((proof) => ({
     rrset: (0, viem_1.toHex)(proof.toWire(true)),
@@ -17,8 +17,8 @@ const getDnsImportData = async (client, { name, endpoint = 'https://cloudflare-d
     const allProofs = result.proofs.concat([result.answer]);
     const rrsets = encodeProofs(allProofs);
     const [onchainRrData, inception] = await (0, actions_1.readContract)(client, {
-        abi: dnssecImpl_1.dnssecImplVerifyRrSetSnippet,
-        address: (0, getChainContractAddress_1.getChainContractAddress)({
+        abi: dnssecImpl_js_1.dnssecImplVerifyRrSetSnippet,
+        address: (0, getChainContractAddress_js_1.getChainContractAddress)({
             client,
             contract: 'ensDnssecImpl',
         }),
@@ -27,7 +27,7 @@ const getDnsImportData = async (client, { name, endpoint = 'https://cloudflare-d
     });
     const lastProof = allProofs[allProofs.length - 1];
     if (serialNumberGt(inception, lastProof.signature.data.inception))
-        throw new index_1.DnsNewerRecordTypeAvailableError({
+        throw new index_js_1.DnsNewerRecordTypeAvailableError({
             typeCovered: lastProof.signature.data.typeCovered,
             signatureName: lastProof.signature.name,
             onchainInception: inception,

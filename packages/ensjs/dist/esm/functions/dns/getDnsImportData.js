@@ -1,9 +1,9 @@
 import { SignedSet } from '@ensdomains/dnsprovejs';
 import { toHex } from 'viem';
 import { readContract } from 'viem/actions';
-import { dnssecImplVerifyRrSetSnippet } from '../../contracts/dnssecImpl';
-import { getChainContractAddress } from '../../contracts/getChainContractAddress';
-import { DnsNewerRecordTypeAvailableError } from '../../index';
+import { dnssecImplVerifyRrSetSnippet } from '../../contracts/dnssecImpl.js';
+import { getChainContractAddress } from '../../contracts/getChainContractAddress.js';
+import { DnsNewerRecordTypeAvailableError } from '../../index.js';
 // Compares two serial numbers using RFC1982 serial number math.
 const serialNumberGt = (i1, i2) => (i1 < i2 && i2 - i1 > 0x7fffffff) || (i1 > i2 && i1 - i2 < 0x7fffffff);
 const encodeProofs = (proofs) => proofs.map((proof) => ({

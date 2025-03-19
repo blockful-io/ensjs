@@ -1,9 +1,9 @@
 import { encodeFunctionData, } from 'viem';
 import { sendTransaction } from 'viem/actions';
-import { getChainContractAddress } from '../../contracts/getChainContractAddress';
-import { nameWrapperSetResolverSnippet } from '../../contracts/nameWrapper';
-import { registrySetResolverSnippet } from '../../contracts/registry';
-import { namehash } from '../../utils/normalise';
+import { getChainContractAddress } from '../../contracts/getChainContractAddress.js';
+import { nameWrapperSetResolverSnippet } from '../../contracts/nameWrapper.js';
+import { registrySetResolverSnippet } from '../../contracts/registry.js';
+import { namehash } from '../../utils/normalise.js';
 export const makeFunctionData = (wallet, { name, contract, resolverAddress }) => {
     if (contract !== 'registry' && contract !== 'nameWrapper')
         throw new Error(`Unknown contract: ${contract}`);

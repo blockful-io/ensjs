@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import { gql } from 'graphql-request';
-import { InvalidOrderByError } from '../../errors/subgraph';
-import { EMPTY_ADDRESS } from '../../utils/consts';
-import { namehash } from '../../utils/normalise';
-import { createSubgraphClient } from './client';
-import { getExpiryDateOrderFilter, getCreatedAtOrderFilter, } from './filters';
-import { domainDetailsWithoutParentFragment, registrationDetailsFragment, wrappedDomainDetailsFragment, } from './fragments';
-import { makeNameObject } from './utils';
+import { InvalidOrderByError } from '../../errors/subgraph.js';
+import { EMPTY_ADDRESS } from '../../utils/consts.js';
+import { namehash } from '../../utils/normalise.js';
+import { createSubgraphClient } from './client.js';
+import { getExpiryDateOrderFilter, getCreatedAtOrderFilter, } from './filters.js';
+import { domainDetailsWithoutParentFragment, registrationDetailsFragment, wrappedDomainDetailsFragment, } from './fragments.js';
+import { makeNameObject } from './utils.js';
 const getOrderByFilter = ({ orderBy, orderDirection, previousPage, }) => {
     const lastDomain = previousPage[previousPage.length - 1];
     const operator = orderDirection === 'asc' ? 'gt' : 'lt';

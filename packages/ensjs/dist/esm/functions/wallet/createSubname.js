@@ -2,20 +2,20 @@ import { encodeFunctionData, toHex, decodeErrorResult, zeroAddress, zeroHash, } 
 import * as chains from 'viem/chains';
 import { packetToBytes } from 'viem/ens';
 import { sendTransaction, readContract } from 'viem/actions';
-import { getChainContractAddress } from '../../contracts/getChainContractAddress';
-import { nameWrapperSetSubnodeRecordSnippet } from '../../contracts/nameWrapper';
-import { registrySetSubnodeRecordSnippet } from '../../contracts/registry';
-import { InvalidContractTypeError, UnsupportedNameTypeError, } from '../../errors/general';
-import { encodeFuses, ParentFuses, } from '../../utils/fuses';
-import { getNameType } from '../../utils/getNameType';
-import { makeLabelNodeAndParent } from '../../utils/makeLabelNodeAndParent';
-import { expiryToBigInt, wrappedLabelLengthCheck, makeDefaultExpiry, } from '../../utils/wrapper';
-import getWrapperData from '../public/getWrapperData';
-import { BaseError } from '../../errors/base';
+import { getChainContractAddress } from '../../contracts/getChainContractAddress.js';
+import { nameWrapperSetSubnodeRecordSnippet } from '../../contracts/nameWrapper.js';
+import { registrySetSubnodeRecordSnippet } from '../../contracts/registry.js';
+import { InvalidContractTypeError, UnsupportedNameTypeError, } from '../../errors/general.js';
+import { encodeFuses, ParentFuses, } from '../../utils/fuses.js';
+import { getNameType } from '../../utils/getNameType.js';
+import { makeLabelNodeAndParent } from '../../utils/makeLabelNodeAndParent.js';
+import { expiryToBigInt, wrappedLabelLengthCheck, makeDefaultExpiry, } from '../../utils/wrapper.js';
+import getWrapperData from '../public/getWrapperData.js';
+import { BaseError } from '../../errors/base.js';
 import { erc165SupportsInterfaceSnippet, offchainRegisterSnippet, 
 // universalResolverResolveSnippet,
-WILDCARD_WRITING_INTERFACE_ID, universalResolverFindResolverSnippet, universalResolverResolveSnippet, } from '../../contracts/index';
-import { ccipRequest, getRevertErrorData, randomSecret, } from '../../utils/registerHelpers';
+WILDCARD_WRITING_INTERFACE_ID, universalResolverFindResolverSnippet, universalResolverResolveSnippet, } from '../../contracts/index.js';
+import { ccipRequest, getRevertErrorData, randomSecret, } from '../../utils/registerHelpers.js';
 export const makeFunctionData = (wallet, { name, contract, owner, resolverAddress = getChainContractAddress({
     client: wallet,
     contract: 'ensPublicResolver',

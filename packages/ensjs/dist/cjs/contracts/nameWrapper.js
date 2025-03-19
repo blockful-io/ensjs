@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.nameWrapperSetResolverSnippet = exports.nameWrapperOwnerOfSnippet = exports.nameWrapperSafeTransferFromSnippet = exports.nameWrapperNamesSnippet = exports.nameWrapperUnwrapEth2ldSnippet = exports.nameWrapperUnwrapSnippet = exports.nameWrapperWrapSnippet = exports.nameWrapperSetSubnodeOwnerSnippet = exports.nameWrapperSetRecordSnippet = exports.nameWrapperSetSubnodeRecordSnippet = exports.nameWrapperSetChildFusesSnippet = exports.nameWrapperSetFusesSnippet = exports.nameWrapperGetDataSnippet = exports.nameWrapperErrors = void 0;
-const erc1155_1 = require("./erc1155");
-const erc721_1 = require("./erc721");
-const registry_1 = require("./registry");
+const erc1155_js_1 = require("./erc1155.js");
+const erc721_js_1 = require("./erc721.js");
+const registry_js_1 = require("./registry.js");
 exports.nameWrapperErrors = [
     {
         inputs: [],
@@ -366,14 +366,14 @@ exports.nameWrapperNamesSnippet = [
 ];
 exports.nameWrapperSafeTransferFromSnippet = [
     ...exports.nameWrapperErrors,
-    ...erc1155_1.erc1155SafeTransferFromSnippet,
+    ...erc1155_js_1.erc1155SafeTransferFromSnippet,
 ];
 exports.nameWrapperOwnerOfSnippet = [
     ...exports.nameWrapperErrors,
-    ...erc721_1.erc721OwnerOfSnippet,
+    ...erc721_js_1.erc721OwnerOfSnippet,
 ];
 exports.nameWrapperSetResolverSnippet = [
     ...exports.nameWrapperErrors,
-    ...registry_1.registrySetResolverSnippet,
+    ...registry_js_1.registrySetResolverSnippet,
 ];
 //# sourceMappingURL=nameWrapper.js.map

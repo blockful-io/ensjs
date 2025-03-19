@@ -1,8 +1,8 @@
 import { encodeFunctionData, } from 'viem';
 import { sendTransaction } from 'viem/actions';
 import { parseAccount } from 'viem/utils';
-import { getChainContractAddress } from '../../contracts/getChainContractAddress';
-import { reverseRegistrarSetNameForAddrSnippet, reverseRegistrarSetNameSnippet, } from '../../contracts/reverseRegistrar';
+import { getChainContractAddress } from '../../contracts/getChainContractAddress.js';
+import { reverseRegistrarSetNameForAddrSnippet, reverseRegistrarSetNameSnippet, } from '../../contracts/reverseRegistrar.js';
 export const makeFunctionData = (wallet, { name, address, resolverAddress = getChainContractAddress({
     client: wallet,
     contract: 'ensPublicResolver',

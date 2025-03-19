@@ -1,5 +1,5 @@
 import { encodeFunctionData } from 'viem';
-import { publicResolverSetAbiSnippet } from '../../contracts/publicResolver';
+import { publicResolverSetAbiSnippet } from '../../contracts/publicResolver.js';
 export const encodeSetAbi = ({ namehash, contentType, encodedData, }) => {
     return encodeFunctionData({
         abi: publicResolverSetAbiSnippet,

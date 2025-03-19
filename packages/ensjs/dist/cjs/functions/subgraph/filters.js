@@ -2,13 +2,13 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getCreatedAtOrderFilter = exports.getExpiryDateOrderFilter = void 0;
 const ts_pattern_1 = require("ts-pattern");
-const consts_1 = require("../../utils/consts");
+const consts_js_1 = require("../../utils/consts.js");
 const getExpiryDateOrderFilter = ({ orderDirection, lastDomain, }) => {
     let lastExpiryDate = lastDomain.expiryDate?.value
         ? lastDomain.expiryDate.value / 1000
         : 0;
     if (lastDomain.parentName === 'eth')
-        lastExpiryDate += consts_1.GRACE_PERIOD_SECONDS;
+        lastExpiryDate += consts_js_1.GRACE_PERIOD_SECONDS;
     return (0, ts_pattern_1.match)({
         lastExpiryDate,
         orderDirection,

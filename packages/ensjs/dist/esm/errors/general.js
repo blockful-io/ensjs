@@ -1,4 +1,4 @@
-import { BaseError } from './base';
+import { BaseError } from './base.js';
 export class AdditionalParameterSpecifiedError extends BaseError {
     constructor({ parameter, allowedParameters, details, }) {
         super(`Additional parameter specified: ${parameter}`, {

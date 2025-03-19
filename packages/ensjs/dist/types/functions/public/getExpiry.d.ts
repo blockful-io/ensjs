@@ -1,7 +1,7 @@
 import { BaseError, type Hex } from 'viem';
-import type { ClientWithEns } from '../../contracts/consts';
-import type { DateWithValue, Prettify, SimpleTransactionRequest } from '../../types';
-import { type GeneratedFunction } from '../../utils/generateFunction';
+import type { ClientWithEns } from '../../contracts/consts.js';
+import type { DateWithValue, Prettify, SimpleTransactionRequest } from '../../types.js';
+import { type GeneratedFunction } from '../../utils/generateFunction.js';
 type ContractOption = 'registrar' | 'nameWrapper';
 type ExpiryStatus = 'active' | 'expired' | 'gracePeriod';
 export type GetExpiryParameters = Prettify<{

@@ -1,4 +1,4 @@
-import { BaseError } from './base';
+import { BaseError } from './base.js';
 export class FusesOutOfRangeError extends BaseError {
     constructor({ fuses, minimum = 0n, maximum = 2n ** 32n, details, }) {
         super('Fuse value out of range', {

@@ -3,18 +3,18 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.makeFunctionData = void 0;
 const viem_1 = require("viem");
 const actions_1 = require("viem/actions");
-const getChainContractAddress_1 = require("../../contracts/getChainContractAddress");
-const nameWrapper_1 = require("../../contracts/nameWrapper");
-const fuses_1 = require("../../utils/fuses");
-const normalise_1 = require("../../utils/normalise");
+const getChainContractAddress_js_1 = require("../../contracts/getChainContractAddress.js");
+const nameWrapper_js_1 = require("../../contracts/nameWrapper.js");
+const fuses_js_1 = require("../../utils/fuses.js");
+const normalise_js_1 = require("../../utils/normalise.js");
 const makeFunctionData = (wallet, { name, fuses }) => {
-    const encodedFuses = (0, fuses_1.encodeFuses)({ restriction: 'child', input: fuses });
+    const encodedFuses = (0, fuses_js_1.encodeFuses)({ restriction: 'child', input: fuses });
     return {
-        to: (0, getChainContractAddress_1.getChainContractAddress)({ client: wallet, contract: 'ensNameWrapper' }),
+        to: (0, getChainContractAddress_js_1.getChainContractAddress)({ client: wallet, contract: 'ensNameWrapper' }),
         data: (0, viem_1.encodeFunctionData)({
-            abi: nameWrapper_1.nameWrapperSetFusesSnippet,
+            abi: nameWrapper_js_1.nameWrapperSetFusesSnippet,
             functionName: 'setFuses',
-            args: [(0, normalise_1.namehash)(name), encodedFuses],
+            args: [(0, normalise_js_1.namehash)(name), encodedFuses],
         }),
     };
 };

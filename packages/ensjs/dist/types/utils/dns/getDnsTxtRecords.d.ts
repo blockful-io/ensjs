@@ -1,5 +1,5 @@
-import type { Endpoint } from '../../functions/dns/types';
-import { type DnsResponse } from './misc';
+import type { Endpoint } from '../../functions/dns/types.js';
+import { type DnsResponse } from './misc.js';
 export type GetDnsTxtRecordsParameters = {
     /** Name to get the txt records for */
     name: string;

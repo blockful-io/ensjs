@@ -1,6 +1,6 @@
-import { generateFunction, } from '../../utils/generateFunction';
-import _getText, {} from './_getText';
-import universalWrapper from './universalWrapper';
+import { generateFunction, } from '../../utils/generateFunction.js';
+import _getText, {} from './_getText.js';
+import universalWrapper from './universalWrapper.js';
 const encode = (client, { name, key, gatewayUrls }) => {
     const prData = _getText.encode(client, { name, key });
     return universalWrapper.encode(client, {

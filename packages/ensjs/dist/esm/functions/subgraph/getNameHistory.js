@@ -1,9 +1,9 @@
 import { getCoderByCoinType } from '@ensdomains/address-encoder';
 import { gql } from 'graphql-request';
 import { hexToBytes, trim } from 'viem';
-import { decodeContentHash } from '../../utils/contentHash';
-import { namehash } from '../../utils/normalise';
-import { createSubgraphClient } from './client';
+import { decodeContentHash } from '../../utils/contentHash.js';
+import { namehash } from '../../utils/normalise.js';
+import { createSubgraphClient } from './client.js';
 /**
  * Gets the history of a name from the subgraph.
  * @param client - {@link ClientWithEns}

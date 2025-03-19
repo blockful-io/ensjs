@@ -1,8 +1,8 @@
 import type { BaseError, Hex } from 'viem';
-import type { ClientWithEns } from '../../contracts/consts';
-import type { GenericPassthrough, Prettify, SimpleTransactionRequest } from '../../types';
-import { type GeneratedFunction } from '../../utils/generateFunction';
-import { type InternalGetAddrParameters, type InternalGetAddrReturnType } from './_getAddr';
+import type { ClientWithEns } from '../../contracts/consts.js';
+import type { GenericPassthrough, Prettify, SimpleTransactionRequest } from '../../types.js';
+import { type GeneratedFunction } from '../../utils/generateFunction.js';
+import { type InternalGetAddrParameters, type InternalGetAddrReturnType } from './_getAddr.js';
 export type GetAddressRecordParameters = Prettify<InternalGetAddrParameters & {
     /** Batch gateway URLs to use for resolving CCIP-read requests. */
     gatewayUrls?: string[];

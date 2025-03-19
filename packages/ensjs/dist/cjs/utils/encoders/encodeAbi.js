@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.encodeAbi = exports.encodeAsToContentType = exports.contentTypeToEncodeAs = void 0;
 const viem_1 = require("viem");
-const utils_1 = require("../../errors/utils");
+const utils_js_1 = require("../../errors/utils.js");
 const abiEncodeMap = {
     json: 1,
     zlib: 2,
@@ -20,14 +20,14 @@ const contentTypeToEncodeAs = (contentType) => {
         case 8:
             return 'uri';
         default:
-            throw new utils_1.UnknownContentTypeError({ contentType });
+            throw new utils_js_1.UnknownContentTypeError({ contentType });
     }
 };
 exports.contentTypeToEncodeAs = contentTypeToEncodeAs;
 const encodeAsToContentType = (encodeAs) => {
     const contentType = abiEncodeMap[encodeAs];
     if (contentType === undefined) {
-        throw new utils_1.UnknownContentTypeError({ contentType: encodeAs });
+        throw new utils_js_1.UnknownContentTypeError({ contentType: encodeAs });
     }
     return contentType;
 };
@@ -44,7 +44,7 @@ const encodeAbi = async ({ encodeAs, data, }) => {
         case 'zlib': {
             contentType = 2;
             if (data) {
-                const { deflate } = await Promise.resolve().then(() => require('pako/dist/pako_deflate.min'));
+                const { deflate } = await Promise.resolve().then(() => require('pako/dist/pako_deflate.min.js'));
                 encodedData = (0, viem_1.bytesToHex)(deflate(JSON.stringify(data)));
             }
             break;

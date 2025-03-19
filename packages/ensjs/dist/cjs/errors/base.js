@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.BaseError = void 0;
-const error_utils_1 = require("./error-utils");
+const error_utils_js_1 = require("./error-utils.js");
 class BaseError extends Error {
     constructor(shortMesage, args = {}) {
         super();
@@ -33,7 +33,7 @@ class BaseError extends Error {
             enumerable: true,
             configurable: true,
             writable: true,
-            value: (0, error_utils_1.getVersion)()
+            value: (0, error_utils_js_1.getVersion)()
         });
         const details = args.cause instanceof BaseError
             ? args.cause.details

@@ -1,23 +1,23 @@
 import type { Account, Transport, WalletClient } from 'viem';
-import type { ChainWithEns } from '../../contracts/consts';
-import { type ClearRecordsParameters, type ClearRecordsReturnType } from '../../functions/wallet/clearRecords';
-import { type CommitNameParameters, type CommitNameReturnType } from '../../functions/wallet/commitName';
-import { type CreateSubnameParameters, type CreateSubnameReturnType } from '../../functions/wallet/createSubname';
-import { type DeleteSubnameParameters, type DeleteSubnameReturnType } from '../../functions/wallet/deleteSubname';
-import { type RegisterNameParameters, type RegisterNameReturnType } from '../../functions/wallet/registerName';
-import { type RenewNamesParameters, type RenewNamesReturnType } from '../../functions/wallet/renewNames';
-import { type SetAbiRecordParameters, type SetAbiRecordReturnType } from '../../functions/wallet/setAbiRecord';
-import { type SetAddressRecordParameters, type SetAddressRecordReturnType } from '../../functions/wallet/setAddressRecord';
-import { type SetChildFusesParameters, type SetChildFusesReturnType } from '../../functions/wallet/setChildFuses';
-import { type SetContentHashRecordParameters, type SetContentHashRecordReturnType } from '../../functions/wallet/setContentHashRecord';
-import { type SetFusesParameters, type SetFusesReturnType } from '../../functions/wallet/setFuses';
-import { type SetPrimaryNameParameters, type SetPrimaryNameReturnType } from '../../functions/wallet/setPrimaryName';
-import { type SetRecordsParameters, type SetRecordsReturnType } from '../../functions/wallet/setRecords';
-import { type SetResolverParameters, type SetResolverReturnType } from '../../functions/wallet/setResolver';
-import { type SetTextRecordParameters, type SetTextRecordReturnType } from '../../functions/wallet/setTextRecord';
-import { type TransferNameParameters, type TransferNameReturnType } from '../../functions/wallet/transferName';
-import { type UnwrapNameParameters, type UnwrapNameReturnType } from '../../functions/wallet/unwrapName';
-import { type WrapNameParameters, type WrapNameReturnType } from '../../functions/wallet/wrapName';
+import type { ChainWithEns } from '../../contracts/consts.js';
+import { type ClearRecordsParameters, type ClearRecordsReturnType } from '../../functions/wallet/clearRecords.js';
+import { type CommitNameParameters, type CommitNameReturnType } from '../../functions/wallet/commitName.js';
+import { type CreateSubnameParameters, type CreateSubnameReturnType } from '../../functions/wallet/createSubname.js';
+import { type DeleteSubnameParameters, type DeleteSubnameReturnType } from '../../functions/wallet/deleteSubname.js';
+import { type RegisterNameParameters, type RegisterNameReturnType } from '../../functions/wallet/registerName.js';
+import { type RenewNamesParameters, type RenewNamesReturnType } from '../../functions/wallet/renewNames.js';
+import { type SetAbiRecordParameters, type SetAbiRecordReturnType } from '../../functions/wallet/setAbiRecord.js';
+import { type SetAddressRecordParameters, type SetAddressRecordReturnType } from '../../functions/wallet/setAddressRecord.js';
+import { type SetChildFusesParameters, type SetChildFusesReturnType } from '../../functions/wallet/setChildFuses.js';
+import { type SetContentHashRecordParameters, type SetContentHashRecordReturnType } from '../../functions/wallet/setContentHashRecord.js';
+import { type SetFusesParameters, type SetFusesReturnType } from '../../functions/wallet/setFuses.js';
+import { type SetPrimaryNameParameters, type SetPrimaryNameReturnType } from '../../functions/wallet/setPrimaryName.js';
+import { type SetRecordsParameters, type SetRecordsReturnType } from '../../functions/wallet/setRecords.js';
+import { type SetResolverParameters, type SetResolverReturnType } from '../../functions/wallet/setResolver.js';
+import { type SetTextRecordParameters, type SetTextRecordReturnType } from '../../functions/wallet/setTextRecord.js';
+import { type TransferNameParameters, type TransferNameReturnType } from '../../functions/wallet/transferName.js';
+import { type UnwrapNameParameters, type UnwrapNameReturnType } from '../../functions/wallet/unwrapName.js';
+import { type WrapNameParameters, type WrapNameReturnType } from '../../functions/wallet/wrapName.js';
 export type EnsWalletActions<TChain extends ChainWithEns, TAccount extends Account | undefined> = {
     /**
      * Clears the records for a name on a resolver.
@@ -551,30 +551,7 @@ export declare const ensWalletActions: <TTransport extends Transport = Transport
     } & (import("viem").ExactPartial<import("viem").FeeValuesEIP4844> & import("viem").OneOf<{
         blobs: readonly `0x${string}`[] | readonly Uint8Array[] | undefined;
     } | {
-        blobVersionedHashes: readonly `0x${string}`[] | undefined; /**
-         * Commits a name to be registered
-         * @param parameters - {@link CommitNameParameters}
-         * @returns Transaction hash. {@link CommitNameReturnType}
-         *
-         * @example
-         * import { createWalletClient, custom } from 'viem'
-         * import { mainnet } from 'viem/chains'
-         * import { addEnsContracts, ensWalletActions } from '@ensdomains/ensjs'
-         * import { randomSecret } from '@ensdomains/ensjs/utils'
-         *
-         * const wallet = createWalletClient({
-         *   chain: addEnsContracts(mainnet),
-         *   transport: custom(window.ethereum),
-         * }).extend(ensWalletActions)
-         * const secret = randomSecret()
-         * const hash = await wallet.commitName({
-         *   name: 'example.eth',
-         *   owner: '0xFe89cc7aBB2C4183683ab71653C4cdc9B02D44b7',
-         *   duration: 31536000, // 1 year
-         *   secret,
-         * })
-         * // 0x...
-         */
+        blobVersionedHashes: readonly `0x${string}`[] | undefined;
     } | {
         sidecars: false | readonly import("viem").BlobSidecar<`0x${string}`>[] | undefined;
     }, import("viem").TransactionSerializableEIP4844>)) | (import("viem").ValueOf<Required<{ [K_7 in keyof request]: K_7 extends "to" | "data" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" | "r" | "s" | "v" | "yParity" | "chainId" ? K_7 : undefined; }>> extends string ? import("viem").TransactionSerializableEIP4844 : never) | (import("viem").ValueOf<Required<{ [K_8 in keyof request]: K_8 extends "to" | "data" | "from" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" ? K_8 : undefined; }>> extends string ? import("viem").TransactionRequestEIP4844 : never) ? "eip4844" : never) | (request extends ({
@@ -631,30 +608,7 @@ export declare const ensWalletActions: <TTransport extends Transport = Transport
     } & (import("viem").ExactPartial<import("viem").FeeValuesEIP4844> & import("viem").OneOf<{
         blobs: readonly `0x${string}`[] | readonly Uint8Array[] | undefined;
     } | {
-        blobVersionedHashes: readonly `0x${string}`[] | undefined; /**
-         * Commits a name to be registered
-         * @param parameters - {@link CommitNameParameters}
-         * @returns Transaction hash. {@link CommitNameReturnType}
-         *
-         * @example
-         * import { createWalletClient, custom } from 'viem'
-         * import { mainnet } from 'viem/chains'
-         * import { addEnsContracts, ensWalletActions } from '@ensdomains/ensjs'
-         * import { randomSecret } from '@ensdomains/ensjs/utils'
-         *
-         * const wallet = createWalletClient({
-         *   chain: addEnsContracts(mainnet),
-         *   transport: custom(window.ethereum),
-         * }).extend(ensWalletActions)
-         * const secret = randomSecret()
-         * const hash = await wallet.commitName({
-         *   name: 'example.eth',
-         *   owner: '0xFe89cc7aBB2C4183683ab71653C4cdc9B02D44b7',
-         *   duration: 31536000, // 1 year
-         *   secret,
-         * })
-         * // 0x...
-         */
+        blobVersionedHashes: readonly `0x${string}`[] | undefined;
     } | {
         sidecars: false | readonly import("viem").BlobSidecar<`0x${string}`>[] | undefined;
     }, import("viem").TransactionSerializableEIP4844>)) | (import("viem").ValueOf<Required<{ [K_7 in keyof request]: K_7 extends "to" | "data" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" | "r" | "s" | "v" | "yParity" | "chainId" ? K_7 : undefined; }>> extends string ? import("viem").TransactionSerializableEIP4844 : never) | (import("viem").ValueOf<Required<{ [K_8 in keyof request]: K_8 extends "to" | "data" | "from" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" ? K_8 : undefined; }>> extends string ? import("viem").TransactionRequestEIP4844 : never) ? "eip4844" : never) | (request extends ({
@@ -711,30 +665,7 @@ export declare const ensWalletActions: <TTransport extends Transport = Transport
     } & (import("viem").ExactPartial<import("viem").FeeValuesEIP4844> & import("viem").OneOf<{
         blobs: readonly `0x${string}`[] | readonly Uint8Array[] | undefined;
     } | {
-        blobVersionedHashes: readonly `0x${string}`[] | undefined; /**
-         * Commits a name to be registered
-         * @param parameters - {@link CommitNameParameters}
-         * @returns Transaction hash. {@link CommitNameReturnType}
-         *
-         * @example
-         * import { createWalletClient, custom } from 'viem'
-         * import { mainnet } from 'viem/chains'
-         * import { addEnsContracts, ensWalletActions } from '@ensdomains/ensjs'
-         * import { randomSecret } from '@ensdomains/ensjs/utils'
-         *
-         * const wallet = createWalletClient({
-         *   chain: addEnsContracts(mainnet),
-         *   transport: custom(window.ethereum),
-         * }).extend(ensWalletActions)
-         * const secret = randomSecret()
-         * const hash = await wallet.commitName({
-         *   name: 'example.eth',
-         *   owner: '0xFe89cc7aBB2C4183683ab71653C4cdc9B02D44b7',
-         *   duration: 31536000, // 1 year
-         *   secret,
-         * })
-         * // 0x...
-         */
+        blobVersionedHashes: readonly `0x${string}`[] | undefined;
     } | {
         sidecars: false | readonly import("viem").BlobSidecar<`0x${string}`>[] | undefined;
     }, import("viem").TransactionSerializableEIP4844>)) | (import("viem").ValueOf<Required<{ [K_7 in keyof request]: K_7 extends "to" | "data" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" | "r" | "s" | "v" | "yParity" | "chainId" ? K_7 : undefined; }>> extends string ? import("viem").TransactionSerializableEIP4844 : never) | (import("viem").ValueOf<Required<{ [K_8 in keyof request]: K_8 extends "to" | "data" | "from" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" ? K_8 : undefined; }>> extends string ? import("viem").TransactionRequestEIP4844 : never) ? "eip4844" : never) | (request extends ({
@@ -791,30 +722,7 @@ export declare const ensWalletActions: <TTransport extends Transport = Transport
     } & (import("viem").ExactPartial<import("viem").FeeValuesEIP4844> & import("viem").OneOf<{
         blobs: readonly `0x${string}`[] | readonly Uint8Array[] | undefined;
     } | {
-        blobVersionedHashes: readonly `0x${string}`[] | undefined; /**
-         * Commits a name to be registered
-         * @param parameters - {@link CommitNameParameters}
-         * @returns Transaction hash. {@link CommitNameReturnType}
-         *
-         * @example
-         * import { createWalletClient, custom } from 'viem'
-         * import { mainnet } from 'viem/chains'
-         * import { addEnsContracts, ensWalletActions } from '@ensdomains/ensjs'
-         * import { randomSecret } from '@ensdomains/ensjs/utils'
-         *
-         * const wallet = createWalletClient({
-         *   chain: addEnsContracts(mainnet),
-         *   transport: custom(window.ethereum),
-         * }).extend(ensWalletActions)
-         * const secret = randomSecret()
-         * const hash = await wallet.commitName({
-         *   name: 'example.eth',
-         *   owner: '0xFe89cc7aBB2C4183683ab71653C4cdc9B02D44b7',
-         *   duration: 31536000, // 1 year
-         *   secret,
-         * })
-         * // 0x...
-         */
+        blobVersionedHashes: readonly `0x${string}`[] | undefined;
     } | {
         sidecars: false | readonly import("viem").BlobSidecar<`0x${string}`>[] | undefined;
     }, import("viem").TransactionSerializableEIP4844>)) | (import("viem").ValueOf<Required<{ [K_7 in keyof request]: K_7 extends "to" | "data" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" | "r" | "s" | "v" | "yParity" | "chainId" ? K_7 : undefined; }>> extends string ? import("viem").TransactionSerializableEIP4844 : never) | (import("viem").ValueOf<Required<{ [K_8 in keyof request]: K_8 extends "to" | "data" | "from" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" ? K_8 : undefined; }>> extends string ? import("viem").TransactionRequestEIP4844 : never) ? "eip4844" : never) | (request extends ({
@@ -871,30 +779,7 @@ export declare const ensWalletActions: <TTransport extends Transport = Transport
     } & (import("viem").ExactPartial<import("viem").FeeValuesEIP4844> & import("viem").OneOf<{
         blobs: readonly `0x${string}`[] | readonly Uint8Array[] | undefined;
     } | {
-        blobVersionedHashes: readonly `0x${string}`[] | undefined; /**
-         * Commits a name to be registered
-         * @param parameters - {@link CommitNameParameters}
-         * @returns Transaction hash. {@link CommitNameReturnType}
-         *
-         * @example
-         * import { createWalletClient, custom } from 'viem'
-         * import { mainnet } from 'viem/chains'
-         * import { addEnsContracts, ensWalletActions } from '@ensdomains/ensjs'
-         * import { randomSecret } from '@ensdomains/ensjs/utils'
-         *
-         * const wallet = createWalletClient({
-         *   chain: addEnsContracts(mainnet),
-         *   transport: custom(window.ethereum),
-         * }).extend(ensWalletActions)
-         * const secret = randomSecret()
-         * const hash = await wallet.commitName({
-         *   name: 'example.eth',
-         *   owner: '0xFe89cc7aBB2C4183683ab71653C4cdc9B02D44b7',
-         *   duration: 31536000, // 1 year
-         *   secret,
-         * })
-         * // 0x...
-         */
+        blobVersionedHashes: readonly `0x${string}`[] | undefined;
     } | {
         sidecars: false | readonly import("viem").BlobSidecar<`0x${string}`>[] | undefined;
     }, import("viem").TransactionSerializableEIP4844>)) | (import("viem").ValueOf<Required<{ [K_7 in keyof request]: K_7 extends "to" | "data" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" | "r" | "s" | "v" | "yParity" | "chainId" ? K_7 : undefined; }>> extends string ? import("viem").TransactionSerializableEIP4844 : never) | (import("viem").ValueOf<Required<{ [K_8 in keyof request]: K_8 extends "to" | "data" | "from" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" ? K_8 : undefined; }>> extends string ? import("viem").TransactionRequestEIP4844 : never) ? "eip4844" : never) | (request extends ({
@@ -951,30 +836,7 @@ export declare const ensWalletActions: <TTransport extends Transport = Transport
     } & (import("viem").ExactPartial<import("viem").FeeValuesEIP4844> & import("viem").OneOf<{
         blobs: readonly `0x${string}`[] | readonly Uint8Array[] | undefined;
     } | {
-        blobVersionedHashes: readonly `0x${string}`[] | undefined; /**
-         * Commits a name to be registered
-         * @param parameters - {@link CommitNameParameters}
-         * @returns Transaction hash. {@link CommitNameReturnType}
-         *
-         * @example
-         * import { createWalletClient, custom } from 'viem'
-         * import { mainnet } from 'viem/chains'
-         * import { addEnsContracts, ensWalletActions } from '@ensdomains/ensjs'
-         * import { randomSecret } from '@ensdomains/ensjs/utils'
-         *
-         * const wallet = createWalletClient({
-         *   chain: addEnsContracts(mainnet),
-         *   transport: custom(window.ethereum),
-         * }).extend(ensWalletActions)
-         * const secret = randomSecret()
-         * const hash = await wallet.commitName({
-         *   name: 'example.eth',
-         *   owner: '0xFe89cc7aBB2C4183683ab71653C4cdc9B02D44b7',
-         *   duration: 31536000, // 1 year
-         *   secret,
-         * })
-         * // 0x...
-         */
+        blobVersionedHashes: readonly `0x${string}`[] | undefined;
     } | {
         sidecars: false | readonly import("viem").BlobSidecar<`0x${string}`>[] | undefined;
     }, import("viem").TransactionSerializableEIP4844>)) | (import("viem").ValueOf<Required<{ [K_7 in keyof request]: K_7 extends "to" | "data" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" | "r" | "s" | "v" | "yParity" | "chainId" ? K_7 : undefined; }>> extends string ? import("viem").TransactionSerializableEIP4844 : never) | (import("viem").ValueOf<Required<{ [K_8 in keyof request]: K_8 extends "to" | "data" | "from" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" ? K_8 : undefined; }>> extends string ? import("viem").TransactionRequestEIP4844 : never) ? "eip4844" : never) | (request extends ({
@@ -1031,30 +893,7 @@ export declare const ensWalletActions: <TTransport extends Transport = Transport
     } & (import("viem").ExactPartial<import("viem").FeeValuesEIP4844> & import("viem").OneOf<{
         blobs: readonly `0x${string}`[] | readonly Uint8Array[] | undefined;
     } | {
-        blobVersionedHashes: readonly `0x${string}`[] | undefined; /**
-         * Commits a name to be registered
-         * @param parameters - {@link CommitNameParameters}
-         * @returns Transaction hash. {@link CommitNameReturnType}
-         *
-         * @example
-         * import { createWalletClient, custom } from 'viem'
-         * import { mainnet } from 'viem/chains'
-         * import { addEnsContracts, ensWalletActions } from '@ensdomains/ensjs'
-         * import { randomSecret } from '@ensdomains/ensjs/utils'
-         *
-         * const wallet = createWalletClient({
-         *   chain: addEnsContracts(mainnet),
-         *   transport: custom(window.ethereum),
-         * }).extend(ensWalletActions)
-         * const secret = randomSecret()
-         * const hash = await wallet.commitName({
-         *   name: 'example.eth',
-         *   owner: '0xFe89cc7aBB2C4183683ab71653C4cdc9B02D44b7',
-         *   duration: 31536000, // 1 year
-         *   secret,
-         * })
-         * // 0x...
-         */
+        blobVersionedHashes: readonly `0x${string}`[] | undefined;
     } | {
         sidecars: false | readonly import("viem").BlobSidecar<`0x${string}`>[] | undefined;
     }, import("viem").TransactionSerializableEIP4844>)) | (import("viem").ValueOf<Required<{ [K_7 in keyof request]: K_7 extends "to" | "data" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" | "r" | "s" | "v" | "yParity" | "chainId" ? K_7 : undefined; }>> extends string ? import("viem").TransactionSerializableEIP4844 : never) | (import("viem").ValueOf<Required<{ [K_8 in keyof request]: K_8 extends "to" | "data" | "from" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" ? K_8 : undefined; }>> extends string ? import("viem").TransactionRequestEIP4844 : never) ? "eip4844" : never) | (request extends ({
@@ -1111,30 +950,7 @@ export declare const ensWalletActions: <TTransport extends Transport = Transport
     } & (import("viem").ExactPartial<import("viem").FeeValuesEIP4844> & import("viem").OneOf<{
         blobs: readonly `0x${string}`[] | readonly Uint8Array[] | undefined;
     } | {
-        blobVersionedHashes: readonly `0x${string}`[] | undefined; /**
-         * Commits a name to be registered
-         * @param parameters - {@link CommitNameParameters}
-         * @returns Transaction hash. {@link CommitNameReturnType}
-         *
-         * @example
-         * import { createWalletClient, custom } from 'viem'
-         * import { mainnet } from 'viem/chains'
-         * import { addEnsContracts, ensWalletActions } from '@ensdomains/ensjs'
-         * import { randomSecret } from '@ensdomains/ensjs/utils'
-         *
-         * const wallet = createWalletClient({
-         *   chain: addEnsContracts(mainnet),
-         *   transport: custom(window.ethereum),
-         * }).extend(ensWalletActions)
-         * const secret = randomSecret()
-         * const hash = await wallet.commitName({
-         *   name: 'example.eth',
-         *   owner: '0xFe89cc7aBB2C4183683ab71653C4cdc9B02D44b7',
-         *   duration: 31536000, // 1 year
-         *   secret,
-         * })
-         * // 0x...
-         */
+        blobVersionedHashes: readonly `0x${string}`[] | undefined;
     } | {
         sidecars: false | readonly import("viem").BlobSidecar<`0x${string}`>[] | undefined;
     }, import("viem").TransactionSerializableEIP4844>)) | (import("viem").ValueOf<Required<{ [K_7 in keyof request]: K_7 extends "to" | "data" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" | "r" | "s" | "v" | "yParity" | "chainId" ? K_7 : undefined; }>> extends string ? import("viem").TransactionSerializableEIP4844 : never) | (import("viem").ValueOf<Required<{ [K_8 in keyof request]: K_8 extends "to" | "data" | "from" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" ? K_8 : undefined; }>> extends string ? import("viem").TransactionRequestEIP4844 : never) ? "eip4844" : never) | (request extends ({
@@ -1191,30 +1007,7 @@ export declare const ensWalletActions: <TTransport extends Transport = Transport
     } & (import("viem").ExactPartial<import("viem").FeeValuesEIP4844> & import("viem").OneOf<{
         blobs: readonly `0x${string}`[] | readonly Uint8Array[] | undefined;
     } | {
-        blobVersionedHashes: readonly `0x${string}`[] | undefined; /**
-         * Commits a name to be registered
-         * @param parameters - {@link CommitNameParameters}
-         * @returns Transaction hash. {@link CommitNameReturnType}
-         *
-         * @example
-         * import { createWalletClient, custom } from 'viem'
-         * import { mainnet } from 'viem/chains'
-         * import { addEnsContracts, ensWalletActions } from '@ensdomains/ensjs'
-         * import { randomSecret } from '@ensdomains/ensjs/utils'
-         *
-         * const wallet = createWalletClient({
-         *   chain: addEnsContracts(mainnet),
-         *   transport: custom(window.ethereum),
-         * }).extend(ensWalletActions)
-         * const secret = randomSecret()
-         * const hash = await wallet.commitName({
-         *   name: 'example.eth',
-         *   owner: '0xFe89cc7aBB2C4183683ab71653C4cdc9B02D44b7',
-         *   duration: 31536000, // 1 year
-         *   secret,
-         * })
-         * // 0x...
-         */
+        blobVersionedHashes: readonly `0x${string}`[] | undefined;
     } | {
         sidecars: false | readonly import("viem").BlobSidecar<`0x${string}`>[] | undefined;
     }, import("viem").TransactionSerializableEIP4844>)) | (import("viem").ValueOf<Required<{ [K_7 in keyof request]: K_7 extends "to" | "data" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" | "r" | "s" | "v" | "yParity" | "chainId" ? K_7 : undefined; }>> extends string ? import("viem").TransactionSerializableEIP4844 : never) | (import("viem").ValueOf<Required<{ [K_8 in keyof request]: K_8 extends "to" | "data" | "from" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" ? K_8 : undefined; }>> extends string ? import("viem").TransactionRequestEIP4844 : never) ? "eip4844" : never) | (request extends ({
@@ -1271,30 +1064,7 @@ export declare const ensWalletActions: <TTransport extends Transport = Transport
     } & (import("viem").ExactPartial<import("viem").FeeValuesEIP4844> & import("viem").OneOf<{
         blobs: readonly `0x${string}`[] | readonly Uint8Array[] | undefined;
     } | {
-        blobVersionedHashes: readonly `0x${string}`[] | undefined; /**
-         * Commits a name to be registered
-         * @param parameters - {@link CommitNameParameters}
-         * @returns Transaction hash. {@link CommitNameReturnType}
-         *
-         * @example
-         * import { createWalletClient, custom } from 'viem'
-         * import { mainnet } from 'viem/chains'
-         * import { addEnsContracts, ensWalletActions } from '@ensdomains/ensjs'
-         * import { randomSecret } from '@ensdomains/ensjs/utils'
-         *
-         * const wallet = createWalletClient({
-         *   chain: addEnsContracts(mainnet),
-         *   transport: custom(window.ethereum),
-         * }).extend(ensWalletActions)
-         * const secret = randomSecret()
-         * const hash = await wallet.commitName({
-         *   name: 'example.eth',
-         *   owner: '0xFe89cc7aBB2C4183683ab71653C4cdc9B02D44b7',
-         *   duration: 31536000, // 1 year
-         *   secret,
-         * })
-         * // 0x...
-         */
+        blobVersionedHashes: readonly `0x${string}`[] | undefined;
     } | {
         sidecars: false | readonly import("viem").BlobSidecar<`0x${string}`>[] | undefined;
     }, import("viem").TransactionSerializableEIP4844>)) | (import("viem").ValueOf<Required<{ [K_7 in keyof request]: K_7 extends "to" | "data" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" | "r" | "s" | "v" | "yParity" | "chainId" ? K_7 : undefined; }>> extends string ? import("viem").TransactionSerializableEIP4844 : never) | (import("viem").ValueOf<Required<{ [K_8 in keyof request]: K_8 extends "to" | "data" | "from" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" ? K_8 : undefined; }>> extends string ? import("viem").TransactionRequestEIP4844 : never) ? "eip4844" : never) | (request extends ({
@@ -1351,30 +1121,7 @@ export declare const ensWalletActions: <TTransport extends Transport = Transport
     } & (import("viem").ExactPartial<import("viem").FeeValuesEIP4844> & import("viem").OneOf<{
         blobs: readonly `0x${string}`[] | readonly Uint8Array[] | undefined;
     } | {
-        blobVersionedHashes: readonly `0x${string}`[] | undefined; /**
-         * Commits a name to be registered
-         * @param parameters - {@link CommitNameParameters}
-         * @returns Transaction hash. {@link CommitNameReturnType}
-         *
-         * @example
-         * import { createWalletClient, custom } from 'viem'
-         * import { mainnet } from 'viem/chains'
-         * import { addEnsContracts, ensWalletActions } from '@ensdomains/ensjs'
-         * import { randomSecret } from '@ensdomains/ensjs/utils'
-         *
-         * const wallet = createWalletClient({
-         *   chain: addEnsContracts(mainnet),
-         *   transport: custom(window.ethereum),
-         * }).extend(ensWalletActions)
-         * const secret = randomSecret()
-         * const hash = await wallet.commitName({
-         *   name: 'example.eth',
-         *   owner: '0xFe89cc7aBB2C4183683ab71653C4cdc9B02D44b7',
-         *   duration: 31536000, // 1 year
-         *   secret,
-         * })
-         * // 0x...
-         */
+        blobVersionedHashes: readonly `0x${string}`[] | undefined;
     } | {
         sidecars: false | readonly import("viem").BlobSidecar<`0x${string}`>[] | undefined;
     }, import("viem").TransactionSerializableEIP4844>)) | (import("viem").ValueOf<Required<{ [K_7 in keyof request]: K_7 extends "to" | "data" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" | "r" | "s" | "v" | "yParity" | "chainId" ? K_7 : undefined; }>> extends string ? import("viem").TransactionSerializableEIP4844 : never) | (import("viem").ValueOf<Required<{ [K_8 in keyof request]: K_8 extends "to" | "data" | "from" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" ? K_8 : undefined; }>> extends string ? import("viem").TransactionRequestEIP4844 : never) ? "eip4844" : never) | (request extends ({
@@ -1431,30 +1178,7 @@ export declare const ensWalletActions: <TTransport extends Transport = Transport
     } & (import("viem").ExactPartial<import("viem").FeeValuesEIP4844> & import("viem").OneOf<{
         blobs: readonly `0x${string}`[] | readonly Uint8Array[] | undefined;
     } | {
-        blobVersionedHashes: readonly `0x${string}`[] | undefined; /**
-         * Commits a name to be registered
-         * @param parameters - {@link CommitNameParameters}
-         * @returns Transaction hash. {@link CommitNameReturnType}
-         *
-         * @example
-         * import { createWalletClient, custom } from 'viem'
-         * import { mainnet } from 'viem/chains'
-         * import { addEnsContracts, ensWalletActions } from '@ensdomains/ensjs'
-         * import { randomSecret } from '@ensdomains/ensjs/utils'
-         *
-         * const wallet = createWalletClient({
-         *   chain: addEnsContracts(mainnet),
-         *   transport: custom(window.ethereum),
-         * }).extend(ensWalletActions)
-         * const secret = randomSecret()
-         * const hash = await wallet.commitName({
-         *   name: 'example.eth',
-         *   owner: '0xFe89cc7aBB2C4183683ab71653C4cdc9B02D44b7',
-         *   duration: 31536000, // 1 year
-         *   secret,
-         * })
-         * // 0x...
-         */
+        blobVersionedHashes: readonly `0x${string}`[] | undefined;
     } | {
         sidecars: false | readonly import("viem").BlobSidecar<`0x${string}`>[] | undefined;
     }, import("viem").TransactionSerializableEIP4844>)) | (import("viem").ValueOf<Required<{ [K_7 in keyof request]: K_7 extends "to" | "data" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" | "r" | "s" | "v" | "yParity" | "chainId" ? K_7 : undefined; }>> extends string ? import("viem").TransactionSerializableEIP4844 : never) | (import("viem").ValueOf<Required<{ [K_8 in keyof request]: K_8 extends "to" | "data" | "from" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" ? K_8 : undefined; }>> extends string ? import("viem").TransactionRequestEIP4844 : never) ? "eip4844" : never) | (request extends ({
@@ -1511,30 +1235,7 @@ export declare const ensWalletActions: <TTransport extends Transport = Transport
     } & (import("viem").ExactPartial<import("viem").FeeValuesEIP4844> & import("viem").OneOf<{
         blobs: readonly `0x${string}`[] | readonly Uint8Array[] | undefined;
     } | {
-        blobVersionedHashes: readonly `0x${string}`[] | undefined; /**
-         * Commits a name to be registered
-         * @param parameters - {@link CommitNameParameters}
-         * @returns Transaction hash. {@link CommitNameReturnType}
-         *
-         * @example
-         * import { createWalletClient, custom } from 'viem'
-         * import { mainnet } from 'viem/chains'
-         * import { addEnsContracts, ensWalletActions } from '@ensdomains/ensjs'
-         * import { randomSecret } from '@ensdomains/ensjs/utils'
-         *
-         * const wallet = createWalletClient({
-         *   chain: addEnsContracts(mainnet),
-         *   transport: custom(window.ethereum),
-         * }).extend(ensWalletActions)
-         * const secret = randomSecret()
-         * const hash = await wallet.commitName({
-         *   name: 'example.eth',
-         *   owner: '0xFe89cc7aBB2C4183683ab71653C4cdc9B02D44b7',
-         *   duration: 31536000, // 1 year
-         *   secret,
-         * })
-         * // 0x...
-         */
+        blobVersionedHashes: readonly `0x${string}`[] | undefined;
     } | {
         sidecars: false | readonly import("viem").BlobSidecar<`0x${string}`>[] | undefined;
     }, import("viem").TransactionSerializableEIP4844>)) | (import("viem").ValueOf<Required<{ [K_7 in keyof request]: K_7 extends "to" | "data" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" | "r" | "s" | "v" | "yParity" | "chainId" ? K_7 : undefined; }>> extends string ? import("viem").TransactionSerializableEIP4844 : never) | (import("viem").ValueOf<Required<{ [K_8 in keyof request]: K_8 extends "to" | "data" | "from" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" ? K_8 : undefined; }>> extends string ? import("viem").TransactionRequestEIP4844 : never) ? "eip4844" : never) | (request extends ({
@@ -1591,30 +1292,7 @@ export declare const ensWalletActions: <TTransport extends Transport = Transport
     } & (import("viem").ExactPartial<import("viem").FeeValuesEIP4844> & import("viem").OneOf<{
         blobs: readonly `0x${string}`[] | readonly Uint8Array[] | undefined;
     } | {
-        blobVersionedHashes: readonly `0x${string}`[] | undefined; /**
-         * Commits a name to be registered
-         * @param parameters - {@link CommitNameParameters}
-         * @returns Transaction hash. {@link CommitNameReturnType}
-         *
-         * @example
-         * import { createWalletClient, custom } from 'viem'
-         * import { mainnet } from 'viem/chains'
-         * import { addEnsContracts, ensWalletActions } from '@ensdomains/ensjs'
-         * import { randomSecret } from '@ensdomains/ensjs/utils'
-         *
-         * const wallet = createWalletClient({
-         *   chain: addEnsContracts(mainnet),
-         *   transport: custom(window.ethereum),
-         * }).extend(ensWalletActions)
-         * const secret = randomSecret()
-         * const hash = await wallet.commitName({
-         *   name: 'example.eth',
-         *   owner: '0xFe89cc7aBB2C4183683ab71653C4cdc9B02D44b7',
-         *   duration: 31536000, // 1 year
-         *   secret,
-         * })
-         * // 0x...
-         */
+        blobVersionedHashes: readonly `0x${string}`[] | undefined;
     } | {
         sidecars: false | readonly import("viem").BlobSidecar<`0x${string}`>[] | undefined;
     }, import("viem").TransactionSerializableEIP4844>)) | (import("viem").ValueOf<Required<{ [K_7 in keyof request]: K_7 extends "to" | "data" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" | "r" | "s" | "v" | "yParity" | "chainId" ? K_7 : undefined; }>> extends string ? import("viem").TransactionSerializableEIP4844 : never) | (import("viem").ValueOf<Required<{ [K_8 in keyof request]: K_8 extends "to" | "data" | "from" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" ? K_8 : undefined; }>> extends string ? import("viem").TransactionRequestEIP4844 : never) ? "eip4844" : never) | (request extends ({
@@ -1671,30 +1349,7 @@ export declare const ensWalletActions: <TTransport extends Transport = Transport
     } & (import("viem").ExactPartial<import("viem").FeeValuesEIP4844> & import("viem").OneOf<{
         blobs: readonly `0x${string}`[] | readonly Uint8Array[] | undefined;
     } | {
-        blobVersionedHashes: readonly `0x${string}`[] | undefined; /**
-         * Commits a name to be registered
-         * @param parameters - {@link CommitNameParameters}
-         * @returns Transaction hash. {@link CommitNameReturnType}
-         *
-         * @example
-         * import { createWalletClient, custom } from 'viem'
-         * import { mainnet } from 'viem/chains'
-         * import { addEnsContracts, ensWalletActions } from '@ensdomains/ensjs'
-         * import { randomSecret } from '@ensdomains/ensjs/utils'
-         *
-         * const wallet = createWalletClient({
-         *   chain: addEnsContracts(mainnet),
-         *   transport: custom(window.ethereum),
-         * }).extend(ensWalletActions)
-         * const secret = randomSecret()
-         * const hash = await wallet.commitName({
-         *   name: 'example.eth',
-         *   owner: '0xFe89cc7aBB2C4183683ab71653C4cdc9B02D44b7',
-         *   duration: 31536000, // 1 year
-         *   secret,
-         * })
-         * // 0x...
-         */
+        blobVersionedHashes: readonly `0x${string}`[] | undefined;
     } | {
         sidecars: false | readonly import("viem").BlobSidecar<`0x${string}`>[] | undefined;
     }, import("viem").TransactionSerializableEIP4844>)) | (import("viem").ValueOf<Required<{ [K_7 in keyof request]: K_7 extends "to" | "data" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" | "r" | "s" | "v" | "yParity" | "chainId" ? K_7 : undefined; }>> extends string ? import("viem").TransactionSerializableEIP4844 : never) | (import("viem").ValueOf<Required<{ [K_8 in keyof request]: K_8 extends "to" | "data" | "from" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" ? K_8 : undefined; }>> extends string ? import("viem").TransactionRequestEIP4844 : never) ? "eip4844" : never) | (request extends ({
@@ -1751,30 +1406,7 @@ export declare const ensWalletActions: <TTransport extends Transport = Transport
     } & (import("viem").ExactPartial<import("viem").FeeValuesEIP4844> & import("viem").OneOf<{
         blobs: readonly `0x${string}`[] | readonly Uint8Array[] | undefined;
     } | {
-        blobVersionedHashes: readonly `0x${string}`[] | undefined; /**
-         * Commits a name to be registered
-         * @param parameters - {@link CommitNameParameters}
-         * @returns Transaction hash. {@link CommitNameReturnType}
-         *
-         * @example
-         * import { createWalletClient, custom } from 'viem'
-         * import { mainnet } from 'viem/chains'
-         * import { addEnsContracts, ensWalletActions } from '@ensdomains/ensjs'
-         * import { randomSecret } from '@ensdomains/ensjs/utils'
-         *
-         * const wallet = createWalletClient({
-         *   chain: addEnsContracts(mainnet),
-         *   transport: custom(window.ethereum),
-         * }).extend(ensWalletActions)
-         * const secret = randomSecret()
-         * const hash = await wallet.commitName({
-         *   name: 'example.eth',
-         *   owner: '0xFe89cc7aBB2C4183683ab71653C4cdc9B02D44b7',
-         *   duration: 31536000, // 1 year
-         *   secret,
-         * })
-         * // 0x...
-         */
+        blobVersionedHashes: readonly `0x${string}`[] | undefined;
     } | {
         sidecars: false | readonly import("viem").BlobSidecar<`0x${string}`>[] | undefined;
     }, import("viem").TransactionSerializableEIP4844>)) | (import("viem").ValueOf<Required<{ [K_7 in keyof request]: K_7 extends "to" | "data" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" | "r" | "s" | "v" | "yParity" | "chainId" ? K_7 : undefined; }>> extends string ? import("viem").TransactionSerializableEIP4844 : never) | (import("viem").ValueOf<Required<{ [K_8 in keyof request]: K_8 extends "to" | "data" | "from" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" ? K_8 : undefined; }>> extends string ? import("viem").TransactionRequestEIP4844 : never) ? "eip4844" : never) | (request extends ({
@@ -1831,30 +1463,7 @@ export declare const ensWalletActions: <TTransport extends Transport = Transport
     } & (import("viem").ExactPartial<import("viem").FeeValuesEIP4844> & import("viem").OneOf<{
         blobs: readonly `0x${string}`[] | readonly Uint8Array[] | undefined;
     } | {
-        blobVersionedHashes: readonly `0x${string}`[] | undefined; /**
-         * Commits a name to be registered
-         * @param parameters - {@link CommitNameParameters}
-         * @returns Transaction hash. {@link CommitNameReturnType}
-         *
-         * @example
-         * import { createWalletClient, custom } from 'viem'
-         * import { mainnet } from 'viem/chains'
-         * import { addEnsContracts, ensWalletActions } from '@ensdomains/ensjs'
-         * import { randomSecret } from '@ensdomains/ensjs/utils'
-         *
-         * const wallet = createWalletClient({
-         *   chain: addEnsContracts(mainnet),
-         *   transport: custom(window.ethereum),
-         * }).extend(ensWalletActions)
-         * const secret = randomSecret()
-         * const hash = await wallet.commitName({
-         *   name: 'example.eth',
-         *   owner: '0xFe89cc7aBB2C4183683ab71653C4cdc9B02D44b7',
-         *   duration: 31536000, // 1 year
-         *   secret,
-         * })
-         * // 0x...
-         */
+        blobVersionedHashes: readonly `0x${string}`[] | undefined;
     } | {
         sidecars: false | readonly import("viem").BlobSidecar<`0x${string}`>[] | undefined;
     }, import("viem").TransactionSerializableEIP4844>)) | (import("viem").ValueOf<Required<{ [K_7 in keyof request]: K_7 extends "to" | "data" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" | "r" | "s" | "v" | "yParity" | "chainId" ? K_7 : undefined; }>> extends string ? import("viem").TransactionSerializableEIP4844 : never) | (import("viem").ValueOf<Required<{ [K_8 in keyof request]: K_8 extends "to" | "data" | "from" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" ? K_8 : undefined; }>> extends string ? import("viem").TransactionRequestEIP4844 : never) ? "eip4844" : never) | (request extends ({
@@ -1911,30 +1520,7 @@ export declare const ensWalletActions: <TTransport extends Transport = Transport
     } & (import("viem").ExactPartial<import("viem").FeeValuesEIP4844> & import("viem").OneOf<{
         blobs: readonly `0x${string}`[] | readonly Uint8Array[] | undefined;
     } | {
-        blobVersionedHashes: readonly `0x${string}`[] | undefined; /**
-         * Commits a name to be registered
-         * @param parameters - {@link CommitNameParameters}
-         * @returns Transaction hash. {@link CommitNameReturnType}
-         *
-         * @example
-         * import { createWalletClient, custom } from 'viem'
-         * import { mainnet } from 'viem/chains'
-         * import { addEnsContracts, ensWalletActions } from '@ensdomains/ensjs'
-         * import { randomSecret } from '@ensdomains/ensjs/utils'
-         *
-         * const wallet = createWalletClient({
-         *   chain: addEnsContracts(mainnet),
-         *   transport: custom(window.ethereum),
-         * }).extend(ensWalletActions)
-         * const secret = randomSecret()
-         * const hash = await wallet.commitName({
-         *   name: 'example.eth',
-         *   owner: '0xFe89cc7aBB2C4183683ab71653C4cdc9B02D44b7',
-         *   duration: 31536000, // 1 year
-         *   secret,
-         * })
-         * // 0x...
-         */
+        blobVersionedHashes: readonly `0x${string}`[] | undefined;
     } | {
         sidecars: false | readonly import("viem").BlobSidecar<`0x${string}`>[] | undefined;
     }, import("viem").TransactionSerializableEIP4844>)) | (import("viem").ValueOf<Required<{ [K_7 in keyof request]: K_7 extends "to" | "data" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" | "r" | "s" | "v" | "yParity" | "chainId" ? K_7 : undefined; }>> extends string ? import("viem").TransactionSerializableEIP4844 : never) | (import("viem").ValueOf<Required<{ [K_8 in keyof request]: K_8 extends "to" | "data" | "from" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" ? K_8 : undefined; }>> extends string ? import("viem").TransactionRequestEIP4844 : never) ? "eip4844" : never) | (request extends ({
@@ -1991,30 +1577,7 @@ export declare const ensWalletActions: <TTransport extends Transport = Transport
     } & (import("viem").ExactPartial<import("viem").FeeValuesEIP4844> & import("viem").OneOf<{
         blobs: readonly `0x${string}`[] | readonly Uint8Array[] | undefined;
     } | {
-        blobVersionedHashes: readonly `0x${string}`[] | undefined; /**
-         * Commits a name to be registered
-         * @param parameters - {@link CommitNameParameters}
-         * @returns Transaction hash. {@link CommitNameReturnType}
-         *
-         * @example
-         * import { createWalletClient, custom } from 'viem'
-         * import { mainnet } from 'viem/chains'
-         * import { addEnsContracts, ensWalletActions } from '@ensdomains/ensjs'
-         * import { randomSecret } from '@ensdomains/ensjs/utils'
-         *
-         * const wallet = createWalletClient({
-         *   chain: addEnsContracts(mainnet),
-         *   transport: custom(window.ethereum),
-         * }).extend(ensWalletActions)
-         * const secret = randomSecret()
-         * const hash = await wallet.commitName({
-         *   name: 'example.eth',
-         *   owner: '0xFe89cc7aBB2C4183683ab71653C4cdc9B02D44b7',
-         *   duration: 31536000, // 1 year
-         *   secret,
-         * })
-         * // 0x...
-         */
+        blobVersionedHashes: readonly `0x${string}`[] | undefined;
     } | {
         sidecars: false | readonly import("viem").BlobSidecar<`0x${string}`>[] | undefined;
     }, import("viem").TransactionSerializableEIP4844>)) | (import("viem").ValueOf<Required<{ [K_7 in keyof request]: K_7 extends "to" | "data" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" | "r" | "s" | "v" | "yParity" | "chainId" ? K_7 : undefined; }>> extends string ? import("viem").TransactionSerializableEIP4844 : never) | (import("viem").ValueOf<Required<{ [K_8 in keyof request]: K_8 extends "to" | "data" | "from" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" ? K_8 : undefined; }>> extends string ? import("viem").TransactionRequestEIP4844 : never) ? "eip4844" : never) | (request extends ({
@@ -2071,30 +1634,7 @@ export declare const ensWalletActions: <TTransport extends Transport = Transport
     } & (import("viem").ExactPartial<import("viem").FeeValuesEIP4844> & import("viem").OneOf<{
         blobs: readonly `0x${string}`[] | readonly Uint8Array[] | undefined;
     } | {
-        blobVersionedHashes: readonly `0x${string}`[] | undefined; /**
-         * Commits a name to be registered
-         * @param parameters - {@link CommitNameParameters}
-         * @returns Transaction hash. {@link CommitNameReturnType}
-         *
-         * @example
-         * import { createWalletClient, custom } from 'viem'
-         * import { mainnet } from 'viem/chains'
-         * import { addEnsContracts, ensWalletActions } from '@ensdomains/ensjs'
-         * import { randomSecret } from '@ensdomains/ensjs/utils'
-         *
-         * const wallet = createWalletClient({
-         *   chain: addEnsContracts(mainnet),
-         *   transport: custom(window.ethereum),
-         * }).extend(ensWalletActions)
-         * const secret = randomSecret()
-         * const hash = await wallet.commitName({
-         *   name: 'example.eth',
-         *   owner: '0xFe89cc7aBB2C4183683ab71653C4cdc9B02D44b7',
-         *   duration: 31536000, // 1 year
-         *   secret,
-         * })
-         * // 0x...
-         */
+        blobVersionedHashes: readonly `0x${string}`[] | undefined;
     } | {
         sidecars: false | readonly import("viem").BlobSidecar<`0x${string}`>[] | undefined;
     }, import("viem").TransactionSerializableEIP4844>)) | (import("viem").ValueOf<Required<{ [K_7 in keyof request]: K_7 extends "to" | "data" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" | "r" | "s" | "v" | "yParity" | "chainId" ? K_7 : undefined; }>> extends string ? import("viem").TransactionSerializableEIP4844 : never) | (import("viem").ValueOf<Required<{ [K_8 in keyof request]: K_8 extends "to" | "data" | "from" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" ? K_8 : undefined; }>> extends string ? import("viem").TransactionRequestEIP4844 : never) ? "eip4844" : never) | (request extends ({
@@ -2151,30 +1691,7 @@ export declare const ensWalletActions: <TTransport extends Transport = Transport
     } & (import("viem").ExactPartial<import("viem").FeeValuesEIP4844> & import("viem").OneOf<{
         blobs: readonly `0x${string}`[] | readonly Uint8Array[] | undefined;
     } | {
-        blobVersionedHashes: readonly `0x${string}`[] | undefined; /**
-         * Commits a name to be registered
-         * @param parameters - {@link CommitNameParameters}
-         * @returns Transaction hash. {@link CommitNameReturnType}
-         *
-         * @example
-         * import { createWalletClient, custom } from 'viem'
-         * import { mainnet } from 'viem/chains'
-         * import { addEnsContracts, ensWalletActions } from '@ensdomains/ensjs'
-         * import { randomSecret } from '@ensdomains/ensjs/utils'
-         *
-         * const wallet = createWalletClient({
-         *   chain: addEnsContracts(mainnet),
-         *   transport: custom(window.ethereum),
-         * }).extend(ensWalletActions)
-         * const secret = randomSecret()
-         * const hash = await wallet.commitName({
-         *   name: 'example.eth',
-         *   owner: '0xFe89cc7aBB2C4183683ab71653C4cdc9B02D44b7',
-         *   duration: 31536000, // 1 year
-         *   secret,
-         * })
-         * // 0x...
-         */
+        blobVersionedHashes: readonly `0x${string}`[] | undefined;
     } | {
         sidecars: false | readonly import("viem").BlobSidecar<`0x${string}`>[] | undefined;
     }, import("viem").TransactionSerializableEIP4844>)) | (import("viem").ValueOf<Required<{ [K_7 in keyof request]: K_7 extends "to" | "data" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" | "r" | "s" | "v" | "yParity" | "chainId" ? K_7 : undefined; }>> extends string ? import("viem").TransactionSerializableEIP4844 : never) | (import("viem").ValueOf<Required<{ [K_8 in keyof request]: K_8 extends "to" | "data" | "from" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" ? K_8 : undefined; }>> extends string ? import("viem").TransactionRequestEIP4844 : never) ? "eip4844" : never) | (request extends ({
@@ -2231,30 +1748,7 @@ export declare const ensWalletActions: <TTransport extends Transport = Transport
     } & (import("viem").ExactPartial<import("viem").FeeValuesEIP4844> & import("viem").OneOf<{
         blobs: readonly `0x${string}`[] | readonly Uint8Array[] | undefined;
     } | {
-        blobVersionedHashes: readonly `0x${string}`[] | undefined; /**
-         * Commits a name to be registered
-         * @param parameters - {@link CommitNameParameters}
-         * @returns Transaction hash. {@link CommitNameReturnType}
-         *
-         * @example
-         * import { createWalletClient, custom } from 'viem'
-         * import { mainnet } from 'viem/chains'
-         * import { addEnsContracts, ensWalletActions } from '@ensdomains/ensjs'
-         * import { randomSecret } from '@ensdomains/ensjs/utils'
-         *
-         * const wallet = createWalletClient({
-         *   chain: addEnsContracts(mainnet),
-         *   transport: custom(window.ethereum),
-         * }).extend(ensWalletActions)
-         * const secret = randomSecret()
-         * const hash = await wallet.commitName({
-         *   name: 'example.eth',
-         *   owner: '0xFe89cc7aBB2C4183683ab71653C4cdc9B02D44b7',
-         *   duration: 31536000, // 1 year
-         *   secret,
-         * })
-         * // 0x...
-         */
+        blobVersionedHashes: readonly `0x${string}`[] | undefined;
     } | {
         sidecars: false | readonly import("viem").BlobSidecar<`0x${string}`>[] | undefined;
     }, import("viem").TransactionSerializableEIP4844>)) | (import("viem").ValueOf<Required<{ [K_7 in keyof request]: K_7 extends "to" | "data" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" | "r" | "s" | "v" | "yParity" | "chainId" ? K_7 : undefined; }>> extends string ? import("viem").TransactionSerializableEIP4844 : never) | (import("viem").ValueOf<Required<{ [K_8 in keyof request]: K_8 extends "to" | "data" | "from" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" ? K_8 : undefined; }>> extends string ? import("viem").TransactionRequestEIP4844 : never) ? "eip4844" : never) | (request extends ({
@@ -2311,30 +1805,7 @@ export declare const ensWalletActions: <TTransport extends Transport = Transport
     } & (import("viem").ExactPartial<import("viem").FeeValuesEIP4844> & import("viem").OneOf<{
         blobs: readonly `0x${string}`[] | readonly Uint8Array[] | undefined;
     } | {
-        blobVersionedHashes: readonly `0x${string}`[] | undefined; /**
-         * Commits a name to be registered
-         * @param parameters - {@link CommitNameParameters}
-         * @returns Transaction hash. {@link CommitNameReturnType}
-         *
-         * @example
-         * import { createWalletClient, custom } from 'viem'
-         * import { mainnet } from 'viem/chains'
-         * import { addEnsContracts, ensWalletActions } from '@ensdomains/ensjs'
-         * import { randomSecret } from '@ensdomains/ensjs/utils'
-         *
-         * const wallet = createWalletClient({
-         *   chain: addEnsContracts(mainnet),
-         *   transport: custom(window.ethereum),
-         * }).extend(ensWalletActions)
-         * const secret = randomSecret()
-         * const hash = await wallet.commitName({
-         *   name: 'example.eth',
-         *   owner: '0xFe89cc7aBB2C4183683ab71653C4cdc9B02D44b7',
-         *   duration: 31536000, // 1 year
-         *   secret,
-         * })
-         * // 0x...
-         */
+        blobVersionedHashes: readonly `0x${string}`[] | undefined;
     } | {
         sidecars: false | readonly import("viem").BlobSidecar<`0x${string}`>[] | undefined;
     }, import("viem").TransactionSerializableEIP4844>)) | (import("viem").ValueOf<Required<{ [K_7 in keyof request]: K_7 extends "to" | "data" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" | "r" | "s" | "v" | "yParity" | "chainId" ? K_7 : undefined; }>> extends string ? import("viem").TransactionSerializableEIP4844 : never) | (import("viem").ValueOf<Required<{ [K_8 in keyof request]: K_8 extends "to" | "data" | "from" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" ? K_8 : undefined; }>> extends string ? import("viem").TransactionRequestEIP4844 : never) ? "eip4844" : never) | (request extends ({
@@ -2391,30 +1862,7 @@ export declare const ensWalletActions: <TTransport extends Transport = Transport
     } & (import("viem").ExactPartial<import("viem").FeeValuesEIP4844> & import("viem").OneOf<{
         blobs: readonly `0x${string}`[] | readonly Uint8Array[] | undefined;
     } | {
-        blobVersionedHashes: readonly `0x${string}`[] | undefined; /**
-         * Commits a name to be registered
-         * @param parameters - {@link CommitNameParameters}
-         * @returns Transaction hash. {@link CommitNameReturnType}
-         *
-         * @example
-         * import { createWalletClient, custom } from 'viem'
-         * import { mainnet } from 'viem/chains'
-         * import { addEnsContracts, ensWalletActions } from '@ensdomains/ensjs'
-         * import { randomSecret } from '@ensdomains/ensjs/utils'
-         *
-         * const wallet = createWalletClient({
-         *   chain: addEnsContracts(mainnet),
-         *   transport: custom(window.ethereum),
-         * }).extend(ensWalletActions)
-         * const secret = randomSecret()
-         * const hash = await wallet.commitName({
-         *   name: 'example.eth',
-         *   owner: '0xFe89cc7aBB2C4183683ab71653C4cdc9B02D44b7',
-         *   duration: 31536000, // 1 year
-         *   secret,
-         * })
-         * // 0x...
-         */
+        blobVersionedHashes: readonly `0x${string}`[] | undefined;
     } | {
         sidecars: false | readonly import("viem").BlobSidecar<`0x${string}`>[] | undefined;
     }, import("viem").TransactionSerializableEIP4844>)) | (import("viem").ValueOf<Required<{ [K_7 in keyof request]: K_7 extends "to" | "data" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" | "r" | "s" | "v" | "yParity" | "chainId" ? K_7 : undefined; }>> extends string ? import("viem").TransactionSerializableEIP4844 : never) | (import("viem").ValueOf<Required<{ [K_8 in keyof request]: K_8 extends "to" | "data" | "from" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" ? K_8 : undefined; }>> extends string ? import("viem").TransactionRequestEIP4844 : never) ? "eip4844" : never) | (request extends ({
@@ -2471,30 +1919,7 @@ export declare const ensWalletActions: <TTransport extends Transport = Transport
     } & (import("viem").ExactPartial<import("viem").FeeValuesEIP4844> & import("viem").OneOf<{
         blobs: readonly `0x${string}`[] | readonly Uint8Array[] | undefined;
     } | {
-        blobVersionedHashes: readonly `0x${string}`[] | undefined; /**
-         * Commits a name to be registered
-         * @param parameters - {@link CommitNameParameters}
-         * @returns Transaction hash. {@link CommitNameReturnType}
-         *
-         * @example
-         * import { createWalletClient, custom } from 'viem'
-         * import { mainnet } from 'viem/chains'
-         * import { addEnsContracts, ensWalletActions } from '@ensdomains/ensjs'
-         * import { randomSecret } from '@ensdomains/ensjs/utils'
-         *
-         * const wallet = createWalletClient({
-         *   chain: addEnsContracts(mainnet),
-         *   transport: custom(window.ethereum),
-         * }).extend(ensWalletActions)
-         * const secret = randomSecret()
-         * const hash = await wallet.commitName({
-         *   name: 'example.eth',
-         *   owner: '0xFe89cc7aBB2C4183683ab71653C4cdc9B02D44b7',
-         *   duration: 31536000, // 1 year
-         *   secret,
-         * })
-         * // 0x...
-         */
+        blobVersionedHashes: readonly `0x${string}`[] | undefined;
     } | {
         sidecars: false | readonly import("viem").BlobSidecar<`0x${string}`>[] | undefined;
     }, import("viem").TransactionSerializableEIP4844>)) | (import("viem").ValueOf<Required<{ [K_7 in keyof request]: K_7 extends "to" | "data" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" | "r" | "s" | "v" | "yParity" | "chainId" ? K_7 : undefined; }>> extends string ? import("viem").TransactionSerializableEIP4844 : never) | (import("viem").ValueOf<Required<{ [K_8 in keyof request]: K_8 extends "to" | "data" | "from" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" ? K_8 : undefined; }>> extends string ? import("viem").TransactionRequestEIP4844 : never) ? "eip4844" : never) | (request extends ({
@@ -2551,30 +1976,7 @@ export declare const ensWalletActions: <TTransport extends Transport = Transport
     } & (import("viem").ExactPartial<import("viem").FeeValuesEIP4844> & import("viem").OneOf<{
         blobs: readonly `0x${string}`[] | readonly Uint8Array[] | undefined;
     } | {
-        blobVersionedHashes: readonly `0x${string}`[] | undefined; /**
-         * Commits a name to be registered
-         * @param parameters - {@link CommitNameParameters}
-         * @returns Transaction hash. {@link CommitNameReturnType}
-         *
-         * @example
-         * import { createWalletClient, custom } from 'viem'
-         * import { mainnet } from 'viem/chains'
-         * import { addEnsContracts, ensWalletActions } from '@ensdomains/ensjs'
-         * import { randomSecret } from '@ensdomains/ensjs/utils'
-         *
-         * const wallet = createWalletClient({
-         *   chain: addEnsContracts(mainnet),
-         *   transport: custom(window.ethereum),
-         * }).extend(ensWalletActions)
-         * const secret = randomSecret()
-         * const hash = await wallet.commitName({
-         *   name: 'example.eth',
-         *   owner: '0xFe89cc7aBB2C4183683ab71653C4cdc9B02D44b7',
-         *   duration: 31536000, // 1 year
-         *   secret,
-         * })
-         * // 0x...
-         */
+        blobVersionedHashes: readonly `0x${string}`[] | undefined;
     } | {
         sidecars: false | readonly import("viem").BlobSidecar<`0x${string}`>[] | undefined;
     }, import("viem").TransactionSerializableEIP4844>)) | (import("viem").ValueOf<Required<{ [K_7 in keyof request]: K_7 extends "to" | "data" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" | "r" | "s" | "v" | "yParity" | "chainId" ? K_7 : undefined; }>> extends string ? import("viem").TransactionSerializableEIP4844 : never) | (import("viem").ValueOf<Required<{ [K_8 in keyof request]: K_8 extends "to" | "data" | "from" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" ? K_8 : undefined; }>> extends string ? import("viem").TransactionRequestEIP4844 : never) ? "eip4844" : never) | (request extends ({
@@ -2631,30 +2033,7 @@ export declare const ensWalletActions: <TTransport extends Transport = Transport
     } & (import("viem").ExactPartial<import("viem").FeeValuesEIP4844> & import("viem").OneOf<{
         blobs: readonly `0x${string}`[] | readonly Uint8Array[] | undefined;
     } | {
-        blobVersionedHashes: readonly `0x${string}`[] | undefined; /**
-         * Commits a name to be registered
-         * @param parameters - {@link CommitNameParameters}
-         * @returns Transaction hash. {@link CommitNameReturnType}
-         *
-         * @example
-         * import { createWalletClient, custom } from 'viem'
-         * import { mainnet } from 'viem/chains'
-         * import { addEnsContracts, ensWalletActions } from '@ensdomains/ensjs'
-         * import { randomSecret } from '@ensdomains/ensjs/utils'
-         *
-         * const wallet = createWalletClient({
-         *   chain: addEnsContracts(mainnet),
-         *   transport: custom(window.ethereum),
-         * }).extend(ensWalletActions)
-         * const secret = randomSecret()
-         * const hash = await wallet.commitName({
-         *   name: 'example.eth',
-         *   owner: '0xFe89cc7aBB2C4183683ab71653C4cdc9B02D44b7',
-         *   duration: 31536000, // 1 year
-         *   secret,
-         * })
-         * // 0x...
-         */
+        blobVersionedHashes: readonly `0x${string}`[] | undefined;
     } | {
         sidecars: false | readonly import("viem").BlobSidecar<`0x${string}`>[] | undefined;
     }, import("viem").TransactionSerializableEIP4844>)) | (import("viem").ValueOf<Required<{ [K_7 in keyof request]: K_7 extends "to" | "data" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" | "r" | "s" | "v" | "yParity" | "chainId" ? K_7 : undefined; }>> extends string ? import("viem").TransactionSerializableEIP4844 : never) | (import("viem").ValueOf<Required<{ [K_8 in keyof request]: K_8 extends "to" | "data" | "from" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" ? K_8 : undefined; }>> extends string ? import("viem").TransactionRequestEIP4844 : never) ? "eip4844" : never) | (request extends ({
@@ -2711,30 +2090,7 @@ export declare const ensWalletActions: <TTransport extends Transport = Transport
     } & (import("viem").ExactPartial<import("viem").FeeValuesEIP4844> & import("viem").OneOf<{
         blobs: readonly `0x${string}`[] | readonly Uint8Array[] | undefined;
     } | {
-        blobVersionedHashes: readonly `0x${string}`[] | undefined; /**
-         * Commits a name to be registered
-         * @param parameters - {@link CommitNameParameters}
-         * @returns Transaction hash. {@link CommitNameReturnType}
-         *
-         * @example
-         * import { createWalletClient, custom } from 'viem'
-         * import { mainnet } from 'viem/chains'
-         * import { addEnsContracts, ensWalletActions } from '@ensdomains/ensjs'
-         * import { randomSecret } from '@ensdomains/ensjs/utils'
-         *
-         * const wallet = createWalletClient({
-         *   chain: addEnsContracts(mainnet),
-         *   transport: custom(window.ethereum),
-         * }).extend(ensWalletActions)
-         * const secret = randomSecret()
-         * const hash = await wallet.commitName({
-         *   name: 'example.eth',
-         *   owner: '0xFe89cc7aBB2C4183683ab71653C4cdc9B02D44b7',
-         *   duration: 31536000, // 1 year
-         *   secret,
-         * })
-         * // 0x...
-         */
+        blobVersionedHashes: readonly `0x${string}`[] | undefined;
     } | {
         sidecars: false | readonly import("viem").BlobSidecar<`0x${string}`>[] | undefined;
     }, import("viem").TransactionSerializableEIP4844>)) | (import("viem").ValueOf<Required<{ [K_7 in keyof request]: K_7 extends "to" | "data" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" | "r" | "s" | "v" | "yParity" | "chainId" ? K_7 : undefined; }>> extends string ? import("viem").TransactionSerializableEIP4844 : never) | (import("viem").ValueOf<Required<{ [K_8 in keyof request]: K_8 extends "to" | "data" | "from" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" ? K_8 : undefined; }>> extends string ? import("viem").TransactionRequestEIP4844 : never) ? "eip4844" : never) | (request extends ({
@@ -2791,30 +2147,7 @@ export declare const ensWalletActions: <TTransport extends Transport = Transport
     } & (import("viem").ExactPartial<import("viem").FeeValuesEIP4844> & import("viem").OneOf<{
         blobs: readonly `0x${string}`[] | readonly Uint8Array[] | undefined;
     } | {
-        blobVersionedHashes: readonly `0x${string}`[] | undefined; /**
-         * Commits a name to be registered
-         * @param parameters - {@link CommitNameParameters}
-         * @returns Transaction hash. {@link CommitNameReturnType}
-         *
-         * @example
-         * import { createWalletClient, custom } from 'viem'
-         * import { mainnet } from 'viem/chains'
-         * import { addEnsContracts, ensWalletActions } from '@ensdomains/ensjs'
-         * import { randomSecret } from '@ensdomains/ensjs/utils'
-         *
-         * const wallet = createWalletClient({
-         *   chain: addEnsContracts(mainnet),
-         *   transport: custom(window.ethereum),
-         * }).extend(ensWalletActions)
-         * const secret = randomSecret()
-         * const hash = await wallet.commitName({
-         *   name: 'example.eth',
-         *   owner: '0xFe89cc7aBB2C4183683ab71653C4cdc9B02D44b7',
-         *   duration: 31536000, // 1 year
-         *   secret,
-         * })
-         * // 0x...
-         */
+        blobVersionedHashes: readonly `0x${string}`[] | undefined;
     } | {
         sidecars: false | readonly import("viem").BlobSidecar<`0x${string}`>[] | undefined;
     }, import("viem").TransactionSerializableEIP4844>)) | (import("viem").ValueOf<Required<{ [K_7 in keyof request]: K_7 extends "to" | "data" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" | "r" | "s" | "v" | "yParity" | "chainId" ? K_7 : undefined; }>> extends string ? import("viem").TransactionSerializableEIP4844 : never) | (import("viem").ValueOf<Required<{ [K_8 in keyof request]: K_8 extends "to" | "data" | "from" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" ? K_8 : undefined; }>> extends string ? import("viem").TransactionRequestEIP4844 : never) ? "eip4844" : never) | (request extends ({
@@ -2871,30 +2204,7 @@ export declare const ensWalletActions: <TTransport extends Transport = Transport
     } & (import("viem").ExactPartial<import("viem").FeeValuesEIP4844> & import("viem").OneOf<{
         blobs: readonly `0x${string}`[] | readonly Uint8Array[] | undefined;
     } | {
-        blobVersionedHashes: readonly `0x${string}`[] | undefined; /**
-         * Commits a name to be registered
-         * @param parameters - {@link CommitNameParameters}
-         * @returns Transaction hash. {@link CommitNameReturnType}
-         *
-         * @example
-         * import { createWalletClient, custom } from 'viem'
-         * import { mainnet } from 'viem/chains'
-         * import { addEnsContracts, ensWalletActions } from '@ensdomains/ensjs'
-         * import { randomSecret } from '@ensdomains/ensjs/utils'
-         *
-         * const wallet = createWalletClient({
-         *   chain: addEnsContracts(mainnet),
-         *   transport: custom(window.ethereum),
-         * }).extend(ensWalletActions)
-         * const secret = randomSecret()
-         * const hash = await wallet.commitName({
-         *   name: 'example.eth',
-         *   owner: '0xFe89cc7aBB2C4183683ab71653C4cdc9B02D44b7',
-         *   duration: 31536000, // 1 year
-         *   secret,
-         * })
-         * // 0x...
-         */
+        blobVersionedHashes: readonly `0x${string}`[] | undefined;
     } | {
         sidecars: false | readonly import("viem").BlobSidecar<`0x${string}`>[] | undefined;
     }, import("viem").TransactionSerializableEIP4844>)) | (import("viem").ValueOf<Required<{ [K_7 in keyof request]: K_7 extends "to" | "data" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" | "r" | "s" | "v" | "yParity" | "chainId" ? K_7 : undefined; }>> extends string ? import("viem").TransactionSerializableEIP4844 : never) | (import("viem").ValueOf<Required<{ [K_8 in keyof request]: K_8 extends "to" | "data" | "from" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" ? K_8 : undefined; }>> extends string ? import("viem").TransactionRequestEIP4844 : never) ? "eip4844" : never) | (request extends ({
@@ -2951,30 +2261,7 @@ export declare const ensWalletActions: <TTransport extends Transport = Transport
     } & (import("viem").ExactPartial<import("viem").FeeValuesEIP4844> & import("viem").OneOf<{
         blobs: readonly `0x${string}`[] | readonly Uint8Array[] | undefined;
     } | {
-        blobVersionedHashes: readonly `0x${string}`[] | undefined; /**
-         * Commits a name to be registered
-         * @param parameters - {@link CommitNameParameters}
-         * @returns Transaction hash. {@link CommitNameReturnType}
-         *
-         * @example
-         * import { createWalletClient, custom } from 'viem'
-         * import { mainnet } from 'viem/chains'
-         * import { addEnsContracts, ensWalletActions } from '@ensdomains/ensjs'
-         * import { randomSecret } from '@ensdomains/ensjs/utils'
-         *
-         * const wallet = createWalletClient({
-         *   chain: addEnsContracts(mainnet),
-         *   transport: custom(window.ethereum),
-         * }).extend(ensWalletActions)
-         * const secret = randomSecret()
-         * const hash = await wallet.commitName({
-         *   name: 'example.eth',
-         *   owner: '0xFe89cc7aBB2C4183683ab71653C4cdc9B02D44b7',
-         *   duration: 31536000, // 1 year
-         *   secret,
-         * })
-         * // 0x...
-         */
+        blobVersionedHashes: readonly `0x${string}`[] | undefined;
     } | {
         sidecars: false | readonly import("viem").BlobSidecar<`0x${string}`>[] | undefined;
     }, import("viem").TransactionSerializableEIP4844>)) | (import("viem").ValueOf<Required<{ [K_7 in keyof request]: K_7 extends "to" | "data" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" | "r" | "s" | "v" | "yParity" | "chainId" ? K_7 : undefined; }>> extends string ? import("viem").TransactionSerializableEIP4844 : never) | (import("viem").ValueOf<Required<{ [K_8 in keyof request]: K_8 extends "to" | "data" | "from" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" ? K_8 : undefined; }>> extends string ? import("viem").TransactionRequestEIP4844 : never) ? "eip4844" : never) | (request extends ({
@@ -3031,30 +2318,7 @@ export declare const ensWalletActions: <TTransport extends Transport = Transport
     } & (import("viem").ExactPartial<import("viem").FeeValuesEIP4844> & import("viem").OneOf<{
         blobs: readonly `0x${string}`[] | readonly Uint8Array[] | undefined;
     } | {
-        blobVersionedHashes: readonly `0x${string}`[] | undefined; /**
-         * Commits a name to be registered
-         * @param parameters - {@link CommitNameParameters}
-         * @returns Transaction hash. {@link CommitNameReturnType}
-         *
-         * @example
-         * import { createWalletClient, custom } from 'viem'
-         * import { mainnet } from 'viem/chains'
-         * import { addEnsContracts, ensWalletActions } from '@ensdomains/ensjs'
-         * import { randomSecret } from '@ensdomains/ensjs/utils'
-         *
-         * const wallet = createWalletClient({
-         *   chain: addEnsContracts(mainnet),
-         *   transport: custom(window.ethereum),
-         * }).extend(ensWalletActions)
-         * const secret = randomSecret()
-         * const hash = await wallet.commitName({
-         *   name: 'example.eth',
-         *   owner: '0xFe89cc7aBB2C4183683ab71653C4cdc9B02D44b7',
-         *   duration: 31536000, // 1 year
-         *   secret,
-         * })
-         * // 0x...
-         */
+        blobVersionedHashes: readonly `0x${string}`[] | undefined;
     } | {
         sidecars: false | readonly import("viem").BlobSidecar<`0x${string}`>[] | undefined;
     }, import("viem").TransactionSerializableEIP4844>)) | (import("viem").ValueOf<Required<{ [K_7 in keyof request]: K_7 extends "to" | "data" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" | "r" | "s" | "v" | "yParity" | "chainId" ? K_7 : undefined; }>> extends string ? import("viem").TransactionSerializableEIP4844 : never) | (import("viem").ValueOf<Required<{ [K_8 in keyof request]: K_8 extends "to" | "data" | "from" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" ? K_8 : undefined; }>> extends string ? import("viem").TransactionRequestEIP4844 : never) ? "eip4844" : never) | (request extends ({
@@ -3111,30 +2375,7 @@ export declare const ensWalletActions: <TTransport extends Transport = Transport
     } & (import("viem").ExactPartial<import("viem").FeeValuesEIP4844> & import("viem").OneOf<{
         blobs: readonly `0x${string}`[] | readonly Uint8Array[] | undefined;
     } | {
-        blobVersionedHashes: readonly `0x${string}`[] | undefined; /**
-         * Commits a name to be registered
-         * @param parameters - {@link CommitNameParameters}
-         * @returns Transaction hash. {@link CommitNameReturnType}
-         *
-         * @example
-         * import { createWalletClient, custom } from 'viem'
-         * import { mainnet } from 'viem/chains'
-         * import { addEnsContracts, ensWalletActions } from '@ensdomains/ensjs'
-         * import { randomSecret } from '@ensdomains/ensjs/utils'
-         *
-         * const wallet = createWalletClient({
-         *   chain: addEnsContracts(mainnet),
-         *   transport: custom(window.ethereum),
-         * }).extend(ensWalletActions)
-         * const secret = randomSecret()
-         * const hash = await wallet.commitName({
-         *   name: 'example.eth',
-         *   owner: '0xFe89cc7aBB2C4183683ab71653C4cdc9B02D44b7',
-         *   duration: 31536000, // 1 year
-         *   secret,
-         * })
-         * // 0x...
-         */
+        blobVersionedHashes: readonly `0x${string}`[] | undefined;
     } | {
         sidecars: false | readonly import("viem").BlobSidecar<`0x${string}`>[] | undefined;
     }, import("viem").TransactionSerializableEIP4844>)) | (import("viem").ValueOf<Required<{ [K_7 in keyof request]: K_7 extends "to" | "data" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" | "r" | "s" | "v" | "yParity" | "chainId" ? K_7 : undefined; }>> extends string ? import("viem").TransactionSerializableEIP4844 : never) | (import("viem").ValueOf<Required<{ [K_8 in keyof request]: K_8 extends "to" | "data" | "from" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" ? K_8 : undefined; }>> extends string ? import("viem").TransactionRequestEIP4844 : never) ? "eip4844" : never) | (request extends ({
@@ -3191,30 +2432,7 @@ export declare const ensWalletActions: <TTransport extends Transport = Transport
     } & (import("viem").ExactPartial<import("viem").FeeValuesEIP4844> & import("viem").OneOf<{
         blobs: readonly `0x${string}`[] | readonly Uint8Array[] | undefined;
     } | {
-        blobVersionedHashes: readonly `0x${string}`[] | undefined; /**
-         * Commits a name to be registered
-         * @param parameters - {@link CommitNameParameters}
-         * @returns Transaction hash. {@link CommitNameReturnType}
-         *
-         * @example
-         * import { createWalletClient, custom } from 'viem'
-         * import { mainnet } from 'viem/chains'
-         * import { addEnsContracts, ensWalletActions } from '@ensdomains/ensjs'
-         * import { randomSecret } from '@ensdomains/ensjs/utils'
-         *
-         * const wallet = createWalletClient({
-         *   chain: addEnsContracts(mainnet),
-         *   transport: custom(window.ethereum),
-         * }).extend(ensWalletActions)
-         * const secret = randomSecret()
-         * const hash = await wallet.commitName({
-         *   name: 'example.eth',
-         *   owner: '0xFe89cc7aBB2C4183683ab71653C4cdc9B02D44b7',
-         *   duration: 31536000, // 1 year
-         *   secret,
-         * })
-         * // 0x...
-         */
+        blobVersionedHashes: readonly `0x${string}`[] | undefined;
     } | {
         sidecars: false | readonly import("viem").BlobSidecar<`0x${string}`>[] | undefined;
     }, import("viem").TransactionSerializableEIP4844>)) | (import("viem").ValueOf<Required<{ [K_7 in keyof request]: K_7 extends "to" | "data" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" | "r" | "s" | "v" | "yParity" | "chainId" ? K_7 : undefined; }>> extends string ? import("viem").TransactionSerializableEIP4844 : never) | (import("viem").ValueOf<Required<{ [K_8 in keyof request]: K_8 extends "to" | "data" | "from" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" ? K_8 : undefined; }>> extends string ? import("viem").TransactionRequestEIP4844 : never) ? "eip4844" : never) | (request extends ({
@@ -3271,30 +2489,7 @@ export declare const ensWalletActions: <TTransport extends Transport = Transport
     } & (import("viem").ExactPartial<import("viem").FeeValuesEIP4844> & import("viem").OneOf<{
         blobs: readonly `0x${string}`[] | readonly Uint8Array[] | undefined;
     } | {
-        blobVersionedHashes: readonly `0x${string}`[] | undefined; /**
-         * Commits a name to be registered
-         * @param parameters - {@link CommitNameParameters}
-         * @returns Transaction hash. {@link CommitNameReturnType}
-         *
-         * @example
-         * import { createWalletClient, custom } from 'viem'
-         * import { mainnet } from 'viem/chains'
-         * import { addEnsContracts, ensWalletActions } from '@ensdomains/ensjs'
-         * import { randomSecret } from '@ensdomains/ensjs/utils'
-         *
-         * const wallet = createWalletClient({
-         *   chain: addEnsContracts(mainnet),
-         *   transport: custom(window.ethereum),
-         * }).extend(ensWalletActions)
-         * const secret = randomSecret()
-         * const hash = await wallet.commitName({
-         *   name: 'example.eth',
-         *   owner: '0xFe89cc7aBB2C4183683ab71653C4cdc9B02D44b7',
-         *   duration: 31536000, // 1 year
-         *   secret,
-         * })
-         * // 0x...
-         */
+        blobVersionedHashes: readonly `0x${string}`[] | undefined;
     } | {
         sidecars: false | readonly import("viem").BlobSidecar<`0x${string}`>[] | undefined;
     }, import("viem").TransactionSerializableEIP4844>)) | (import("viem").ValueOf<Required<{ [K_7 in keyof request]: K_7 extends "to" | "data" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" | "r" | "s" | "v" | "yParity" | "chainId" ? K_7 : undefined; }>> extends string ? import("viem").TransactionSerializableEIP4844 : never) | (import("viem").ValueOf<Required<{ [K_8 in keyof request]: K_8 extends "to" | "data" | "from" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" ? K_8 : undefined; }>> extends string ? import("viem").TransactionRequestEIP4844 : never) ? "eip4844" : never) | (request extends ({
@@ -3351,30 +2546,7 @@ export declare const ensWalletActions: <TTransport extends Transport = Transport
     } & (import("viem").ExactPartial<import("viem").FeeValuesEIP4844> & import("viem").OneOf<{
         blobs: readonly `0x${string}`[] | readonly Uint8Array[] | undefined;
     } | {
-        blobVersionedHashes: readonly `0x${string}`[] | undefined; /**
-         * Commits a name to be registered
-         * @param parameters - {@link CommitNameParameters}
-         * @returns Transaction hash. {@link CommitNameReturnType}
-         *
-         * @example
-         * import { createWalletClient, custom } from 'viem'
-         * import { mainnet } from 'viem/chains'
-         * import { addEnsContracts, ensWalletActions } from '@ensdomains/ensjs'
-         * import { randomSecret } from '@ensdomains/ensjs/utils'
-         *
-         * const wallet = createWalletClient({
-         *   chain: addEnsContracts(mainnet),
-         *   transport: custom(window.ethereum),
-         * }).extend(ensWalletActions)
-         * const secret = randomSecret()
-         * const hash = await wallet.commitName({
-         *   name: 'example.eth',
-         *   owner: '0xFe89cc7aBB2C4183683ab71653C4cdc9B02D44b7',
-         *   duration: 31536000, // 1 year
-         *   secret,
-         * })
-         * // 0x...
-         */
+        blobVersionedHashes: readonly `0x${string}`[] | undefined;
     } | {
         sidecars: false | readonly import("viem").BlobSidecar<`0x${string}`>[] | undefined;
     }, import("viem").TransactionSerializableEIP4844>)) | (import("viem").ValueOf<Required<{ [K_7 in keyof request]: K_7 extends "to" | "data" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" | "r" | "s" | "v" | "yParity" | "chainId" ? K_7 : undefined; }>> extends string ? import("viem").TransactionSerializableEIP4844 : never) | (import("viem").ValueOf<Required<{ [K_8 in keyof request]: K_8 extends "to" | "data" | "from" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" ? K_8 : undefined; }>> extends string ? import("viem").TransactionRequestEIP4844 : never) ? "eip4844" : never) | (request extends ({
@@ -3431,30 +2603,7 @@ export declare const ensWalletActions: <TTransport extends Transport = Transport
     } & (import("viem").ExactPartial<import("viem").FeeValuesEIP4844> & import("viem").OneOf<{
         blobs: readonly `0x${string}`[] | readonly Uint8Array[] | undefined;
     } | {
-        blobVersionedHashes: readonly `0x${string}`[] | undefined; /**
-         * Commits a name to be registered
-         * @param parameters - {@link CommitNameParameters}
-         * @returns Transaction hash. {@link CommitNameReturnType}
-         *
-         * @example
-         * import { createWalletClient, custom } from 'viem'
-         * import { mainnet } from 'viem/chains'
-         * import { addEnsContracts, ensWalletActions } from '@ensdomains/ensjs'
-         * import { randomSecret } from '@ensdomains/ensjs/utils'
-         *
-         * const wallet = createWalletClient({
-         *   chain: addEnsContracts(mainnet),
-         *   transport: custom(window.ethereum),
-         * }).extend(ensWalletActions)
-         * const secret = randomSecret()
-         * const hash = await wallet.commitName({
-         *   name: 'example.eth',
-         *   owner: '0xFe89cc7aBB2C4183683ab71653C4cdc9B02D44b7',
-         *   duration: 31536000, // 1 year
-         *   secret,
-         * })
-         * // 0x...
-         */
+        blobVersionedHashes: readonly `0x${string}`[] | undefined;
     } | {
         sidecars: false | readonly import("viem").BlobSidecar<`0x${string}`>[] | undefined;
     }, import("viem").TransactionSerializableEIP4844>)) | (import("viem").ValueOf<Required<{ [K_7 in keyof request]: K_7 extends "to" | "data" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" | "r" | "s" | "v" | "yParity" | "chainId" ? K_7 : undefined; }>> extends string ? import("viem").TransactionSerializableEIP4844 : never) | (import("viem").ValueOf<Required<{ [K_8 in keyof request]: K_8 extends "to" | "data" | "from" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" ? K_8 : undefined; }>> extends string ? import("viem").TransactionRequestEIP4844 : never) ? "eip4844" : never) | (request extends ({
@@ -3511,30 +2660,7 @@ export declare const ensWalletActions: <TTransport extends Transport = Transport
     } & (import("viem").ExactPartial<import("viem").FeeValuesEIP4844> & import("viem").OneOf<{
         blobs: readonly `0x${string}`[] | readonly Uint8Array[] | undefined;
     } | {
-        blobVersionedHashes: readonly `0x${string}`[] | undefined; /**
-         * Commits a name to be registered
-         * @param parameters - {@link CommitNameParameters}
-         * @returns Transaction hash. {@link CommitNameReturnType}
-         *
-         * @example
-         * import { createWalletClient, custom } from 'viem'
-         * import { mainnet } from 'viem/chains'
-         * import { addEnsContracts, ensWalletActions } from '@ensdomains/ensjs'
-         * import { randomSecret } from '@ensdomains/ensjs/utils'
-         *
-         * const wallet = createWalletClient({
-         *   chain: addEnsContracts(mainnet),
-         *   transport: custom(window.ethereum),
-         * }).extend(ensWalletActions)
-         * const secret = randomSecret()
-         * const hash = await wallet.commitName({
-         *   name: 'example.eth',
-         *   owner: '0xFe89cc7aBB2C4183683ab71653C4cdc9B02D44b7',
-         *   duration: 31536000, // 1 year
-         *   secret,
-         * })
-         * // 0x...
-         */
+        blobVersionedHashes: readonly `0x${string}`[] | undefined;
     } | {
         sidecars: false | readonly import("viem").BlobSidecar<`0x${string}`>[] | undefined;
     }, import("viem").TransactionSerializableEIP4844>)) | (import("viem").ValueOf<Required<{ [K_7 in keyof request]: K_7 extends "to" | "data" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" | "r" | "s" | "v" | "yParity" | "chainId" ? K_7 : undefined; }>> extends string ? import("viem").TransactionSerializableEIP4844 : never) | (import("viem").ValueOf<Required<{ [K_8 in keyof request]: K_8 extends "to" | "data" | "from" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" ? K_8 : undefined; }>> extends string ? import("viem").TransactionRequestEIP4844 : never) ? "eip4844" : never) | (request extends ({
@@ -3591,30 +2717,7 @@ export declare const ensWalletActions: <TTransport extends Transport = Transport
     } & (import("viem").ExactPartial<import("viem").FeeValuesEIP4844> & import("viem").OneOf<{
         blobs: readonly `0x${string}`[] | readonly Uint8Array[] | undefined;
     } | {
-        blobVersionedHashes: readonly `0x${string}`[] | undefined; /**
-         * Commits a name to be registered
-         * @param parameters - {@link CommitNameParameters}
-         * @returns Transaction hash. {@link CommitNameReturnType}
-         *
-         * @example
-         * import { createWalletClient, custom } from 'viem'
-         * import { mainnet } from 'viem/chains'
-         * import { addEnsContracts, ensWalletActions } from '@ensdomains/ensjs'
-         * import { randomSecret } from '@ensdomains/ensjs/utils'
-         *
-         * const wallet = createWalletClient({
-         *   chain: addEnsContracts(mainnet),
-         *   transport: custom(window.ethereum),
-         * }).extend(ensWalletActions)
-         * const secret = randomSecret()
-         * const hash = await wallet.commitName({
-         *   name: 'example.eth',
-         *   owner: '0xFe89cc7aBB2C4183683ab71653C4cdc9B02D44b7',
-         *   duration: 31536000, // 1 year
-         *   secret,
-         * })
-         * // 0x...
-         */
+        blobVersionedHashes: readonly `0x${string}`[] | undefined;
     } | {
         sidecars: false | readonly import("viem").BlobSidecar<`0x${string}`>[] | undefined;
     }, import("viem").TransactionSerializableEIP4844>)) | (import("viem").ValueOf<Required<{ [K_7 in keyof request]: K_7 extends "to" | "data" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" | "r" | "s" | "v" | "yParity" | "chainId" ? K_7 : undefined; }>> extends string ? import("viem").TransactionSerializableEIP4844 : never) | (import("viem").ValueOf<Required<{ [K_8 in keyof request]: K_8 extends "to" | "data" | "from" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" ? K_8 : undefined; }>> extends string ? import("viem").TransactionRequestEIP4844 : never) ? "eip4844" : never) | (request extends ({
@@ -3671,30 +2774,7 @@ export declare const ensWalletActions: <TTransport extends Transport = Transport
     } & (import("viem").ExactPartial<import("viem").FeeValuesEIP4844> & import("viem").OneOf<{
         blobs: readonly `0x${string}`[] | readonly Uint8Array[] | undefined;
     } | {
-        blobVersionedHashes: readonly `0x${string}`[] | undefined; /**
-         * Commits a name to be registered
-         * @param parameters - {@link CommitNameParameters}
-         * @returns Transaction hash. {@link CommitNameReturnType}
-         *
-         * @example
-         * import { createWalletClient, custom } from 'viem'
-         * import { mainnet } from 'viem/chains'
-         * import { addEnsContracts, ensWalletActions } from '@ensdomains/ensjs'
-         * import { randomSecret } from '@ensdomains/ensjs/utils'
-         *
-         * const wallet = createWalletClient({
-         *   chain: addEnsContracts(mainnet),
-         *   transport: custom(window.ethereum),
-         * }).extend(ensWalletActions)
-         * const secret = randomSecret()
-         * const hash = await wallet.commitName({
-         *   name: 'example.eth',
-         *   owner: '0xFe89cc7aBB2C4183683ab71653C4cdc9B02D44b7',
-         *   duration: 31536000, // 1 year
-         *   secret,
-         * })
-         * // 0x...
-         */
+        blobVersionedHashes: readonly `0x${string}`[] | undefined;
     } | {
         sidecars: false | readonly import("viem").BlobSidecar<`0x${string}`>[] | undefined;
     }, import("viem").TransactionSerializableEIP4844>)) | (import("viem").ValueOf<Required<{ [K_7 in keyof request]: K_7 extends "to" | "data" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" | "r" | "s" | "v" | "yParity" | "chainId" ? K_7 : undefined; }>> extends string ? import("viem").TransactionSerializableEIP4844 : never) | (import("viem").ValueOf<Required<{ [K_8 in keyof request]: K_8 extends "to" | "data" | "from" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" ? K_8 : undefined; }>> extends string ? import("viem").TransactionRequestEIP4844 : never) ? "eip4844" : never) | (request extends ({
@@ -3763,30 +2843,7 @@ export declare const ensWalletActions: <TTransport extends Transport = Transport
     } & (import("viem").ExactPartial<import("viem").FeeValuesEIP4844> & import("viem").OneOf<{
         blobs: readonly `0x${string}`[] | readonly Uint8Array[] | undefined;
     } | {
-        blobVersionedHashes: readonly `0x${string}`[] | undefined; /**
-         * Commits a name to be registered
-         * @param parameters - {@link CommitNameParameters}
-         * @returns Transaction hash. {@link CommitNameReturnType}
-         *
-         * @example
-         * import { createWalletClient, custom } from 'viem'
-         * import { mainnet } from 'viem/chains'
-         * import { addEnsContracts, ensWalletActions } from '@ensdomains/ensjs'
-         * import { randomSecret } from '@ensdomains/ensjs/utils'
-         *
-         * const wallet = createWalletClient({
-         *   chain: addEnsContracts(mainnet),
-         *   transport: custom(window.ethereum),
-         * }).extend(ensWalletActions)
-         * const secret = randomSecret()
-         * const hash = await wallet.commitName({
-         *   name: 'example.eth',
-         *   owner: '0xFe89cc7aBB2C4183683ab71653C4cdc9B02D44b7',
-         *   duration: 31536000, // 1 year
-         *   secret,
-         * })
-         * // 0x...
-         */
+        blobVersionedHashes: readonly `0x${string}`[] | undefined;
     } | {
         sidecars: false | readonly import("viem").BlobSidecar<`0x${string}`>[] | undefined;
     }, import("viem").TransactionSerializableEIP4844>)) | (import("viem").ValueOf<Required<{ [K_7 in keyof request]: K_7 extends "to" | "data" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" | "r" | "s" | "v" | "yParity" | "chainId" ? K_7 : undefined; }>> extends string ? import("viem").TransactionSerializableEIP4844 : never) | (import("viem").ValueOf<Required<{ [K_8 in keyof request]: K_8 extends "to" | "data" | "from" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" ? K_8 : undefined; }>> extends string ? import("viem").TransactionRequestEIP4844 : never) ? "eip4844" : never) | (request extends ({
@@ -3843,30 +2900,7 @@ export declare const ensWalletActions: <TTransport extends Transport = Transport
     } & (import("viem").ExactPartial<import("viem").FeeValuesEIP4844> & import("viem").OneOf<{
         blobs: readonly `0x${string}`[] | readonly Uint8Array[] | undefined;
     } | {
-        blobVersionedHashes: readonly `0x${string}`[] | undefined; /**
-         * Commits a name to be registered
-         * @param parameters - {@link CommitNameParameters}
-         * @returns Transaction hash. {@link CommitNameReturnType}
-         *
-         * @example
-         * import { createWalletClient, custom } from 'viem'
-         * import { mainnet } from 'viem/chains'
-         * import { addEnsContracts, ensWalletActions } from '@ensdomains/ensjs'
-         * import { randomSecret } from '@ensdomains/ensjs/utils'
-         *
-         * const wallet = createWalletClient({
-         *   chain: addEnsContracts(mainnet),
-         *   transport: custom(window.ethereum),
-         * }).extend(ensWalletActions)
-         * const secret = randomSecret()
-         * const hash = await wallet.commitName({
-         *   name: 'example.eth',
-         *   owner: '0xFe89cc7aBB2C4183683ab71653C4cdc9B02D44b7',
-         *   duration: 31536000, // 1 year
-         *   secret,
-         * })
-         * // 0x...
-         */
+        blobVersionedHashes: readonly `0x${string}`[] | undefined;
     } | {
         sidecars: false | readonly import("viem").BlobSidecar<`0x${string}`>[] | undefined;
     }, import("viem").TransactionSerializableEIP4844>)) | (import("viem").ValueOf<Required<{ [K_7 in keyof request]: K_7 extends "to" | "data" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" | "r" | "s" | "v" | "yParity" | "chainId" ? K_7 : undefined; }>> extends string ? import("viem").TransactionSerializableEIP4844 : never) | (import("viem").ValueOf<Required<{ [K_8 in keyof request]: K_8 extends "to" | "data" | "from" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" ? K_8 : undefined; }>> extends string ? import("viem").TransactionRequestEIP4844 : never) ? "eip4844" : never) | (request extends ({
@@ -3923,30 +2957,7 @@ export declare const ensWalletActions: <TTransport extends Transport = Transport
     } & (import("viem").ExactPartial<import("viem").FeeValuesEIP4844> & import("viem").OneOf<{
         blobs: readonly `0x${string}`[] | readonly Uint8Array[] | undefined;
     } | {
-        blobVersionedHashes: readonly `0x${string}`[] | undefined; /**
-         * Commits a name to be registered
-         * @param parameters - {@link CommitNameParameters}
-         * @returns Transaction hash. {@link CommitNameReturnType}
-         *
-         * @example
-         * import { createWalletClient, custom } from 'viem'
-         * import { mainnet } from 'viem/chains'
-         * import { addEnsContracts, ensWalletActions } from '@ensdomains/ensjs'
-         * import { randomSecret } from '@ensdomains/ensjs/utils'
-         *
-         * const wallet = createWalletClient({
-         *   chain: addEnsContracts(mainnet),
-         *   transport: custom(window.ethereum),
-         * }).extend(ensWalletActions)
-         * const secret = randomSecret()
-         * const hash = await wallet.commitName({
-         *   name: 'example.eth',
-         *   owner: '0xFe89cc7aBB2C4183683ab71653C4cdc9B02D44b7',
-         *   duration: 31536000, // 1 year
-         *   secret,
-         * })
-         * // 0x...
-         */
+        blobVersionedHashes: readonly `0x${string}`[] | undefined;
     } | {
         sidecars: false | readonly import("viem").BlobSidecar<`0x${string}`>[] | undefined;
     }, import("viem").TransactionSerializableEIP4844>)) | (import("viem").ValueOf<Required<{ [K_7 in keyof request]: K_7 extends "to" | "data" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" | "r" | "s" | "v" | "yParity" | "chainId" ? K_7 : undefined; }>> extends string ? import("viem").TransactionSerializableEIP4844 : never) | (import("viem").ValueOf<Required<{ [K_8 in keyof request]: K_8 extends "to" | "data" | "from" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" ? K_8 : undefined; }>> extends string ? import("viem").TransactionRequestEIP4844 : never) ? "eip4844" : never) | (request extends ({
@@ -4003,30 +3014,7 @@ export declare const ensWalletActions: <TTransport extends Transport = Transport
     } & (import("viem").ExactPartial<import("viem").FeeValuesEIP4844> & import("viem").OneOf<{
         blobs: readonly `0x${string}`[] | readonly Uint8Array[] | undefined;
     } | {
-        blobVersionedHashes: readonly `0x${string}`[] | undefined; /**
-         * Commits a name to be registered
-         * @param parameters - {@link CommitNameParameters}
-         * @returns Transaction hash. {@link CommitNameReturnType}
-         *
-         * @example
-         * import { createWalletClient, custom } from 'viem'
-         * import { mainnet } from 'viem/chains'
-         * import { addEnsContracts, ensWalletActions } from '@ensdomains/ensjs'
-         * import { randomSecret } from '@ensdomains/ensjs/utils'
-         *
-         * const wallet = createWalletClient({
-         *   chain: addEnsContracts(mainnet),
-         *   transport: custom(window.ethereum),
-         * }).extend(ensWalletActions)
-         * const secret = randomSecret()
-         * const hash = await wallet.commitName({
-         *   name: 'example.eth',
-         *   owner: '0xFe89cc7aBB2C4183683ab71653C4cdc9B02D44b7',
-         *   duration: 31536000, // 1 year
-         *   secret,
-         * })
-         * // 0x...
-         */
+        blobVersionedHashes: readonly `0x${string}`[] | undefined;
     } | {
         sidecars: false | readonly import("viem").BlobSidecar<`0x${string}`>[] | undefined;
     }, import("viem").TransactionSerializableEIP4844>)) | (import("viem").ValueOf<Required<{ [K_7 in keyof request]: K_7 extends "to" | "data" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" | "r" | "s" | "v" | "yParity" | "chainId" ? K_7 : undefined; }>> extends string ? import("viem").TransactionSerializableEIP4844 : never) | (import("viem").ValueOf<Required<{ [K_8 in keyof request]: K_8 extends "to" | "data" | "from" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" ? K_8 : undefined; }>> extends string ? import("viem").TransactionRequestEIP4844 : never) ? "eip4844" : never) | (request extends ({
@@ -4083,30 +3071,7 @@ export declare const ensWalletActions: <TTransport extends Transport = Transport
     } & (import("viem").ExactPartial<import("viem").FeeValuesEIP4844> & import("viem").OneOf<{
         blobs: readonly `0x${string}`[] | readonly Uint8Array[] | undefined;
     } | {
-        blobVersionedHashes: readonly `0x${string}`[] | undefined; /**
-         * Commits a name to be registered
-         * @param parameters - {@link CommitNameParameters}
-         * @returns Transaction hash. {@link CommitNameReturnType}
-         *
-         * @example
-         * import { createWalletClient, custom } from 'viem'
-         * import { mainnet } from 'viem/chains'
-         * import { addEnsContracts, ensWalletActions } from '@ensdomains/ensjs'
-         * import { randomSecret } from '@ensdomains/ensjs/utils'
-         *
-         * const wallet = createWalletClient({
-         *   chain: addEnsContracts(mainnet),
-         *   transport: custom(window.ethereum),
-         * }).extend(ensWalletActions)
-         * const secret = randomSecret()
-         * const hash = await wallet.commitName({
-         *   name: 'example.eth',
-         *   owner: '0xFe89cc7aBB2C4183683ab71653C4cdc9B02D44b7',
-         *   duration: 31536000, // 1 year
-         *   secret,
-         * })
-         * // 0x...
-         */
+        blobVersionedHashes: readonly `0x${string}`[] | undefined;
     } | {
         sidecars: false | readonly import("viem").BlobSidecar<`0x${string}`>[] | undefined;
     }, import("viem").TransactionSerializableEIP4844>)) | (import("viem").ValueOf<Required<{ [K_7 in keyof request]: K_7 extends "to" | "data" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" | "r" | "s" | "v" | "yParity" | "chainId" ? K_7 : undefined; }>> extends string ? import("viem").TransactionSerializableEIP4844 : never) | (import("viem").ValueOf<Required<{ [K_8 in keyof request]: K_8 extends "to" | "data" | "from" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" ? K_8 : undefined; }>> extends string ? import("viem").TransactionRequestEIP4844 : never) ? "eip4844" : never) | (request extends ({
@@ -4163,30 +3128,7 @@ export declare const ensWalletActions: <TTransport extends Transport = Transport
     } & (import("viem").ExactPartial<import("viem").FeeValuesEIP4844> & import("viem").OneOf<{
         blobs: readonly `0x${string}`[] | readonly Uint8Array[] | undefined;
     } | {
-        blobVersionedHashes: readonly `0x${string}`[] | undefined; /**
-         * Commits a name to be registered
-         * @param parameters - {@link CommitNameParameters}
-         * @returns Transaction hash. {@link CommitNameReturnType}
-         *
-         * @example
-         * import { createWalletClient, custom } from 'viem'
-         * import { mainnet } from 'viem/chains'
-         * import { addEnsContracts, ensWalletActions } from '@ensdomains/ensjs'
-         * import { randomSecret } from '@ensdomains/ensjs/utils'
-         *
-         * const wallet = createWalletClient({
-         *   chain: addEnsContracts(mainnet),
-         *   transport: custom(window.ethereum),
-         * }).extend(ensWalletActions)
-         * const secret = randomSecret()
-         * const hash = await wallet.commitName({
-         *   name: 'example.eth',
-         *   owner: '0xFe89cc7aBB2C4183683ab71653C4cdc9B02D44b7',
-         *   duration: 31536000, // 1 year
-         *   secret,
-         * })
-         * // 0x...
-         */
+        blobVersionedHashes: readonly `0x${string}`[] | undefined;
     } | {
         sidecars: false | readonly import("viem").BlobSidecar<`0x${string}`>[] | undefined;
     }, import("viem").TransactionSerializableEIP4844>)) | (import("viem").ValueOf<Required<{ [K_7 in keyof request]: K_7 extends "to" | "data" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" | "r" | "s" | "v" | "yParity" | "chainId" ? K_7 : undefined; }>> extends string ? import("viem").TransactionSerializableEIP4844 : never) | (import("viem").ValueOf<Required<{ [K_8 in keyof request]: K_8 extends "to" | "data" | "from" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" ? K_8 : undefined; }>> extends string ? import("viem").TransactionRequestEIP4844 : never) ? "eip4844" : never) | (request extends ({
@@ -4243,30 +3185,7 @@ export declare const ensWalletActions: <TTransport extends Transport = Transport
     } & (import("viem").ExactPartial<import("viem").FeeValuesEIP4844> & import("viem").OneOf<{
         blobs: readonly `0x${string}`[] | readonly Uint8Array[] | undefined;
     } | {
-        blobVersionedHashes: readonly `0x${string}`[] | undefined; /**
-         * Commits a name to be registered
-         * @param parameters - {@link CommitNameParameters}
-         * @returns Transaction hash. {@link CommitNameReturnType}
-         *
-         * @example
-         * import { createWalletClient, custom } from 'viem'
-         * import { mainnet } from 'viem/chains'
-         * import { addEnsContracts, ensWalletActions } from '@ensdomains/ensjs'
-         * import { randomSecret } from '@ensdomains/ensjs/utils'
-         *
-         * const wallet = createWalletClient({
-         *   chain: addEnsContracts(mainnet),
-         *   transport: custom(window.ethereum),
-         * }).extend(ensWalletActions)
-         * const secret = randomSecret()
-         * const hash = await wallet.commitName({
-         *   name: 'example.eth',
-         *   owner: '0xFe89cc7aBB2C4183683ab71653C4cdc9B02D44b7',
-         *   duration: 31536000, // 1 year
-         *   secret,
-         * })
-         * // 0x...
-         */
+        blobVersionedHashes: readonly `0x${string}`[] | undefined;
     } | {
         sidecars: false | readonly import("viem").BlobSidecar<`0x${string}`>[] | undefined;
     }, import("viem").TransactionSerializableEIP4844>)) | (import("viem").ValueOf<Required<{ [K_7 in keyof request]: K_7 extends "to" | "data" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" | "r" | "s" | "v" | "yParity" | "chainId" ? K_7 : undefined; }>> extends string ? import("viem").TransactionSerializableEIP4844 : never) | (import("viem").ValueOf<Required<{ [K_8 in keyof request]: K_8 extends "to" | "data" | "from" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" ? K_8 : undefined; }>> extends string ? import("viem").TransactionRequestEIP4844 : never) ? "eip4844" : never) | (request extends ({
@@ -4323,30 +3242,7 @@ export declare const ensWalletActions: <TTransport extends Transport = Transport
     } & (import("viem").ExactPartial<import("viem").FeeValuesEIP4844> & import("viem").OneOf<{
         blobs: readonly `0x${string}`[] | readonly Uint8Array[] | undefined;
     } | {
-        blobVersionedHashes: readonly `0x${string}`[] | undefined; /**
-         * Commits a name to be registered
-         * @param parameters - {@link CommitNameParameters}
-         * @returns Transaction hash. {@link CommitNameReturnType}
-         *
-         * @example
-         * import { createWalletClient, custom } from 'viem'
-         * import { mainnet } from 'viem/chains'
-         * import { addEnsContracts, ensWalletActions } from '@ensdomains/ensjs'
-         * import { randomSecret } from '@ensdomains/ensjs/utils'
-         *
-         * const wallet = createWalletClient({
-         *   chain: addEnsContracts(mainnet),
-         *   transport: custom(window.ethereum),
-         * }).extend(ensWalletActions)
-         * const secret = randomSecret()
-         * const hash = await wallet.commitName({
-         *   name: 'example.eth',
-         *   owner: '0xFe89cc7aBB2C4183683ab71653C4cdc9B02D44b7',
-         *   duration: 31536000, // 1 year
-         *   secret,
-         * })
-         * // 0x...
-         */
+        blobVersionedHashes: readonly `0x${string}`[] | undefined;
     } | {
         sidecars: false | readonly import("viem").BlobSidecar<`0x${string}`>[] | undefined;
     }, import("viem").TransactionSerializableEIP4844>)) | (import("viem").ValueOf<Required<{ [K_7 in keyof request]: K_7 extends "to" | "data" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" | "r" | "s" | "v" | "yParity" | "chainId" ? K_7 : undefined; }>> extends string ? import("viem").TransactionSerializableEIP4844 : never) | (import("viem").ValueOf<Required<{ [K_8 in keyof request]: K_8 extends "to" | "data" | "from" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" ? K_8 : undefined; }>> extends string ? import("viem").TransactionRequestEIP4844 : never) ? "eip4844" : never) | (request extends ({
@@ -4403,30 +3299,7 @@ export declare const ensWalletActions: <TTransport extends Transport = Transport
     } & (import("viem").ExactPartial<import("viem").FeeValuesEIP4844> & import("viem").OneOf<{
         blobs: readonly `0x${string}`[] | readonly Uint8Array[] | undefined;
     } | {
-        blobVersionedHashes: readonly `0x${string}`[] | undefined; /**
-         * Commits a name to be registered
-         * @param parameters - {@link CommitNameParameters}
-         * @returns Transaction hash. {@link CommitNameReturnType}
-         *
-         * @example
-         * import { createWalletClient, custom } from 'viem'
-         * import { mainnet } from 'viem/chains'
-         * import { addEnsContracts, ensWalletActions } from '@ensdomains/ensjs'
-         * import { randomSecret } from '@ensdomains/ensjs/utils'
-         *
-         * const wallet = createWalletClient({
-         *   chain: addEnsContracts(mainnet),
-         *   transport: custom(window.ethereum),
-         * }).extend(ensWalletActions)
-         * const secret = randomSecret()
-         * const hash = await wallet.commitName({
-         *   name: 'example.eth',
-         *   owner: '0xFe89cc7aBB2C4183683ab71653C4cdc9B02D44b7',
-         *   duration: 31536000, // 1 year
-         *   secret,
-         * })
-         * // 0x...
-         */
+        blobVersionedHashes: readonly `0x${string}`[] | undefined;
     } | {
         sidecars: false | readonly import("viem").BlobSidecar<`0x${string}`>[] | undefined;
     }, import("viem").TransactionSerializableEIP4844>)) | (import("viem").ValueOf<Required<{ [K_7 in keyof request]: K_7 extends "to" | "data" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" | "r" | "s" | "v" | "yParity" | "chainId" ? K_7 : undefined; }>> extends string ? import("viem").TransactionSerializableEIP4844 : never) | (import("viem").ValueOf<Required<{ [K_8 in keyof request]: K_8 extends "to" | "data" | "from" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" ? K_8 : undefined; }>> extends string ? import("viem").TransactionRequestEIP4844 : never) ? "eip4844" : never) | (request extends ({
@@ -4483,30 +3356,7 @@ export declare const ensWalletActions: <TTransport extends Transport = Transport
     } & (import("viem").ExactPartial<import("viem").FeeValuesEIP4844> & import("viem").OneOf<{
         blobs: readonly `0x${string}`[] | readonly Uint8Array[] | undefined;
     } | {
-        blobVersionedHashes: readonly `0x${string}`[] | undefined; /**
-         * Commits a name to be registered
-         * @param parameters - {@link CommitNameParameters}
-         * @returns Transaction hash. {@link CommitNameReturnType}
-         *
-         * @example
-         * import { createWalletClient, custom } from 'viem'
-         * import { mainnet } from 'viem/chains'
-         * import { addEnsContracts, ensWalletActions } from '@ensdomains/ensjs'
-         * import { randomSecret } from '@ensdomains/ensjs/utils'
-         *
-         * const wallet = createWalletClient({
-         *   chain: addEnsContracts(mainnet),
-         *   transport: custom(window.ethereum),
-         * }).extend(ensWalletActions)
-         * const secret = randomSecret()
-         * const hash = await wallet.commitName({
-         *   name: 'example.eth',
-         *   owner: '0xFe89cc7aBB2C4183683ab71653C4cdc9B02D44b7',
-         *   duration: 31536000, // 1 year
-         *   secret,
-         * })
-         * // 0x...
-         */
+        blobVersionedHashes: readonly `0x${string}`[] | undefined;
     } | {
         sidecars: false | readonly import("viem").BlobSidecar<`0x${string}`>[] | undefined;
     }, import("viem").TransactionSerializableEIP4844>)) | (import("viem").ValueOf<Required<{ [K_7 in keyof request]: K_7 extends "to" | "data" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" | "r" | "s" | "v" | "yParity" | "chainId" ? K_7 : undefined; }>> extends string ? import("viem").TransactionSerializableEIP4844 : never) | (import("viem").ValueOf<Required<{ [K_8 in keyof request]: K_8 extends "to" | "data" | "from" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" ? K_8 : undefined; }>> extends string ? import("viem").TransactionRequestEIP4844 : never) ? "eip4844" : never) | (request extends ({
@@ -4563,30 +3413,7 @@ export declare const ensWalletActions: <TTransport extends Transport = Transport
     } & (import("viem").ExactPartial<import("viem").FeeValuesEIP4844> & import("viem").OneOf<{
         blobs: readonly `0x${string}`[] | readonly Uint8Array[] | undefined;
     } | {
-        blobVersionedHashes: readonly `0x${string}`[] | undefined; /**
-         * Commits a name to be registered
-         * @param parameters - {@link CommitNameParameters}
-         * @returns Transaction hash. {@link CommitNameReturnType}
-         *
-         * @example
-         * import { createWalletClient, custom } from 'viem'
-         * import { mainnet } from 'viem/chains'
-         * import { addEnsContracts, ensWalletActions } from '@ensdomains/ensjs'
-         * import { randomSecret } from '@ensdomains/ensjs/utils'
-         *
-         * const wallet = createWalletClient({
-         *   chain: addEnsContracts(mainnet),
-         *   transport: custom(window.ethereum),
-         * }).extend(ensWalletActions)
-         * const secret = randomSecret()
-         * const hash = await wallet.commitName({
-         *   name: 'example.eth',
-         *   owner: '0xFe89cc7aBB2C4183683ab71653C4cdc9B02D44b7',
-         *   duration: 31536000, // 1 year
-         *   secret,
-         * })
-         * // 0x...
-         */
+        blobVersionedHashes: readonly `0x${string}`[] | undefined;
     } | {
         sidecars: false | readonly import("viem").BlobSidecar<`0x${string}`>[] | undefined;
     }, import("viem").TransactionSerializableEIP4844>)) | (import("viem").ValueOf<Required<{ [K_7 in keyof request]: K_7 extends "to" | "data" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" | "r" | "s" | "v" | "yParity" | "chainId" ? K_7 : undefined; }>> extends string ? import("viem").TransactionSerializableEIP4844 : never) | (import("viem").ValueOf<Required<{ [K_8 in keyof request]: K_8 extends "to" | "data" | "from" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" ? K_8 : undefined; }>> extends string ? import("viem").TransactionRequestEIP4844 : never) ? "eip4844" : never) | (request extends ({
@@ -4643,30 +3470,7 @@ export declare const ensWalletActions: <TTransport extends Transport = Transport
     } & (import("viem").ExactPartial<import("viem").FeeValuesEIP4844> & import("viem").OneOf<{
         blobs: readonly `0x${string}`[] | readonly Uint8Array[] | undefined;
     } | {
-        blobVersionedHashes: readonly `0x${string}`[] | undefined; /**
-         * Commits a name to be registered
-         * @param parameters - {@link CommitNameParameters}
-         * @returns Transaction hash. {@link CommitNameReturnType}
-         *
-         * @example
-         * import { createWalletClient, custom } from 'viem'
-         * import { mainnet } from 'viem/chains'
-         * import { addEnsContracts, ensWalletActions } from '@ensdomains/ensjs'
-         * import { randomSecret } from '@ensdomains/ensjs/utils'
-         *
-         * const wallet = createWalletClient({
-         *   chain: addEnsContracts(mainnet),
-         *   transport: custom(window.ethereum),
-         * }).extend(ensWalletActions)
-         * const secret = randomSecret()
-         * const hash = await wallet.commitName({
-         *   name: 'example.eth',
-         *   owner: '0xFe89cc7aBB2C4183683ab71653C4cdc9B02D44b7',
-         *   duration: 31536000, // 1 year
-         *   secret,
-         * })
-         * // 0x...
-         */
+        blobVersionedHashes: readonly `0x${string}`[] | undefined;
     } | {
         sidecars: false | readonly import("viem").BlobSidecar<`0x${string}`>[] | undefined;
     }, import("viem").TransactionSerializableEIP4844>)) | (import("viem").ValueOf<Required<{ [K_7 in keyof request]: K_7 extends "to" | "data" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" | "r" | "s" | "v" | "yParity" | "chainId" ? K_7 : undefined; }>> extends string ? import("viem").TransactionSerializableEIP4844 : never) | (import("viem").ValueOf<Required<{ [K_8 in keyof request]: K_8 extends "to" | "data" | "from" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" ? K_8 : undefined; }>> extends string ? import("viem").TransactionRequestEIP4844 : never) ? "eip4844" : never) | (request extends ({
@@ -4723,30 +3527,7 @@ export declare const ensWalletActions: <TTransport extends Transport = Transport
     } & (import("viem").ExactPartial<import("viem").FeeValuesEIP4844> & import("viem").OneOf<{
         blobs: readonly `0x${string}`[] | readonly Uint8Array[] | undefined;
     } | {
-        blobVersionedHashes: readonly `0x${string}`[] | undefined; /**
-         * Commits a name to be registered
-         * @param parameters - {@link CommitNameParameters}
-         * @returns Transaction hash. {@link CommitNameReturnType}
-         *
-         * @example
-         * import { createWalletClient, custom } from 'viem'
-         * import { mainnet } from 'viem/chains'
-         * import { addEnsContracts, ensWalletActions } from '@ensdomains/ensjs'
-         * import { randomSecret } from '@ensdomains/ensjs/utils'
-         *
-         * const wallet = createWalletClient({
-         *   chain: addEnsContracts(mainnet),
-         *   transport: custom(window.ethereum),
-         * }).extend(ensWalletActions)
-         * const secret = randomSecret()
-         * const hash = await wallet.commitName({
-         *   name: 'example.eth',
-         *   owner: '0xFe89cc7aBB2C4183683ab71653C4cdc9B02D44b7',
-         *   duration: 31536000, // 1 year
-         *   secret,
-         * })
-         * // 0x...
-         */
+        blobVersionedHashes: readonly `0x${string}`[] | undefined;
     } | {
         sidecars: false | readonly import("viem").BlobSidecar<`0x${string}`>[] | undefined;
     }, import("viem").TransactionSerializableEIP4844>)) | (import("viem").ValueOf<Required<{ [K_7 in keyof request]: K_7 extends "to" | "data" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" | "r" | "s" | "v" | "yParity" | "chainId" ? K_7 : undefined; }>> extends string ? import("viem").TransactionSerializableEIP4844 : never) | (import("viem").ValueOf<Required<{ [K_8 in keyof request]: K_8 extends "to" | "data" | "from" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" ? K_8 : undefined; }>> extends string ? import("viem").TransactionRequestEIP4844 : never) ? "eip4844" : never) | (request extends ({
@@ -4803,30 +3584,7 @@ export declare const ensWalletActions: <TTransport extends Transport = Transport
     } & (import("viem").ExactPartial<import("viem").FeeValuesEIP4844> & import("viem").OneOf<{
         blobs: readonly `0x${string}`[] | readonly Uint8Array[] | undefined;
     } | {
-        blobVersionedHashes: readonly `0x${string}`[] | undefined; /**
-         * Commits a name to be registered
-         * @param parameters - {@link CommitNameParameters}
-         * @returns Transaction hash. {@link CommitNameReturnType}
-         *
-         * @example
-         * import { createWalletClient, custom } from 'viem'
-         * import { mainnet } from 'viem/chains'
-         * import { addEnsContracts, ensWalletActions } from '@ensdomains/ensjs'
-         * import { randomSecret } from '@ensdomains/ensjs/utils'
-         *
-         * const wallet = createWalletClient({
-         *   chain: addEnsContracts(mainnet),
-         *   transport: custom(window.ethereum),
-         * }).extend(ensWalletActions)
-         * const secret = randomSecret()
-         * const hash = await wallet.commitName({
-         *   name: 'example.eth',
-         *   owner: '0xFe89cc7aBB2C4183683ab71653C4cdc9B02D44b7',
-         *   duration: 31536000, // 1 year
-         *   secret,
-         * })
-         * // 0x...
-         */
+        blobVersionedHashes: readonly `0x${string}`[] | undefined;
     } | {
         sidecars: false | readonly import("viem").BlobSidecar<`0x${string}`>[] | undefined;
     }, import("viem").TransactionSerializableEIP4844>)) | (import("viem").ValueOf<Required<{ [K_7 in keyof request]: K_7 extends "to" | "data" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" | "r" | "s" | "v" | "yParity" | "chainId" ? K_7 : undefined; }>> extends string ? import("viem").TransactionSerializableEIP4844 : never) | (import("viem").ValueOf<Required<{ [K_8 in keyof request]: K_8 extends "to" | "data" | "from" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" ? K_8 : undefined; }>> extends string ? import("viem").TransactionRequestEIP4844 : never) ? "eip4844" : never) | (request extends ({
@@ -4883,30 +3641,7 @@ export declare const ensWalletActions: <TTransport extends Transport = Transport
     } & (import("viem").ExactPartial<import("viem").FeeValuesEIP4844> & import("viem").OneOf<{
         blobs: readonly `0x${string}`[] | readonly Uint8Array[] | undefined;
     } | {
-        blobVersionedHashes: readonly `0x${string}`[] | undefined; /**
-         * Commits a name to be registered
-         * @param parameters - {@link CommitNameParameters}
-         * @returns Transaction hash. {@link CommitNameReturnType}
-         *
-         * @example
-         * import { createWalletClient, custom } from 'viem'
-         * import { mainnet } from 'viem/chains'
-         * import { addEnsContracts, ensWalletActions } from '@ensdomains/ensjs'
-         * import { randomSecret } from '@ensdomains/ensjs/utils'
-         *
-         * const wallet = createWalletClient({
-         *   chain: addEnsContracts(mainnet),
-         *   transport: custom(window.ethereum),
-         * }).extend(ensWalletActions)
-         * const secret = randomSecret()
-         * const hash = await wallet.commitName({
-         *   name: 'example.eth',
-         *   owner: '0xFe89cc7aBB2C4183683ab71653C4cdc9B02D44b7',
-         *   duration: 31536000, // 1 year
-         *   secret,
-         * })
-         * // 0x...
-         */
+        blobVersionedHashes: readonly `0x${string}`[] | undefined;
     } | {
         sidecars: false | readonly import("viem").BlobSidecar<`0x${string}`>[] | undefined;
     }, import("viem").TransactionSerializableEIP4844>)) | (import("viem").ValueOf<Required<{ [K_7 in keyof request]: K_7 extends "to" | "data" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" | "r" | "s" | "v" | "yParity" | "chainId" ? K_7 : undefined; }>> extends string ? import("viem").TransactionSerializableEIP4844 : never) | (import("viem").ValueOf<Required<{ [K_8 in keyof request]: K_8 extends "to" | "data" | "from" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" ? K_8 : undefined; }>> extends string ? import("viem").TransactionRequestEIP4844 : never) ? "eip4844" : never) | (request extends ({
@@ -4963,30 +3698,7 @@ export declare const ensWalletActions: <TTransport extends Transport = Transport
     } & (import("viem").ExactPartial<import("viem").FeeValuesEIP4844> & import("viem").OneOf<{
         blobs: readonly `0x${string}`[] | readonly Uint8Array[] | undefined;
     } | {
-        blobVersionedHashes: readonly `0x${string}`[] | undefined; /**
-         * Commits a name to be registered
-         * @param parameters - {@link CommitNameParameters}
-         * @returns Transaction hash. {@link CommitNameReturnType}
-         *
-         * @example
-         * import { createWalletClient, custom } from 'viem'
-         * import { mainnet } from 'viem/chains'
-         * import { addEnsContracts, ensWalletActions } from '@ensdomains/ensjs'
-         * import { randomSecret } from '@ensdomains/ensjs/utils'
-         *
-         * const wallet = createWalletClient({
-         *   chain: addEnsContracts(mainnet),
-         *   transport: custom(window.ethereum),
-         * }).extend(ensWalletActions)
-         * const secret = randomSecret()
-         * const hash = await wallet.commitName({
-         *   name: 'example.eth',
-         *   owner: '0xFe89cc7aBB2C4183683ab71653C4cdc9B02D44b7',
-         *   duration: 31536000, // 1 year
-         *   secret,
-         * })
-         * // 0x...
-         */
+        blobVersionedHashes: readonly `0x${string}`[] | undefined;
     } | {
         sidecars: false | readonly import("viem").BlobSidecar<`0x${string}`>[] | undefined;
     }, import("viem").TransactionSerializableEIP4844>)) | (import("viem").ValueOf<Required<{ [K_7 in keyof request]: K_7 extends "to" | "data" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" | "r" | "s" | "v" | "yParity" | "chainId" ? K_7 : undefined; }>> extends string ? import("viem").TransactionSerializableEIP4844 : never) | (import("viem").ValueOf<Required<{ [K_8 in keyof request]: K_8 extends "to" | "data" | "from" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" ? K_8 : undefined; }>> extends string ? import("viem").TransactionRequestEIP4844 : never) ? "eip4844" : never) | (request extends ({
@@ -5043,30 +3755,7 @@ export declare const ensWalletActions: <TTransport extends Transport = Transport
     } & (import("viem").ExactPartial<import("viem").FeeValuesEIP4844> & import("viem").OneOf<{
         blobs: readonly `0x${string}`[] | readonly Uint8Array[] | undefined;
     } | {
-        blobVersionedHashes: readonly `0x${string}`[] | undefined; /**
-         * Commits a name to be registered
-         * @param parameters - {@link CommitNameParameters}
-         * @returns Transaction hash. {@link CommitNameReturnType}
-         *
-         * @example
-         * import { createWalletClient, custom } from 'viem'
-         * import { mainnet } from 'viem/chains'
-         * import { addEnsContracts, ensWalletActions } from '@ensdomains/ensjs'
-         * import { randomSecret } from '@ensdomains/ensjs/utils'
-         *
-         * const wallet = createWalletClient({
-         *   chain: addEnsContracts(mainnet),
-         *   transport: custom(window.ethereum),
-         * }).extend(ensWalletActions)
-         * const secret = randomSecret()
-         * const hash = await wallet.commitName({
-         *   name: 'example.eth',
-         *   owner: '0xFe89cc7aBB2C4183683ab71653C4cdc9B02D44b7',
-         *   duration: 31536000, // 1 year
-         *   secret,
-         * })
-         * // 0x...
-         */
+        blobVersionedHashes: readonly `0x${string}`[] | undefined;
     } | {
         sidecars: false | readonly import("viem").BlobSidecar<`0x${string}`>[] | undefined;
     }, import("viem").TransactionSerializableEIP4844>)) | (import("viem").ValueOf<Required<{ [K_7 in keyof request]: K_7 extends "to" | "data" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" | "r" | "s" | "v" | "yParity" | "chainId" ? K_7 : undefined; }>> extends string ? import("viem").TransactionSerializableEIP4844 : never) | (import("viem").ValueOf<Required<{ [K_8 in keyof request]: K_8 extends "to" | "data" | "from" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" ? K_8 : undefined; }>> extends string ? import("viem").TransactionRequestEIP4844 : never) ? "eip4844" : never) | (request extends ({
@@ -5123,30 +3812,7 @@ export declare const ensWalletActions: <TTransport extends Transport = Transport
     } & (import("viem").ExactPartial<import("viem").FeeValuesEIP4844> & import("viem").OneOf<{
         blobs: readonly `0x${string}`[] | readonly Uint8Array[] | undefined;
     } | {
-        blobVersionedHashes: readonly `0x${string}`[] | undefined; /**
-         * Commits a name to be registered
-         * @param parameters - {@link CommitNameParameters}
-         * @returns Transaction hash. {@link CommitNameReturnType}
-         *
-         * @example
-         * import { createWalletClient, custom } from 'viem'
-         * import { mainnet } from 'viem/chains'
-         * import { addEnsContracts, ensWalletActions } from '@ensdomains/ensjs'
-         * import { randomSecret } from '@ensdomains/ensjs/utils'
-         *
-         * const wallet = createWalletClient({
-         *   chain: addEnsContracts(mainnet),
-         *   transport: custom(window.ethereum),
-         * }).extend(ensWalletActions)
-         * const secret = randomSecret()
-         * const hash = await wallet.commitName({
-         *   name: 'example.eth',
-         *   owner: '0xFe89cc7aBB2C4183683ab71653C4cdc9B02D44b7',
-         *   duration: 31536000, // 1 year
-         *   secret,
-         * })
-         * // 0x...
-         */
+        blobVersionedHashes: readonly `0x${string}`[] | undefined;
     } | {
         sidecars: false | readonly import("viem").BlobSidecar<`0x${string}`>[] | undefined;
     }, import("viem").TransactionSerializableEIP4844>)) | (import("viem").ValueOf<Required<{ [K_7 in keyof request]: K_7 extends "to" | "data" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" | "r" | "s" | "v" | "yParity" | "chainId" ? K_7 : undefined; }>> extends string ? import("viem").TransactionSerializableEIP4844 : never) | (import("viem").ValueOf<Required<{ [K_8 in keyof request]: K_8 extends "to" | "data" | "from" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" ? K_8 : undefined; }>> extends string ? import("viem").TransactionRequestEIP4844 : never) ? "eip4844" : never) | (request extends ({
@@ -5203,30 +3869,7 @@ export declare const ensWalletActions: <TTransport extends Transport = Transport
     } & (import("viem").ExactPartial<import("viem").FeeValuesEIP4844> & import("viem").OneOf<{
         blobs: readonly `0x${string}`[] | readonly Uint8Array[] | undefined;
     } | {
-        blobVersionedHashes: readonly `0x${string}`[] | undefined; /**
-         * Commits a name to be registered
-         * @param parameters - {@link CommitNameParameters}
-         * @returns Transaction hash. {@link CommitNameReturnType}
-         *
-         * @example
-         * import { createWalletClient, custom } from 'viem'
-         * import { mainnet } from 'viem/chains'
-         * import { addEnsContracts, ensWalletActions } from '@ensdomains/ensjs'
-         * import { randomSecret } from '@ensdomains/ensjs/utils'
-         *
-         * const wallet = createWalletClient({
-         *   chain: addEnsContracts(mainnet),
-         *   transport: custom(window.ethereum),
-         * }).extend(ensWalletActions)
-         * const secret = randomSecret()
-         * const hash = await wallet.commitName({
-         *   name: 'example.eth',
-         *   owner: '0xFe89cc7aBB2C4183683ab71653C4cdc9B02D44b7',
-         *   duration: 31536000, // 1 year
-         *   secret,
-         * })
-         * // 0x...
-         */
+        blobVersionedHashes: readonly `0x${string}`[] | undefined;
     } | {
         sidecars: false | readonly import("viem").BlobSidecar<`0x${string}`>[] | undefined;
     }, import("viem").TransactionSerializableEIP4844>)) | (import("viem").ValueOf<Required<{ [K_7 in keyof request]: K_7 extends "to" | "data" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" | "r" | "s" | "v" | "yParity" | "chainId" ? K_7 : undefined; }>> extends string ? import("viem").TransactionSerializableEIP4844 : never) | (import("viem").ValueOf<Required<{ [K_8 in keyof request]: K_8 extends "to" | "data" | "from" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" ? K_8 : undefined; }>> extends string ? import("viem").TransactionRequestEIP4844 : never) ? "eip4844" : never) | (request extends ({
@@ -5283,30 +3926,7 @@ export declare const ensWalletActions: <TTransport extends Transport = Transport
     } & (import("viem").ExactPartial<import("viem").FeeValuesEIP4844> & import("viem").OneOf<{
         blobs: readonly `0x${string}`[] | readonly Uint8Array[] | undefined;
     } | {
-        blobVersionedHashes: readonly `0x${string}`[] | undefined; /**
-         * Commits a name to be registered
-         * @param parameters - {@link CommitNameParameters}
-         * @returns Transaction hash. {@link CommitNameReturnType}
-         *
-         * @example
-         * import { createWalletClient, custom } from 'viem'
-         * import { mainnet } from 'viem/chains'
-         * import { addEnsContracts, ensWalletActions } from '@ensdomains/ensjs'
-         * import { randomSecret } from '@ensdomains/ensjs/utils'
-         *
-         * const wallet = createWalletClient({
-         *   chain: addEnsContracts(mainnet),
-         *   transport: custom(window.ethereum),
-         * }).extend(ensWalletActions)
-         * const secret = randomSecret()
-         * const hash = await wallet.commitName({
-         *   name: 'example.eth',
-         *   owner: '0xFe89cc7aBB2C4183683ab71653C4cdc9B02D44b7',
-         *   duration: 31536000, // 1 year
-         *   secret,
-         * })
-         * // 0x...
-         */
+        blobVersionedHashes: readonly `0x${string}`[] | undefined;
     } | {
         sidecars: false | readonly import("viem").BlobSidecar<`0x${string}`>[] | undefined;
     }, import("viem").TransactionSerializableEIP4844>)) | (import("viem").ValueOf<Required<{ [K_7 in keyof request]: K_7 extends "to" | "data" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" | "r" | "s" | "v" | "yParity" | "chainId" ? K_7 : undefined; }>> extends string ? import("viem").TransactionSerializableEIP4844 : never) | (import("viem").ValueOf<Required<{ [K_8 in keyof request]: K_8 extends "to" | "data" | "from" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" ? K_8 : undefined; }>> extends string ? import("viem").TransactionRequestEIP4844 : never) ? "eip4844" : never) | (request extends ({
@@ -5363,30 +3983,7 @@ export declare const ensWalletActions: <TTransport extends Transport = Transport
     } & (import("viem").ExactPartial<import("viem").FeeValuesEIP4844> & import("viem").OneOf<{
         blobs: readonly `0x${string}`[] | readonly Uint8Array[] | undefined;
     } | {
-        blobVersionedHashes: readonly `0x${string}`[] | undefined; /**
-         * Commits a name to be registered
-         * @param parameters - {@link CommitNameParameters}
-         * @returns Transaction hash. {@link CommitNameReturnType}
-         *
-         * @example
-         * import { createWalletClient, custom } from 'viem'
-         * import { mainnet } from 'viem/chains'
-         * import { addEnsContracts, ensWalletActions } from '@ensdomains/ensjs'
-         * import { randomSecret } from '@ensdomains/ensjs/utils'
-         *
-         * const wallet = createWalletClient({
-         *   chain: addEnsContracts(mainnet),
-         *   transport: custom(window.ethereum),
-         * }).extend(ensWalletActions)
-         * const secret = randomSecret()
-         * const hash = await wallet.commitName({
-         *   name: 'example.eth',
-         *   owner: '0xFe89cc7aBB2C4183683ab71653C4cdc9B02D44b7',
-         *   duration: 31536000, // 1 year
-         *   secret,
-         * })
-         * // 0x...
-         */
+        blobVersionedHashes: readonly `0x${string}`[] | undefined;
     } | {
         sidecars: false | readonly import("viem").BlobSidecar<`0x${string}`>[] | undefined;
     }, import("viem").TransactionSerializableEIP4844>)) | (import("viem").ValueOf<Required<{ [K_7 in keyof request]: K_7 extends "to" | "data" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" | "r" | "s" | "v" | "yParity" | "chainId" ? K_7 : undefined; }>> extends string ? import("viem").TransactionSerializableEIP4844 : never) | (import("viem").ValueOf<Required<{ [K_8 in keyof request]: K_8 extends "to" | "data" | "from" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" ? K_8 : undefined; }>> extends string ? import("viem").TransactionRequestEIP4844 : never) ? "eip4844" : never) | (request extends ({
@@ -5443,30 +4040,7 @@ export declare const ensWalletActions: <TTransport extends Transport = Transport
     } & (import("viem").ExactPartial<import("viem").FeeValuesEIP4844> & import("viem").OneOf<{
         blobs: readonly `0x${string}`[] | readonly Uint8Array[] | undefined;
     } | {
-        blobVersionedHashes: readonly `0x${string}`[] | undefined; /**
-         * Commits a name to be registered
-         * @param parameters - {@link CommitNameParameters}
-         * @returns Transaction hash. {@link CommitNameReturnType}
-         *
-         * @example
-         * import { createWalletClient, custom } from 'viem'
-         * import { mainnet } from 'viem/chains'
-         * import { addEnsContracts, ensWalletActions } from '@ensdomains/ensjs'
-         * import { randomSecret } from '@ensdomains/ensjs/utils'
-         *
-         * const wallet = createWalletClient({
-         *   chain: addEnsContracts(mainnet),
-         *   transport: custom(window.ethereum),
-         * }).extend(ensWalletActions)
-         * const secret = randomSecret()
-         * const hash = await wallet.commitName({
-         *   name: 'example.eth',
-         *   owner: '0xFe89cc7aBB2C4183683ab71653C4cdc9B02D44b7',
-         *   duration: 31536000, // 1 year
-         *   secret,
-         * })
-         * // 0x...
-         */
+        blobVersionedHashes: readonly `0x${string}`[] | undefined;
     } | {
         sidecars: false | readonly import("viem").BlobSidecar<`0x${string}`>[] | undefined;
     }, import("viem").TransactionSerializableEIP4844>)) | (import("viem").ValueOf<Required<{ [K_7 in keyof request]: K_7 extends "to" | "data" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" | "r" | "s" | "v" | "yParity" | "chainId" ? K_7 : undefined; }>> extends string ? import("viem").TransactionSerializableEIP4844 : never) | (import("viem").ValueOf<Required<{ [K_8 in keyof request]: K_8 extends "to" | "data" | "from" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" ? K_8 : undefined; }>> extends string ? import("viem").TransactionRequestEIP4844 : never) ? "eip4844" : never) | (request extends ({
@@ -5523,30 +4097,7 @@ export declare const ensWalletActions: <TTransport extends Transport = Transport
     } & (import("viem").ExactPartial<import("viem").FeeValuesEIP4844> & import("viem").OneOf<{
         blobs: readonly `0x${string}`[] | readonly Uint8Array[] | undefined;
     } | {
-        blobVersionedHashes: readonly `0x${string}`[] | undefined; /**
-         * Commits a name to be registered
-         * @param parameters - {@link CommitNameParameters}
-         * @returns Transaction hash. {@link CommitNameReturnType}
-         *
-         * @example
-         * import { createWalletClient, custom } from 'viem'
-         * import { mainnet } from 'viem/chains'
-         * import { addEnsContracts, ensWalletActions } from '@ensdomains/ensjs'
-         * import { randomSecret } from '@ensdomains/ensjs/utils'
-         *
-         * const wallet = createWalletClient({
-         *   chain: addEnsContracts(mainnet),
-         *   transport: custom(window.ethereum),
-         * }).extend(ensWalletActions)
-         * const secret = randomSecret()
-         * const hash = await wallet.commitName({
-         *   name: 'example.eth',
-         *   owner: '0xFe89cc7aBB2C4183683ab71653C4cdc9B02D44b7',
-         *   duration: 31536000, // 1 year
-         *   secret,
-         * })
-         * // 0x...
-         */
+        blobVersionedHashes: readonly `0x${string}`[] | undefined;
     } | {
         sidecars: false | readonly import("viem").BlobSidecar<`0x${string}`>[] | undefined;
     }, import("viem").TransactionSerializableEIP4844>)) | (import("viem").ValueOf<Required<{ [K_7 in keyof request]: K_7 extends "to" | "data" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" | "r" | "s" | "v" | "yParity" | "chainId" ? K_7 : undefined; }>> extends string ? import("viem").TransactionSerializableEIP4844 : never) | (import("viem").ValueOf<Required<{ [K_8 in keyof request]: K_8 extends "to" | "data" | "from" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" ? K_8 : undefined; }>> extends string ? import("viem").TransactionRequestEIP4844 : never) ? "eip4844" : never) | (request extends ({
@@ -5603,30 +4154,7 @@ export declare const ensWalletActions: <TTransport extends Transport = Transport
     } & (import("viem").ExactPartial<import("viem").FeeValuesEIP4844> & import("viem").OneOf<{
         blobs: readonly `0x${string}`[] | readonly Uint8Array[] | undefined;
     } | {
-        blobVersionedHashes: readonly `0x${string}`[] | undefined; /**
-         * Commits a name to be registered
-         * @param parameters - {@link CommitNameParameters}
-         * @returns Transaction hash. {@link CommitNameReturnType}
-         *
-         * @example
-         * import { createWalletClient, custom } from 'viem'
-         * import { mainnet } from 'viem/chains'
-         * import { addEnsContracts, ensWalletActions } from '@ensdomains/ensjs'
-         * import { randomSecret } from '@ensdomains/ensjs/utils'
-         *
-         * const wallet = createWalletClient({
-         *   chain: addEnsContracts(mainnet),
-         *   transport: custom(window.ethereum),
-         * }).extend(ensWalletActions)
-         * const secret = randomSecret()
-         * const hash = await wallet.commitName({
-         *   name: 'example.eth',
-         *   owner: '0xFe89cc7aBB2C4183683ab71653C4cdc9B02D44b7',
-         *   duration: 31536000, // 1 year
-         *   secret,
-         * })
-         * // 0x...
-         */
+        blobVersionedHashes: readonly `0x${string}`[] | undefined;
     } | {
         sidecars: false | readonly import("viem").BlobSidecar<`0x${string}`>[] | undefined;
     }, import("viem").TransactionSerializableEIP4844>)) | (import("viem").ValueOf<Required<{ [K_7 in keyof request]: K_7 extends "to" | "data" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" | "r" | "s" | "v" | "yParity" | "chainId" ? K_7 : undefined; }>> extends string ? import("viem").TransactionSerializableEIP4844 : never) | (import("viem").ValueOf<Required<{ [K_8 in keyof request]: K_8 extends "to" | "data" | "from" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" ? K_8 : undefined; }>> extends string ? import("viem").TransactionRequestEIP4844 : never) ? "eip4844" : never) | (request extends ({
@@ -5683,30 +4211,7 @@ export declare const ensWalletActions: <TTransport extends Transport = Transport
     } & (import("viem").ExactPartial<import("viem").FeeValuesEIP4844> & import("viem").OneOf<{
         blobs: readonly `0x${string}`[] | readonly Uint8Array[] | undefined;
     } | {
-        blobVersionedHashes: readonly `0x${string}`[] | undefined; /**
-         * Commits a name to be registered
-         * @param parameters - {@link CommitNameParameters}
-         * @returns Transaction hash. {@link CommitNameReturnType}
-         *
-         * @example
-         * import { createWalletClient, custom } from 'viem'
-         * import { mainnet } from 'viem/chains'
-         * import { addEnsContracts, ensWalletActions } from '@ensdomains/ensjs'
-         * import { randomSecret } from '@ensdomains/ensjs/utils'
-         *
-         * const wallet = createWalletClient({
-         *   chain: addEnsContracts(mainnet),
-         *   transport: custom(window.ethereum),
-         * }).extend(ensWalletActions)
-         * const secret = randomSecret()
-         * const hash = await wallet.commitName({
-         *   name: 'example.eth',
-         *   owner: '0xFe89cc7aBB2C4183683ab71653C4cdc9B02D44b7',
-         *   duration: 31536000, // 1 year
-         *   secret,
-         * })
-         * // 0x...
-         */
+        blobVersionedHashes: readonly `0x${string}`[] | undefined;
     } | {
         sidecars: false | readonly import("viem").BlobSidecar<`0x${string}`>[] | undefined;
     }, import("viem").TransactionSerializableEIP4844>)) | (import("viem").ValueOf<Required<{ [K_7 in keyof request]: K_7 extends "to" | "data" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" | "r" | "s" | "v" | "yParity" | "chainId" ? K_7 : undefined; }>> extends string ? import("viem").TransactionSerializableEIP4844 : never) | (import("viem").ValueOf<Required<{ [K_8 in keyof request]: K_8 extends "to" | "data" | "from" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" ? K_8 : undefined; }>> extends string ? import("viem").TransactionRequestEIP4844 : never) ? "eip4844" : never) | (request extends ({
@@ -5763,30 +4268,7 @@ export declare const ensWalletActions: <TTransport extends Transport = Transport
     } & (import("viem").ExactPartial<import("viem").FeeValuesEIP4844> & import("viem").OneOf<{
         blobs: readonly `0x${string}`[] | readonly Uint8Array[] | undefined;
     } | {
-        blobVersionedHashes: readonly `0x${string}`[] | undefined; /**
-         * Commits a name to be registered
-         * @param parameters - {@link CommitNameParameters}
-         * @returns Transaction hash. {@link CommitNameReturnType}
-         *
-         * @example
-         * import { createWalletClient, custom } from 'viem'
-         * import { mainnet } from 'viem/chains'
-         * import { addEnsContracts, ensWalletActions } from '@ensdomains/ensjs'
-         * import { randomSecret } from '@ensdomains/ensjs/utils'
-         *
-         * const wallet = createWalletClient({
-         *   chain: addEnsContracts(mainnet),
-         *   transport: custom(window.ethereum),
-         * }).extend(ensWalletActions)
-         * const secret = randomSecret()
-         * const hash = await wallet.commitName({
-         *   name: 'example.eth',
-         *   owner: '0xFe89cc7aBB2C4183683ab71653C4cdc9B02D44b7',
-         *   duration: 31536000, // 1 year
-         *   secret,
-         * })
-         * // 0x...
-         */
+        blobVersionedHashes: readonly `0x${string}`[] | undefined;
     } | {
         sidecars: false | readonly import("viem").BlobSidecar<`0x${string}`>[] | undefined;
     }, import("viem").TransactionSerializableEIP4844>)) | (import("viem").ValueOf<Required<{ [K_7 in keyof request]: K_7 extends "to" | "data" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" | "r" | "s" | "v" | "yParity" | "chainId" ? K_7 : undefined; }>> extends string ? import("viem").TransactionSerializableEIP4844 : never) | (import("viem").ValueOf<Required<{ [K_8 in keyof request]: K_8 extends "to" | "data" | "from" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" ? K_8 : undefined; }>> extends string ? import("viem").TransactionRequestEIP4844 : never) ? "eip4844" : never) | (request extends ({
@@ -5843,30 +4325,7 @@ export declare const ensWalletActions: <TTransport extends Transport = Transport
     } & (import("viem").ExactPartial<import("viem").FeeValuesEIP4844> & import("viem").OneOf<{
         blobs: readonly `0x${string}`[] | readonly Uint8Array[] | undefined;
     } | {
-        blobVersionedHashes: readonly `0x${string}`[] | undefined; /**
-         * Commits a name to be registered
-         * @param parameters - {@link CommitNameParameters}
-         * @returns Transaction hash. {@link CommitNameReturnType}
-         *
-         * @example
-         * import { createWalletClient, custom } from 'viem'
-         * import { mainnet } from 'viem/chains'
-         * import { addEnsContracts, ensWalletActions } from '@ensdomains/ensjs'
-         * import { randomSecret } from '@ensdomains/ensjs/utils'
-         *
-         * const wallet = createWalletClient({
-         *   chain: addEnsContracts(mainnet),
-         *   transport: custom(window.ethereum),
-         * }).extend(ensWalletActions)
-         * const secret = randomSecret()
-         * const hash = await wallet.commitName({
-         *   name: 'example.eth',
-         *   owner: '0xFe89cc7aBB2C4183683ab71653C4cdc9B02D44b7',
-         *   duration: 31536000, // 1 year
-         *   secret,
-         * })
-         * // 0x...
-         */
+        blobVersionedHashes: readonly `0x${string}`[] | undefined;
     } | {
         sidecars: false | readonly import("viem").BlobSidecar<`0x${string}`>[] | undefined;
     }, import("viem").TransactionSerializableEIP4844>)) | (import("viem").ValueOf<Required<{ [K_7 in keyof request]: K_7 extends "to" | "data" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" | "r" | "s" | "v" | "yParity" | "chainId" ? K_7 : undefined; }>> extends string ? import("viem").TransactionSerializableEIP4844 : never) | (import("viem").ValueOf<Required<{ [K_8 in keyof request]: K_8 extends "to" | "data" | "from" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" ? K_8 : undefined; }>> extends string ? import("viem").TransactionRequestEIP4844 : never) ? "eip4844" : never) | (request extends ({
@@ -5923,30 +4382,7 @@ export declare const ensWalletActions: <TTransport extends Transport = Transport
     } & (import("viem").ExactPartial<import("viem").FeeValuesEIP4844> & import("viem").OneOf<{
         blobs: readonly `0x${string}`[] | readonly Uint8Array[] | undefined;
     } | {
-        blobVersionedHashes: readonly `0x${string}`[] | undefined; /**
-         * Commits a name to be registered
-         * @param parameters - {@link CommitNameParameters}
-         * @returns Transaction hash. {@link CommitNameReturnType}
-         *
-         * @example
-         * import { createWalletClient, custom } from 'viem'
-         * import { mainnet } from 'viem/chains'
-         * import { addEnsContracts, ensWalletActions } from '@ensdomains/ensjs'
-         * import { randomSecret } from '@ensdomains/ensjs/utils'
-         *
-         * const wallet = createWalletClient({
-         *   chain: addEnsContracts(mainnet),
-         *   transport: custom(window.ethereum),
-         * }).extend(ensWalletActions)
-         * const secret = randomSecret()
-         * const hash = await wallet.commitName({
-         *   name: 'example.eth',
-         *   owner: '0xFe89cc7aBB2C4183683ab71653C4cdc9B02D44b7',
-         *   duration: 31536000, // 1 year
-         *   secret,
-         * })
-         * // 0x...
-         */
+        blobVersionedHashes: readonly `0x${string}`[] | undefined;
     } | {
         sidecars: false | readonly import("viem").BlobSidecar<`0x${string}`>[] | undefined;
     }, import("viem").TransactionSerializableEIP4844>)) | (import("viem").ValueOf<Required<{ [K_7 in keyof request]: K_7 extends "to" | "data" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" | "r" | "s" | "v" | "yParity" | "chainId" ? K_7 : undefined; }>> extends string ? import("viem").TransactionSerializableEIP4844 : never) | (import("viem").ValueOf<Required<{ [K_8 in keyof request]: K_8 extends "to" | "data" | "from" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" ? K_8 : undefined; }>> extends string ? import("viem").TransactionRequestEIP4844 : never) ? "eip4844" : never) | (request extends ({
@@ -6003,30 +4439,7 @@ export declare const ensWalletActions: <TTransport extends Transport = Transport
     } & (import("viem").ExactPartial<import("viem").FeeValuesEIP4844> & import("viem").OneOf<{
         blobs: readonly `0x${string}`[] | readonly Uint8Array[] | undefined;
     } | {
-        blobVersionedHashes: readonly `0x${string}`[] | undefined; /**
-         * Commits a name to be registered
-         * @param parameters - {@link CommitNameParameters}
-         * @returns Transaction hash. {@link CommitNameReturnType}
-         *
-         * @example
-         * import { createWalletClient, custom } from 'viem'
-         * import { mainnet } from 'viem/chains'
-         * import { addEnsContracts, ensWalletActions } from '@ensdomains/ensjs'
-         * import { randomSecret } from '@ensdomains/ensjs/utils'
-         *
-         * const wallet = createWalletClient({
-         *   chain: addEnsContracts(mainnet),
-         *   transport: custom(window.ethereum),
-         * }).extend(ensWalletActions)
-         * const secret = randomSecret()
-         * const hash = await wallet.commitName({
-         *   name: 'example.eth',
-         *   owner: '0xFe89cc7aBB2C4183683ab71653C4cdc9B02D44b7',
-         *   duration: 31536000, // 1 year
-         *   secret,
-         * })
-         * // 0x...
-         */
+        blobVersionedHashes: readonly `0x${string}`[] | undefined;
     } | {
         sidecars: false | readonly import("viem").BlobSidecar<`0x${string}`>[] | undefined;
     }, import("viem").TransactionSerializableEIP4844>)) | (import("viem").ValueOf<Required<{ [K_7 in keyof request]: K_7 extends "to" | "data" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" | "r" | "s" | "v" | "yParity" | "chainId" ? K_7 : undefined; }>> extends string ? import("viem").TransactionSerializableEIP4844 : never) | (import("viem").ValueOf<Required<{ [K_8 in keyof request]: K_8 extends "to" | "data" | "from" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" ? K_8 : undefined; }>> extends string ? import("viem").TransactionRequestEIP4844 : never) ? "eip4844" : never) | (request extends ({
@@ -6083,30 +4496,7 @@ export declare const ensWalletActions: <TTransport extends Transport = Transport
     } & (import("viem").ExactPartial<import("viem").FeeValuesEIP4844> & import("viem").OneOf<{
         blobs: readonly `0x${string}`[] | readonly Uint8Array[] | undefined;
     } | {
-        blobVersionedHashes: readonly `0x${string}`[] | undefined; /**
-         * Commits a name to be registered
-         * @param parameters - {@link CommitNameParameters}
-         * @returns Transaction hash. {@link CommitNameReturnType}
-         *
-         * @example
-         * import { createWalletClient, custom } from 'viem'
-         * import { mainnet } from 'viem/chains'
-         * import { addEnsContracts, ensWalletActions } from '@ensdomains/ensjs'
-         * import { randomSecret } from '@ensdomains/ensjs/utils'
-         *
-         * const wallet = createWalletClient({
-         *   chain: addEnsContracts(mainnet),
-         *   transport: custom(window.ethereum),
-         * }).extend(ensWalletActions)
-         * const secret = randomSecret()
-         * const hash = await wallet.commitName({
-         *   name: 'example.eth',
-         *   owner: '0xFe89cc7aBB2C4183683ab71653C4cdc9B02D44b7',
-         *   duration: 31536000, // 1 year
-         *   secret,
-         * })
-         * // 0x...
-         */
+        blobVersionedHashes: readonly `0x${string}`[] | undefined;
     } | {
         sidecars: false | readonly import("viem").BlobSidecar<`0x${string}`>[] | undefined;
     }, import("viem").TransactionSerializableEIP4844>)) | (import("viem").ValueOf<Required<{ [K_7 in keyof request]: K_7 extends "to" | "data" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" | "r" | "s" | "v" | "yParity" | "chainId" ? K_7 : undefined; }>> extends string ? import("viem").TransactionSerializableEIP4844 : never) | (import("viem").ValueOf<Required<{ [K_8 in keyof request]: K_8 extends "to" | "data" | "from" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" ? K_8 : undefined; }>> extends string ? import("viem").TransactionRequestEIP4844 : never) ? "eip4844" : never) | (request extends ({
@@ -6163,30 +4553,7 @@ export declare const ensWalletActions: <TTransport extends Transport = Transport
     } & (import("viem").ExactPartial<import("viem").FeeValuesEIP4844> & import("viem").OneOf<{
         blobs: readonly `0x${string}`[] | readonly Uint8Array[] | undefined;
     } | {
-        blobVersionedHashes: readonly `0x${string}`[] | undefined; /**
-         * Commits a name to be registered
-         * @param parameters - {@link CommitNameParameters}
-         * @returns Transaction hash. {@link CommitNameReturnType}
-         *
-         * @example
-         * import { createWalletClient, custom } from 'viem'
-         * import { mainnet } from 'viem/chains'
-         * import { addEnsContracts, ensWalletActions } from '@ensdomains/ensjs'
-         * import { randomSecret } from '@ensdomains/ensjs/utils'
-         *
-         * const wallet = createWalletClient({
-         *   chain: addEnsContracts(mainnet),
-         *   transport: custom(window.ethereum),
-         * }).extend(ensWalletActions)
-         * const secret = randomSecret()
-         * const hash = await wallet.commitName({
-         *   name: 'example.eth',
-         *   owner: '0xFe89cc7aBB2C4183683ab71653C4cdc9B02D44b7',
-         *   duration: 31536000, // 1 year
-         *   secret,
-         * })
-         * // 0x...
-         */
+        blobVersionedHashes: readonly `0x${string}`[] | undefined;
     } | {
         sidecars: false | readonly import("viem").BlobSidecar<`0x${string}`>[] | undefined;
     }, import("viem").TransactionSerializableEIP4844>)) | (import("viem").ValueOf<Required<{ [K_7 in keyof request]: K_7 extends "to" | "data" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" | "r" | "s" | "v" | "yParity" | "chainId" ? K_7 : undefined; }>> extends string ? import("viem").TransactionSerializableEIP4844 : never) | (import("viem").ValueOf<Required<{ [K_8 in keyof request]: K_8 extends "to" | "data" | "from" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" ? K_8 : undefined; }>> extends string ? import("viem").TransactionRequestEIP4844 : never) ? "eip4844" : never) | (request extends ({
@@ -6243,30 +4610,7 @@ export declare const ensWalletActions: <TTransport extends Transport = Transport
     } & (import("viem").ExactPartial<import("viem").FeeValuesEIP4844> & import("viem").OneOf<{
         blobs: readonly `0x${string}`[] | readonly Uint8Array[] | undefined;
     } | {
-        blobVersionedHashes: readonly `0x${string}`[] | undefined; /**
-         * Commits a name to be registered
-         * @param parameters - {@link CommitNameParameters}
-         * @returns Transaction hash. {@link CommitNameReturnType}
-         *
-         * @example
-         * import { createWalletClient, custom } from 'viem'
-         * import { mainnet } from 'viem/chains'
-         * import { addEnsContracts, ensWalletActions } from '@ensdomains/ensjs'
-         * import { randomSecret } from '@ensdomains/ensjs/utils'
-         *
-         * const wallet = createWalletClient({
-         *   chain: addEnsContracts(mainnet),
-         *   transport: custom(window.ethereum),
-         * }).extend(ensWalletActions)
-         * const secret = randomSecret()
-         * const hash = await wallet.commitName({
-         *   name: 'example.eth',
-         *   owner: '0xFe89cc7aBB2C4183683ab71653C4cdc9B02D44b7',
-         *   duration: 31536000, // 1 year
-         *   secret,
-         * })
-         * // 0x...
-         */
+        blobVersionedHashes: readonly `0x${string}`[] | undefined;
     } | {
         sidecars: false | readonly import("viem").BlobSidecar<`0x${string}`>[] | undefined;
     }, import("viem").TransactionSerializableEIP4844>)) | (import("viem").ValueOf<Required<{ [K_7 in keyof request]: K_7 extends "to" | "data" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" | "r" | "s" | "v" | "yParity" | "chainId" ? K_7 : undefined; }>> extends string ? import("viem").TransactionSerializableEIP4844 : never) | (import("viem").ValueOf<Required<{ [K_8 in keyof request]: K_8 extends "to" | "data" | "from" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" ? K_8 : undefined; }>> extends string ? import("viem").TransactionRequestEIP4844 : never) ? "eip4844" : never) | (request extends ({
@@ -6323,30 +4667,7 @@ export declare const ensWalletActions: <TTransport extends Transport = Transport
     } & (import("viem").ExactPartial<import("viem").FeeValuesEIP4844> & import("viem").OneOf<{
         blobs: readonly `0x${string}`[] | readonly Uint8Array[] | undefined;
     } | {
-        blobVersionedHashes: readonly `0x${string}`[] | undefined; /**
-         * Commits a name to be registered
-         * @param parameters - {@link CommitNameParameters}
-         * @returns Transaction hash. {@link CommitNameReturnType}
-         *
-         * @example
-         * import { createWalletClient, custom } from 'viem'
-         * import { mainnet } from 'viem/chains'
-         * import { addEnsContracts, ensWalletActions } from '@ensdomains/ensjs'
-         * import { randomSecret } from '@ensdomains/ensjs/utils'
-         *
-         * const wallet = createWalletClient({
-         *   chain: addEnsContracts(mainnet),
-         *   transport: custom(window.ethereum),
-         * }).extend(ensWalletActions)
-         * const secret = randomSecret()
-         * const hash = await wallet.commitName({
-         *   name: 'example.eth',
-         *   owner: '0xFe89cc7aBB2C4183683ab71653C4cdc9B02D44b7',
-         *   duration: 31536000, // 1 year
-         *   secret,
-         * })
-         * // 0x...
-         */
+        blobVersionedHashes: readonly `0x${string}`[] | undefined;
     } | {
         sidecars: false | readonly import("viem").BlobSidecar<`0x${string}`>[] | undefined;
     }, import("viem").TransactionSerializableEIP4844>)) | (import("viem").ValueOf<Required<{ [K_7 in keyof request]: K_7 extends "to" | "data" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" | "r" | "s" | "v" | "yParity" | "chainId" ? K_7 : undefined; }>> extends string ? import("viem").TransactionSerializableEIP4844 : never) | (import("viem").ValueOf<Required<{ [K_8 in keyof request]: K_8 extends "to" | "data" | "from" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" ? K_8 : undefined; }>> extends string ? import("viem").TransactionRequestEIP4844 : never) ? "eip4844" : never) | (request extends ({
@@ -6403,30 +4724,7 @@ export declare const ensWalletActions: <TTransport extends Transport = Transport
     } & (import("viem").ExactPartial<import("viem").FeeValuesEIP4844> & import("viem").OneOf<{
         blobs: readonly `0x${string}`[] | readonly Uint8Array[] | undefined;
     } | {
-        blobVersionedHashes: readonly `0x${string}`[] | undefined; /**
-         * Commits a name to be registered
-         * @param parameters - {@link CommitNameParameters}
-         * @returns Transaction hash. {@link CommitNameReturnType}
-         *
-         * @example
-         * import { createWalletClient, custom } from 'viem'
-         * import { mainnet } from 'viem/chains'
-         * import { addEnsContracts, ensWalletActions } from '@ensdomains/ensjs'
-         * import { randomSecret } from '@ensdomains/ensjs/utils'
-         *
-         * const wallet = createWalletClient({
-         *   chain: addEnsContracts(mainnet),
-         *   transport: custom(window.ethereum),
-         * }).extend(ensWalletActions)
-         * const secret = randomSecret()
-         * const hash = await wallet.commitName({
-         *   name: 'example.eth',
-         *   owner: '0xFe89cc7aBB2C4183683ab71653C4cdc9B02D44b7',
-         *   duration: 31536000, // 1 year
-         *   secret,
-         * })
-         * // 0x...
-         */
+        blobVersionedHashes: readonly `0x${string}`[] | undefined;
     } | {
         sidecars: false | readonly import("viem").BlobSidecar<`0x${string}`>[] | undefined;
     }, import("viem").TransactionSerializableEIP4844>)) | (import("viem").ValueOf<Required<{ [K_7 in keyof request]: K_7 extends "to" | "data" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" | "r" | "s" | "v" | "yParity" | "chainId" ? K_7 : undefined; }>> extends string ? import("viem").TransactionSerializableEIP4844 : never) | (import("viem").ValueOf<Required<{ [K_8 in keyof request]: K_8 extends "to" | "data" | "from" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" ? K_8 : undefined; }>> extends string ? import("viem").TransactionRequestEIP4844 : never) ? "eip4844" : never) | (request extends ({
@@ -6483,30 +4781,7 @@ export declare const ensWalletActions: <TTransport extends Transport = Transport
     } & (import("viem").ExactPartial<import("viem").FeeValuesEIP4844> & import("viem").OneOf<{
         blobs: readonly `0x${string}`[] | readonly Uint8Array[] | undefined;
     } | {
-        blobVersionedHashes: readonly `0x${string}`[] | undefined; /**
-         * Commits a name to be registered
-         * @param parameters - {@link CommitNameParameters}
-         * @returns Transaction hash. {@link CommitNameReturnType}
-         *
-         * @example
-         * import { createWalletClient, custom } from 'viem'
-         * import { mainnet } from 'viem/chains'
-         * import { addEnsContracts, ensWalletActions } from '@ensdomains/ensjs'
-         * import { randomSecret } from '@ensdomains/ensjs/utils'
-         *
-         * const wallet = createWalletClient({
-         *   chain: addEnsContracts(mainnet),
-         *   transport: custom(window.ethereum),
-         * }).extend(ensWalletActions)
-         * const secret = randomSecret()
-         * const hash = await wallet.commitName({
-         *   name: 'example.eth',
-         *   owner: '0xFe89cc7aBB2C4183683ab71653C4cdc9B02D44b7',
-         *   duration: 31536000, // 1 year
-         *   secret,
-         * })
-         * // 0x...
-         */
+        blobVersionedHashes: readonly `0x${string}`[] | undefined;
     } | {
         sidecars: false | readonly import("viem").BlobSidecar<`0x${string}`>[] | undefined;
     }, import("viem").TransactionSerializableEIP4844>)) | (import("viem").ValueOf<Required<{ [K_7 in keyof request]: K_7 extends "to" | "data" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" | "r" | "s" | "v" | "yParity" | "chainId" ? K_7 : undefined; }>> extends string ? import("viem").TransactionSerializableEIP4844 : never) | (import("viem").ValueOf<Required<{ [K_8 in keyof request]: K_8 extends "to" | "data" | "from" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" ? K_8 : undefined; }>> extends string ? import("viem").TransactionRequestEIP4844 : never) ? "eip4844" : never) | (request extends ({
@@ -6563,30 +4838,7 @@ export declare const ensWalletActions: <TTransport extends Transport = Transport
     } & (import("viem").ExactPartial<import("viem").FeeValuesEIP4844> & import("viem").OneOf<{
         blobs: readonly `0x${string}`[] | readonly Uint8Array[] | undefined;
     } | {
-        blobVersionedHashes: readonly `0x${string}`[] | undefined; /**
-         * Commits a name to be registered
-         * @param parameters - {@link CommitNameParameters}
-         * @returns Transaction hash. {@link CommitNameReturnType}
-         *
-         * @example
-         * import { createWalletClient, custom } from 'viem'
-         * import { mainnet } from 'viem/chains'
-         * import { addEnsContracts, ensWalletActions } from '@ensdomains/ensjs'
-         * import { randomSecret } from '@ensdomains/ensjs/utils'
-         *
-         * const wallet = createWalletClient({
-         *   chain: addEnsContracts(mainnet),
-         *   transport: custom(window.ethereum),
-         * }).extend(ensWalletActions)
-         * const secret = randomSecret()
-         * const hash = await wallet.commitName({
-         *   name: 'example.eth',
-         *   owner: '0xFe89cc7aBB2C4183683ab71653C4cdc9B02D44b7',
-         *   duration: 31536000, // 1 year
-         *   secret,
-         * })
-         * // 0x...
-         */
+        blobVersionedHashes: readonly `0x${string}`[] | undefined;
     } | {
         sidecars: false | readonly import("viem").BlobSidecar<`0x${string}`>[] | undefined;
     }, import("viem").TransactionSerializableEIP4844>)) | (import("viem").ValueOf<Required<{ [K_7 in keyof request]: K_7 extends "to" | "data" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" | "r" | "s" | "v" | "yParity" | "chainId" ? K_7 : undefined; }>> extends string ? import("viem").TransactionSerializableEIP4844 : never) | (import("viem").ValueOf<Required<{ [K_8 in keyof request]: K_8 extends "to" | "data" | "from" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" ? K_8 : undefined; }>> extends string ? import("viem").TransactionRequestEIP4844 : never) ? "eip4844" : never) | (request extends ({
@@ -6643,30 +4895,7 @@ export declare const ensWalletActions: <TTransport extends Transport = Transport
     } & (import("viem").ExactPartial<import("viem").FeeValuesEIP4844> & import("viem").OneOf<{
         blobs: readonly `0x${string}`[] | readonly Uint8Array[] | undefined;
     } | {
-        blobVersionedHashes: readonly `0x${string}`[] | undefined; /**
-         * Commits a name to be registered
-         * @param parameters - {@link CommitNameParameters}
-         * @returns Transaction hash. {@link CommitNameReturnType}
-         *
-         * @example
-         * import { createWalletClient, custom } from 'viem'
-         * import { mainnet } from 'viem/chains'
-         * import { addEnsContracts, ensWalletActions } from '@ensdomains/ensjs'
-         * import { randomSecret } from '@ensdomains/ensjs/utils'
-         *
-         * const wallet = createWalletClient({
-         *   chain: addEnsContracts(mainnet),
-         *   transport: custom(window.ethereum),
-         * }).extend(ensWalletActions)
-         * const secret = randomSecret()
-         * const hash = await wallet.commitName({
-         *   name: 'example.eth',
-         *   owner: '0xFe89cc7aBB2C4183683ab71653C4cdc9B02D44b7',
-         *   duration: 31536000, // 1 year
-         *   secret,
-         * })
-         * // 0x...
-         */
+        blobVersionedHashes: readonly `0x${string}`[] | undefined;
     } | {
         sidecars: false | readonly import("viem").BlobSidecar<`0x${string}`>[] | undefined;
     }, import("viem").TransactionSerializableEIP4844>)) | (import("viem").ValueOf<Required<{ [K_7 in keyof request]: K_7 extends "to" | "data" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" | "r" | "s" | "v" | "yParity" | "chainId" ? K_7 : undefined; }>> extends string ? import("viem").TransactionSerializableEIP4844 : never) | (import("viem").ValueOf<Required<{ [K_8 in keyof request]: K_8 extends "to" | "data" | "from" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" ? K_8 : undefined; }>> extends string ? import("viem").TransactionRequestEIP4844 : never) ? "eip4844" : never) | (request extends ({
@@ -6723,30 +4952,7 @@ export declare const ensWalletActions: <TTransport extends Transport = Transport
     } & (import("viem").ExactPartial<import("viem").FeeValuesEIP4844> & import("viem").OneOf<{
         blobs: readonly `0x${string}`[] | readonly Uint8Array[] | undefined;
     } | {
-        blobVersionedHashes: readonly `0x${string}`[] | undefined; /**
-         * Commits a name to be registered
-         * @param parameters - {@link CommitNameParameters}
-         * @returns Transaction hash. {@link CommitNameReturnType}
-         *
-         * @example
-         * import { createWalletClient, custom } from 'viem'
-         * import { mainnet } from 'viem/chains'
-         * import { addEnsContracts, ensWalletActions } from '@ensdomains/ensjs'
-         * import { randomSecret } from '@ensdomains/ensjs/utils'
-         *
-         * const wallet = createWalletClient({
-         *   chain: addEnsContracts(mainnet),
-         *   transport: custom(window.ethereum),
-         * }).extend(ensWalletActions)
-         * const secret = randomSecret()
-         * const hash = await wallet.commitName({
-         *   name: 'example.eth',
-         *   owner: '0xFe89cc7aBB2C4183683ab71653C4cdc9B02D44b7',
-         *   duration: 31536000, // 1 year
-         *   secret,
-         * })
-         * // 0x...
-         */
+        blobVersionedHashes: readonly `0x${string}`[] | undefined;
     } | {
         sidecars: false | readonly import("viem").BlobSidecar<`0x${string}`>[] | undefined;
     }, import("viem").TransactionSerializableEIP4844>)) | (import("viem").ValueOf<Required<{ [K_7 in keyof request]: K_7 extends "to" | "data" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" | "r" | "s" | "v" | "yParity" | "chainId" ? K_7 : undefined; }>> extends string ? import("viem").TransactionSerializableEIP4844 : never) | (import("viem").ValueOf<Required<{ [K_8 in keyof request]: K_8 extends "to" | "data" | "from" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" ? K_8 : undefined; }>> extends string ? import("viem").TransactionRequestEIP4844 : never) ? "eip4844" : never) | (request extends ({
@@ -6803,30 +5009,7 @@ export declare const ensWalletActions: <TTransport extends Transport = Transport
     } & (import("viem").ExactPartial<import("viem").FeeValuesEIP4844> & import("viem").OneOf<{
         blobs: readonly `0x${string}`[] | readonly Uint8Array[] | undefined;
     } | {
-        blobVersionedHashes: readonly `0x${string}`[] | undefined; /**
-         * Commits a name to be registered
-         * @param parameters - {@link CommitNameParameters}
-         * @returns Transaction hash. {@link CommitNameReturnType}
-         *
-         * @example
-         * import { createWalletClient, custom } from 'viem'
-         * import { mainnet } from 'viem/chains'
-         * import { addEnsContracts, ensWalletActions } from '@ensdomains/ensjs'
-         * import { randomSecret } from '@ensdomains/ensjs/utils'
-         *
-         * const wallet = createWalletClient({
-         *   chain: addEnsContracts(mainnet),
-         *   transport: custom(window.ethereum),
-         * }).extend(ensWalletActions)
-         * const secret = randomSecret()
-         * const hash = await wallet.commitName({
-         *   name: 'example.eth',
-         *   owner: '0xFe89cc7aBB2C4183683ab71653C4cdc9B02D44b7',
-         *   duration: 31536000, // 1 year
-         *   secret,
-         * })
-         * // 0x...
-         */
+        blobVersionedHashes: readonly `0x${string}`[] | undefined;
     } | {
         sidecars: false | readonly import("viem").BlobSidecar<`0x${string}`>[] | undefined;
     }, import("viem").TransactionSerializableEIP4844>)) | (import("viem").ValueOf<Required<{ [K_7 in keyof request]: K_7 extends "to" | "data" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" | "r" | "s" | "v" | "yParity" | "chainId" ? K_7 : undefined; }>> extends string ? import("viem").TransactionSerializableEIP4844 : never) | (import("viem").ValueOf<Required<{ [K_8 in keyof request]: K_8 extends "to" | "data" | "from" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" ? K_8 : undefined; }>> extends string ? import("viem").TransactionRequestEIP4844 : never) ? "eip4844" : never) | (request extends ({
@@ -6883,30 +5066,7 @@ export declare const ensWalletActions: <TTransport extends Transport = Transport
     } & (import("viem").ExactPartial<import("viem").FeeValuesEIP4844> & import("viem").OneOf<{
         blobs: readonly `0x${string}`[] | readonly Uint8Array[] | undefined;
     } | {
-        blobVersionedHashes: readonly `0x${string}`[] | undefined; /**
-         * Commits a name to be registered
-         * @param parameters - {@link CommitNameParameters}
-         * @returns Transaction hash. {@link CommitNameReturnType}
-         *
-         * @example
-         * import { createWalletClient, custom } from 'viem'
-         * import { mainnet } from 'viem/chains'
-         * import { addEnsContracts, ensWalletActions } from '@ensdomains/ensjs'
-         * import { randomSecret } from '@ensdomains/ensjs/utils'
-         *
-         * const wallet = createWalletClient({
-         *   chain: addEnsContracts(mainnet),
-         *   transport: custom(window.ethereum),
-         * }).extend(ensWalletActions)
-         * const secret = randomSecret()
-         * const hash = await wallet.commitName({
-         *   name: 'example.eth',
-         *   owner: '0xFe89cc7aBB2C4183683ab71653C4cdc9B02D44b7',
-         *   duration: 31536000, // 1 year
-         *   secret,
-         * })
-         * // 0x...
-         */
+        blobVersionedHashes: readonly `0x${string}`[] | undefined;
     } | {
         sidecars: false | readonly import("viem").BlobSidecar<`0x${string}`>[] | undefined;
     }, import("viem").TransactionSerializableEIP4844>)) | (import("viem").ValueOf<Required<{ [K_7 in keyof request]: K_7 extends "to" | "data" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" | "r" | "s" | "v" | "yParity" | "chainId" ? K_7 : undefined; }>> extends string ? import("viem").TransactionSerializableEIP4844 : never) | (import("viem").ValueOf<Required<{ [K_8 in keyof request]: K_8 extends "to" | "data" | "from" | "gas" | "nonce" | "type" | "value" | "maxFeePerBlobGas" | "gasPrice" | "maxFeePerGas" | "maxPriorityFeePerGas" | "accessList" | "blobs" | "blobVersionedHashes" | "kzg" | "sidecars" ? K_8 : undefined; }>> extends string ? import("viem").TransactionRequestEIP4844 : never) ? "eip4844" : never) | (request extends ({

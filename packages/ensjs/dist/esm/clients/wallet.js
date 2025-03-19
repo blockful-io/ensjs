@@ -1,6 +1,6 @@
 import { createWalletClient, } from 'viem';
-import { addEnsContracts } from '../contracts/addEnsContracts';
-import { ensWalletActions } from './decorators/wallet';
+import { addEnsContracts } from '../contracts/addEnsContracts.js';
+import { ensWalletActions } from './decorators/wallet.js';
 /**
  * Creates an ENS Wallet Client with a given [Transport](https://viem.sh/docs/clients/intro.html) configured for a [Chain](https://viem.sh/docs/clients/chains.html).
  *

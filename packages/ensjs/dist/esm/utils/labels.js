@@ -1,5 +1,5 @@
 import { labelhash } from 'viem';
-import { InvalidEncodedLabelError, InvalidLabelhashError, } from '../errors/utils';
+import { InvalidEncodedLabelError, InvalidLabelhashError, } from '../errors/utils.js';
 const hasLocalStorage = typeof localStorage !== 'undefined';
 export function decodeLabelhash(hash) {
     if (!(hash.startsWith('[') && hash.endsWith(']')))

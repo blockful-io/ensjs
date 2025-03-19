@@ -1,8 +1,8 @@
 import { type Hex } from 'viem';
-import type { Prettify } from '../types';
-import type { EncodedAbi } from './encoders/encodeAbi';
-import { type EncodeSetAddrParameters } from './encoders/encodeSetAddr';
-import { type EncodeSetTextParameters } from './encoders/encodeSetText';
+import type { Prettify } from '../types.js';
+import type { EncodedAbi } from './encoders/encodeAbi.js';
+import { type EncodeSetAddrParameters } from './encoders/encodeSetAddr.js';
+import { type EncodeSetTextParameters } from './encoders/encodeSetText.js';
 export type RecordOptions = Prettify<{
     /** Clears all current records */
     clearRecords?: boolean;

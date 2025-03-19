@@ -2,16 +2,16 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.decryptName = exports.checkIsDecrypted = exports.checkLabel = exports.saveName = exports.saveLabel = exports.isEncodedLabelhash = exports.encodeLabelhash = exports.decodeLabelhash = void 0;
 const viem_1 = require("viem");
-const utils_1 = require("../errors/utils");
+const utils_js_1 = require("../errors/utils.js");
 const hasLocalStorage = typeof localStorage !== 'undefined';
 function decodeLabelhash(hash) {
     if (!(hash.startsWith('[') && hash.endsWith(']')))
-        throw new utils_1.InvalidEncodedLabelError({
+        throw new utils_js_1.InvalidEncodedLabelError({
             label: hash,
             details: 'Expected encoded labelhash to start and end with square brackets',
         });
     if (hash.length !== 66)
-        throw new utils_1.InvalidEncodedLabelError({
+        throw new utils_js_1.InvalidEncodedLabelError({
             label: hash,
             details: 'Expected encoded labelhash to have a length of 66',
         });
@@ -20,12 +20,12 @@ function decodeLabelhash(hash) {
 exports.decodeLabelhash = decodeLabelhash;
 function encodeLabelhash(hash) {
     if (!hash.startsWith('0x'))
-        throw new utils_1.InvalidLabelhashError({
+        throw new utils_js_1.InvalidLabelhashError({
             labelhash: hash,
             details: 'Expected labelhash to start with 0x',
         });
     if (hash.length !== 66)
-        throw new utils_1.InvalidLabelhashError({
+        throw new utils_js_1.InvalidLabelhashError({
             labelhash: hash,
             details: 'Expected labelhash to have a length of 66',
         });

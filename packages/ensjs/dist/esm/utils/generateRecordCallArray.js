@@ -1,9 +1,9 @@
 import {} from 'viem';
-import { encodeClearRecords } from './encoders/encodeClearRecords';
-import { encodeSetAbi, } from './encoders/encodeSetAbi';
-import { encodeSetAddr, } from './encoders/encodeSetAddr';
-import { encodeSetContentHash } from './encoders/encodeSetContentHash';
-import { encodeSetText, } from './encoders/encodeSetText';
+import { encodeClearRecords } from './encoders/encodeClearRecords.js';
+import { encodeSetAbi, } from './encoders/encodeSetAbi.js';
+import { encodeSetAddr, } from './encoders/encodeSetAddr.js';
+import { encodeSetContentHash } from './encoders/encodeSetContentHash.js';
+import { encodeSetText, } from './encoders/encodeSetText.js';
 export const generateRecordCallArray = ({ namehash, clearRecords, contentHash, texts, coins, abi, }) => {
     const calls = [];
     if (clearRecords) {

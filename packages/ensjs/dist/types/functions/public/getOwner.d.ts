@@ -1,7 +1,7 @@
 import { BaseError, type Address, type Hex } from 'viem';
-import type { ClientWithEns } from '../../contracts/consts';
-import type { SimpleTransactionRequest } from '../../types';
-import { type OwnerContract } from '../../utils/ownerFromContract';
+import type { ClientWithEns } from '../../contracts/consts.js';
+import type { SimpleTransactionRequest } from '../../types.js';
+import { type OwnerContract } from '../../utils/ownerFromContract.js';
 export type GetOwnerParameters<TContract extends OwnerContract | undefined = undefined> = {
     /** Name to get owner for */
     name: string;

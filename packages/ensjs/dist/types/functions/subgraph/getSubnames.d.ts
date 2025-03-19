@@ -1,5 +1,5 @@
-import type { ClientWithEns } from '../../contracts/consts';
-import { type Name } from './utils';
+import type { ClientWithEns } from '../../contracts/consts.js';
+import { type Name } from './utils.js';
 type GetSubnamesOrderBy = 'expiryDate' | 'name' | 'labelName' | 'createdAt';
 export type GetSubnamesParameters = {
     /** Name to get subnames for */

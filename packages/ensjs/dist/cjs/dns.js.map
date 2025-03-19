@@ -1,1 +1,1 @@
-{"version":3,"file":"dns.js","sourceRoot":"","sources":["../../src/dns.ts"],"names":[],"mappings":";;;AAAA,qEAIyC;AAHvC,oHAAA,OAAO,OAAoB;AAI7B,yEAI2C;AAHzC,wHAAA,OAAO,OAAsB;AAI/B,2DAIoC;AAHlC,0GAAA,OAAO,OAAe;AAIxB,+DAMsC;AALpC,8GAAA,OAAO,OAAiB"}
+{"version":3,"file":"dns.js","sourceRoot":"","sources":["../../src/dns.ts"],"names":[],"mappings":";;;AAAA,2EAI4C;AAH1C,uHAAA,OAAO,OAAoB;AAI7B,+EAI8C;AAH5C,2HAAA,OAAO,OAAsB;AAI/B,iEAIuC;AAHrC,6GAAA,OAAO,OAAe;AAIxB,qEAMyC;AALvC,iHAAA,OAAO,OAAiB"}

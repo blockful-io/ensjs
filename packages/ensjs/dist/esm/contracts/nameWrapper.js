@@ -1,6 +1,6 @@
-import { erc1155SafeTransferFromSnippet } from './erc1155';
-import { erc721OwnerOfSnippet } from './erc721';
-import { registrySetResolverSnippet } from './registry';
+import { erc1155SafeTransferFromSnippet } from './erc1155.js';
+import { erc721OwnerOfSnippet } from './erc721.js';
+import { registrySetResolverSnippet } from './registry.js';
 export const nameWrapperErrors = [
     {
         inputs: [],

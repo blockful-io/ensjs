@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.bytesToPacket = exports.packetToBytes = void 0;
 const viem_1 = require("viem");
-const labels_1 = require("./labels");
+const labels_js_1 = require("./labels.js");
 function packetToBytes(packet) {
     const value = packet.replace(/^\.|\.$/gm, '');
     if (value.length === 0)
@@ -13,7 +13,7 @@ function packetToBytes(packet) {
     for (let i = 0; i < list.length; i += 1) {
         let encoded = (0, viem_1.stringToBytes)(list[i]);
         if (encoded.byteLength > 255)
-            encoded = (0, viem_1.stringToBytes)((0, labels_1.encodeLabelhash)((0, viem_1.labelhash)(list[i])));
+            encoded = (0, viem_1.stringToBytes)((0, labels_js_1.encodeLabelhash)((0, viem_1.labelhash)(list[i])));
         bytes[offset] = encoded.length;
         bytes.set(encoded, offset + 1);
         offset += encoded.length + 1;

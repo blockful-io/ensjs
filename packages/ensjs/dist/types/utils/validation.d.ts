@@ -1,4 +1,4 @@
-import { type Label } from './normalise';
+import { type Label } from './normalise.js';
 export declare const validateName: (name: string) => string;
 export type ParsedInputResult = {
     type: 'name' | 'label';
