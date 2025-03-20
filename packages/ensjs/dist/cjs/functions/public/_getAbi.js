@@ -38,12 +38,6 @@ const decode = async (_client, data, { strict }) => {
                 abiData = JSON.parse((0, viem_1.hexToString)(encodedAbiData));
                 decoded = true;
                 break;
-            case 2: {
-                const { inflate } = await Promise.resolve().then(() => require('pako/dist/pako_inflate.min.js'));
-                abiData = JSON.parse(inflate((0, viem_1.hexToBytes)(encodedAbiData), { to: 'string' }));
-                decoded = true;
-                break;
-            }
             case 4: {
                 const { cborDecode } = await Promise.resolve().then(() => require('@ensdomains/address-encoder/utils'));
                 abiData = await cborDecode((0, viem_1.hexToBytes)(encodedAbiData).buffer);

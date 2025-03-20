@@ -41,14 +41,6 @@ const encodeAbi = async ({ encodeAs, data, }) => {
             if (data)
                 encodedData = (0, viem_1.stringToHex)(JSON.stringify(data));
             break;
-        case 'zlib': {
-            contentType = 2;
-            if (data) {
-                const { deflate } = await Promise.resolve().then(() => require('pako/dist/pako_deflate.min.js'));
-                encodedData = (0, viem_1.bytesToHex)(deflate(JSON.stringify(data)));
-            }
-            break;
-        }
         case 'cbor': {
             contentType = 4;
             if (data) {
