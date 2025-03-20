@@ -1,9 +1,11 @@
-import { encodeFunctionData, } from 'viem';
+import { encodeFunctionData, toHex, } from 'viem';
 import { sendTransaction } from 'viem/actions';
+import { packetToBytes } from 'viem/ens';
 import { publicResolverMulticallSnippet } from '../../contracts/publicResolver.js';
 import { NoRecordsSpecifiedError } from '../../errors/public.js';
 import { generateRecordCallArray, } from '../../utils/generateRecordCallArray.js';
 import { namehash } from '../../utils/normalise.js';
+import { getRevertErrorData, handleWildcardWritingRevert, } from '../../utils/wildcardWriting.js';
 export const makeFunctionData = (_wallet, { name, resolverAddress, ...records }) => {
     const callArray = generateRecordCallArray({
         namehash: namehash(name),
@@ -68,7 +70,18 @@ async function setRecords(wallet, { name, resolverAddress, clearRecords, content
         ...data,
         ...txArgs,
     };
-    return sendTransaction(wallet, writeArgs);
+    try {
+        return await sendTransaction(wallet, writeArgs);
+    }
+    catch (error) {
+        const errorData = getRevertErrorData(error);
+        if (!errorData)
+            throw error;
+        const txHash = await handleWildcardWritingRevert(wallet, errorData, toHex(packetToBytes(name)), writeArgs.data, (txArgs.account || wallet.account));
+        if (!txHash)
+            throw error;
+        return txHash;
+    }
 }
 setRecords.makeFunctionData = makeFunctionData;
 export default setRecords;

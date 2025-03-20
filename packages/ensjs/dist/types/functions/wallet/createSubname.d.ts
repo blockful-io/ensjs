@@ -56,7 +56,7 @@ export declare const makeFunctionData: <TChain extends ChainWithEns, TAccount ex
  * })
  * // 0x...
  */
-declare function createSubname<TChain extends ChainWithEns, TAccount extends Account | undefined, TChainOverride extends ChainWithEns | undefined = ChainWithEns>(wallet: WalletClientWithAccount<Transport, TChain, TAccount>, { name, contract, owner, resolverAddress, expiry, fuses, extraData, ...txArgs }: CreateSubnameParameters<TChain, TAccount, TChainOverride>): Promise<CreateSubnameReturnType>;
+declare function createSubname<TChain extends ChainWithEns, TAccount extends Account | undefined, TChainOverride extends ChainWithEns | undefined = ChainWithEns>(wallet: WalletClientWithAccount<Transport, TChain, TAccount>, { name, contract, owner, resolverAddress: resolver, expiry, fuses, extraData, ...txArgs }: CreateSubnameParameters<TChain, TAccount, TChainOverride>): Promise<CreateSubnameReturnType>;
 declare namespace createSubname {
     var makeFunctionData: <TChain extends ChainWithEns, TAccount extends Account | undefined>(wallet: ClientWithAccount<Transport, TChain, TAccount>, { name, contract, owner, resolverAddress, expiry, fuses, }: CreateSubnameDataParameters) => SimpleTransactionRequest;
 }

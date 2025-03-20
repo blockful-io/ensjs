@@ -1,4 +1,3 @@
-export const WILDCARD_WRITING_INTERFACE_ID = '0x79dc93d7';
 // EIP-7884 Operation Router
 export const operationRouterSnippet = [
     {

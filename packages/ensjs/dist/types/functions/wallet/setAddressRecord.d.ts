@@ -1,5 +1,5 @@
-import type { Account, Address, Hash, Transport } from 'viem';
-import type { ChainWithEns, ClientWithAccount } from '../../contracts/consts.js';
+import { type Account, type Address, type Hash, type Transport } from 'viem';
+import type { ChainWithEns, ClientWithAccount, WalletClientWithAccount } from '../../contracts/consts.js';
 import type { Prettify, SimpleTransactionRequest, WriteTransactionParameters } from '../../types.js';
 export type SetAddressRecordDataParameters = {
     /** Name to set address record for */
@@ -39,7 +39,7 @@ export declare const makeFunctionData: <TChain extends ChainWithEns, TAccount ex
  * })
  * // 0x...
  */
-declare function setAddressRecord<TChain extends ChainWithEns, TAccount extends Account | undefined, TChainOverride extends ChainWithEns | undefined = ChainWithEns>(wallet: ClientWithAccount<Transport, TChain, TAccount>, { name, coin, value, resolverAddress, ...txArgs }: SetAddressRecordParameters<TChain, TAccount, TChainOverride>): Promise<SetAddressRecordReturnType>;
+declare function setAddressRecord<TChain extends ChainWithEns, TAccount extends Account | undefined, TChainOverride extends ChainWithEns | undefined = ChainWithEns>(wallet: WalletClientWithAccount<Transport, TChain, TAccount>, { name, coin, value, resolverAddress, ...txArgs }: SetAddressRecordParameters<TChain, TAccount, TChainOverride>): Promise<SetAddressRecordReturnType>;
 declare namespace setAddressRecord {
     var makeFunctionData: <TChain extends ChainWithEns, TAccount extends Account | undefined>(_wallet: ClientWithAccount<Transport, TChain, TAccount>, { name, coin, value, resolverAddress }: SetAddressRecordDataParameters) => SimpleTransactionRequest;
 }

@@ -1,4 +1,3 @@
-export declare const WILDCARD_WRITING_INTERFACE_ID: "0x79dc93d7";
 export declare const operationRouterSnippet: readonly [{
     readonly type: "error";
     readonly name: "FunctionNotSupported";

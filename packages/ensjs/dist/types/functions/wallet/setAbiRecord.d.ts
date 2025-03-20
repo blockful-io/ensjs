@@ -1,5 +1,5 @@
-import type { Account, Address, Hash, Transport } from 'viem';
-import type { ChainWithEns, ClientWithAccount } from '../../contracts/consts.js';
+import { type Account, type Address, type Hash, type Transport } from 'viem';
+import type { ChainWithEns, ClientWithAccount, WalletClientWithAccount } from '../../contracts/consts.js';
 import type { Prettify, SimpleTransactionRequest, WriteTransactionParameters } from '../../types.js';
 import type { EncodedAbi } from '../../utils/encoders/encodeAbi.js';
 export type SetAbiRecordDataParameters = {
@@ -41,7 +41,7 @@ export declare const makeFunctionData: <TChain extends ChainWithEns, TAccount ex
  * })
  * // 0x...
  */
-declare function setAbiRecord<TChain extends ChainWithEns, TAccount extends Account | undefined, TChainOverride extends ChainWithEns | undefined = ChainWithEns>(wallet: ClientWithAccount<Transport, TChain, TAccount>, { name, encodedAbi, resolverAddress, ...txArgs }: SetAbiRecordParameters<TChain, TAccount, TChainOverride>): Promise<SetAbiRecordReturnType>;
+declare function setAbiRecord<TChain extends ChainWithEns, TAccount extends Account | undefined, TChainOverride extends ChainWithEns | undefined = ChainWithEns>(wallet: WalletClientWithAccount<Transport, TChain, TAccount>, { name, encodedAbi, resolverAddress, ...txArgs }: SetAbiRecordParameters<TChain, TAccount, TChainOverride>): Promise<SetAbiRecordReturnType>;
 declare namespace setAbiRecord {
     var makeFunctionData: <TChain extends ChainWithEns, TAccount extends Account | undefined>(_wallet: ClientWithAccount<Transport, TChain, TAccount>, { name, encodedAbi, resolverAddress }: SetAbiRecordDataParameters) => SimpleTransactionRequest;
 }

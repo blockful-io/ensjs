@@ -1,6 +1,9 @@
+import { toHex, } from 'viem';
 import { sendTransaction } from 'viem/actions';
+import { packetToBytes } from 'viem/ens';
 import { encodeSetText } from '../../utils/encoders/encodeSetText.js';
 import { namehash } from '../../utils/normalise.js';
+import { getRevertErrorData, handleWildcardWritingRevert, } from '../../utils/wildcardWriting.js';
 export const makeFunctionData = (_wallet, { name, key, value, resolverAddress }) => {
     return {
         to: resolverAddress,
@@ -42,7 +45,18 @@ async function setTextRecord(wallet, { name, key, value, resolverAddress, ...txA
         ...data,
         ...txArgs,
     };
-    return sendTransaction(wallet, writeArgs);
+    try {
+        return await sendTransaction(wallet, writeArgs);
+    }
+    catch (error) {
+        const errorData = getRevertErrorData(error);
+        if (!errorData)
+            throw error;
+        const txHash = await handleWildcardWritingRevert(wallet, errorData, toHex(packetToBytes(name)), writeArgs.data, (txArgs.account || wallet.account));
+        if (!txHash)
+            throw error;
+        return txHash;
+    }
 }
 setTextRecord.makeFunctionData = makeFunctionData;
 export default setTextRecord;
