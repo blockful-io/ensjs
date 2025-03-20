@@ -1,9 +1,9 @@
 import * as chains from 'viem/chains';
-import { decodeErrorResult, zeroHash, encodeFunctionData, BaseError, toHex, decodeFunctionResult, } from 'viem';
+import { decodeErrorResult, zeroHash, encodeFunctionData, BaseError, toHex, } from 'viem';
 import { readContract, sendTransaction } from 'viem/actions';
 import { packetToBytes } from 'viem/ens';
 import { getChainContractAddress } from '../contracts/getChainContractAddress.js';
-import { offchainRegisterSnippet, universalResolverResolveSnippet, erc165SupportsInterfaceSnippet, } from '../contracts/index.js';
+import { offchainRegisterSnippet, universalResolverResolveSnippet, erc165SupportsInterfaceSnippet, universalResolverFindResolverSnippet, } from '../contracts/index.js';
 export const WILDCARD_WRITING_REGISTER_INTERFACE_ID = '0x79dc93d7';
 const WILDCARD_WRITING_REGISTER_SELECTOR = '0xf43c313a';
 export class WildcardError extends BaseError {
@@ -47,6 +47,7 @@ export class SubnameUnavailableError extends BaseError {
     }
 }
 export async function handleWildcardWritingRevert(wallet, errorResult, encodedName, calldata, account, expiry) {
+    const currentChain = wallet.chain;
     if (errorResult.errorName === 'OperationHandledOffchain') {
         const [domain, url, message] = errorResult.args;
         const signature = await wallet.signTypedData({
@@ -68,12 +69,8 @@ export async function handleWildcardWritingRevert(wallet, errorResult, encodedNa
             sender: message.sender,
             urls: [url],
         });
-        return wallet.chain.id === chains.sepolia.id
-            ? '0x1d4cca15a7f535724328cce2ba2c857b158c940aeffb3c3b4a035645da697b25' // random successful sepolia tx hash
-            : '0xd4a47f4ff92e1bb213a6f733dc531d1baf4d3e439229bf184aa90b39d2bdb26b'; // random successful mainnet tx hash
     }
     if (errorResult.errorName === 'OperationHandledOnchain') {
-        const currentChain = wallet.chain;
         try {
             const [chainId, contractAddress] = errorResult.args;
             if (wallet.chain.id !== chains.localhost.id &&
@@ -97,17 +94,12 @@ export async function handleWildcardWritingRevert(wallet, errorResult, encodedNa
                 }
                 value = registerParams.price;
             }
-            return await sendTransaction(wallet, {
+            await sendTransaction(wallet, {
                 account,
-                authorizationList: [],
                 to: contractAddress,
                 value,
-                data: encodeFunctionData({
-                    functionName: 'register',
-                    abi: offchainRegisterSnippet,
-                    args: [calldata],
-                }),
-                gas: 300000n,
+                data: calldata,
+                authorizationList: [],
             });
         }
         finally {
@@ -117,7 +109,10 @@ export async function handleWildcardWritingRevert(wallet, errorResult, encodedNa
             }
         }
     }
-    return;
+    // random ethereum transaction hashes had to be returned to avoid breaking changes
+    return currentChain.id === chains.sepolia.id
+        ? '0x1d4cca15a7f535724328cce2ba2c857b158c940aeffb3c3b4a035645da697b25' // random successful sepolia tx hash
+        : '0xd4a47f4ff92e1bb213a6f733dc531d1baf4d3e439229bf184aa90b39d2bdb26b'; // random successful mainnet tx hash
 }
 export async function handleOffchainTransaction(wallet, encodedName, calldata, account, expiry) {
     try {
@@ -162,29 +157,20 @@ export async function handleOffchainTransaction(wallet, encodedName, calldata, a
  * @returns True if the ENSIP-20 Wildcard Writing is supported, false otherwise
  */
 export async function isWildcardWritingSupported(wallet, name) {
-    const [res] = await readContract(wallet, {
+    const [resolver] = await readContract(wallet, {
         address: getChainContractAddress({
             client: wallet,
             contract: 'ensUniversalResolver',
         }),
-        abi: universalResolverResolveSnippet,
-        functionName: 'resolve',
-        args: [
-            toHex(packetToBytes(name)),
-            encodeFunctionData({
-                abi: erc165SupportsInterfaceSnippet,
-                functionName: 'supportsInterface',
-                args: [WILDCARD_WRITING_REGISTER_INTERFACE_ID],
-            }),
-        ],
+        abi: universalResolverFindResolverSnippet,
+        functionName: 'findResolver',
+        args: [toHex(packetToBytes(name))],
     });
-    if (res === '0x')
-        return false;
-    return decodeFunctionResult({
+    return readContract(wallet, {
+        address: resolver,
         abi: erc165SupportsInterfaceSnippet,
-        args: [WILDCARD_WRITING_REGISTER_INTERFACE_ID],
         functionName: 'supportsInterface',
-        data: res[0],
+        args: [WILDCARD_WRITING_REGISTER_INTERFACE_ID],
     });
 }
 //# sourceMappingURL=wildcardWriting.js.map
