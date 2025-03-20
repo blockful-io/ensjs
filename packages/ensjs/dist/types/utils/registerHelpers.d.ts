@@ -1,4 +1,4 @@
-import { type Address, type Hex, type TypedDataDefinition } from 'viem';
+import { type Address, type Hex } from 'viem';
 import { type EncodeChildFusesInputObject } from './fuses.js';
 import { type RecordOptions } from './generateRecordCallArray.js';
 export type RegistrationParameters = {
@@ -47,17 +47,4 @@ export declare const makeCommitmentTuple: ({ name, owner, duration, resolverAddr
 export declare const makeRegistrationTuple: (params: RegistrationParameters) => RegistrationTuple;
 export declare const makeCommitmentFromTuple: (params: CommitmentTuple) => Hex;
 export declare const makeCommitment: (params: RegistrationParameters) => Hex;
-export declare function getRevertErrorData(err: unknown): {
-    errorName: string;
-    args: unknown[];
-} | undefined;
-export type CcipRequestParameters = {
-    data: Hex;
-    sender: Address;
-    urls: readonly string[];
-    signature?: Pick<TypedDataDefinition, 'domain' | 'message'> & {
-        signature: Hex;
-    };
-};
-export declare function ccipRequest({ data, sender, signature, urls, }: CcipRequestParameters): Promise<Response>;
 //# sourceMappingURL=registerHelpers.d.ts.map

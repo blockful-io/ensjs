@@ -1,4 +1,4 @@
-import { encodeAbiParameters, keccak256, labelhash, pad, toBytes, toHex, RawContractError, BaseError, } from 'viem';
+import { encodeAbiParameters, keccak256, labelhash, pad, toBytes, toHex, } from 'viem';
 import { CampaignReferenceTooLargeError, ResolverAddressRequiredError, } from '../errors/utils.js';
 import { EMPTY_ADDRESS } from './consts.js';
 import { encodeFuses } from './fuses.js';
@@ -83,28 +83,4 @@ export const makeCommitmentFromTuple = (params) => {
     ], params));
 };
 export const makeCommitment = (params) => makeCommitmentFromTuple(makeCommitmentTuple(params));
-export function getRevertErrorData(err) {
-    if (!(err instanceof BaseError))
-        return;
-    const error = err.walk();
-    return error?.data;
-}
-export async function ccipRequest({ data, sender, signature, urls, }) {
-    return Promise.any(urls
-        .map((url) => url.replace('/{sender}/{data}.json', ''))
-        .map(async (url) => {
-        return fetch(url, {
-            body: JSON.stringify({
-                data,
-                sender,
-                signature,
-            }, (_, value) => typeof value === 'bigint' ? value.toString() : value),
-            method: 'POST',
-            headers: {
-                /* eslint-disable-next-line @typescript-eslint/naming-convention */
-                'Content-Type': 'application/json',
-            },
-        });
-    }));
-}
 //# sourceMappingURL=registerHelpers.js.map

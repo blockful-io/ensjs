@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ccipRequest = exports.getRevertErrorData = exports.makeCommitment = exports.makeCommitmentFromTuple = exports.makeRegistrationTuple = exports.makeCommitmentTuple = exports.randomSecret = void 0;
+exports.makeCommitment = exports.makeCommitmentFromTuple = exports.makeRegistrationTuple = exports.makeCommitmentTuple = exports.randomSecret = void 0;
 const viem_1 = require("viem");
 const utils_js_1 = require("../errors/utils.js");
 const consts_js_1 = require("./consts.js");
@@ -90,29 +90,4 @@ const makeCommitmentFromTuple = (params) => {
 exports.makeCommitmentFromTuple = makeCommitmentFromTuple;
 const makeCommitment = (params) => (0, exports.makeCommitmentFromTuple)((0, exports.makeCommitmentTuple)(params));
 exports.makeCommitment = makeCommitment;
-function getRevertErrorData(err) {
-    if (!(err instanceof viem_1.BaseError))
-        return;
-    const error = err.walk();
-    return error?.data;
-}
-exports.getRevertErrorData = getRevertErrorData;
-async function ccipRequest({ data, sender, signature, urls, }) {
-    return Promise.any(urls
-        .map((url) => url.replace('/{sender}/{data}.json', ''))
-        .map(async (url) => {
-        return fetch(url, {
-            body: JSON.stringify({
-                data,
-                sender,
-                signature,
-            }, (_, value) => typeof value === 'bigint' ? value.toString() : value),
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        });
-    }));
-}
-exports.ccipRequest = ccipRequest;
 //# sourceMappingURL=registerHelpers.js.map

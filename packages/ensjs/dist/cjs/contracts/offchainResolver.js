@@ -1,7 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.offchainTransferrableSnippet = exports.offchainCommitableSnippet = exports.offchainRegisterSnippet = exports.operationRouterSnippet = exports.WILDCARD_WRITING_INTERFACE_ID = void 0;
-exports.WILDCARD_WRITING_INTERFACE_ID = '0x79dc93d7';
+exports.offchainTransferrableSnippet = exports.offchainCommitableSnippet = exports.offchainRegisterSnippet = exports.operationRouterSnippet = void 0;
 exports.operationRouterSnippet = [
     {
         type: 'error',

@@ -12,5 +12,5 @@ export { publicResolverAbiSnippet, publicResolverClearRecordsSnippet, publicReso
 export { registryOwnerSnippet, registryResolverSnippet, registrySetApprovalForAllSnippet, registrySetOwnerSnippet, registrySetRecordSnippet, registrySetResolverSnippet, registrySetSubnodeOwnerSnippet, registrySetSubnodeRecordSnippet, } from './registry.js';
 export { reverseRegistrarSetNameForAddrSnippet, reverseRegistrarSetNameSnippet, } from './reverseRegistrar.js';
 export { universalResolverErrors, universalResolverFindResolverSnippet, universalResolverResolveArraySnippet, universalResolverResolveSnippet, universalResolverReverseSnippet, } from './universalResolver.js';
-export { offchainRegisterSnippet, offchainCommitableSnippet, offchainTransferrableSnippet, WILDCARD_WRITING_INTERFACE_ID, type DomainData, type MessageData, } from './offchainResolver.js';
+export { offchainRegisterSnippet, offchainCommitableSnippet, offchainTransferrableSnippet, type DomainData, type MessageData, } from './offchainResolver.js';
 //# sourceMappingURL=index.d.ts.map
