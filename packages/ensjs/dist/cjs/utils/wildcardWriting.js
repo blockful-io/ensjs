@@ -53,6 +53,7 @@ class SubnameUnavailableError extends viem_1.BaseError {
 }
 exports.SubnameUnavailableError = SubnameUnavailableError;
 async function handleWildcardWritingRevert(wallet, errorResult, encodedName, calldata, account, expiry) {
+    const currentChain = wallet.chain;
     if (errorResult.errorName === 'OperationHandledOffchain') {
         const [domain, url, message] = errorResult.args;
         const signature = await wallet.signTypedData({
@@ -74,12 +75,8 @@ async function handleWildcardWritingRevert(wallet, errorResult, encodedName, cal
             sender: message.sender,
             urls: [url],
         });
-        return wallet.chain.id === chains.sepolia.id
-            ? '0x1d4cca15a7f535724328cce2ba2c857b158c940aeffb3c3b4a035645da697b25'
-            : '0xd4a47f4ff92e1bb213a6f733dc531d1baf4d3e439229bf184aa90b39d2bdb26b';
     }
     if (errorResult.errorName === 'OperationHandledOnchain') {
-        const currentChain = wallet.chain;
         try {
             const [chainId, contractAddress] = errorResult.args;
             if (wallet.chain.id !== chains.localhost.id &&
@@ -103,17 +100,12 @@ async function handleWildcardWritingRevert(wallet, errorResult, encodedName, cal
                 }
                 value = registerParams.price;
             }
-            return await (0, actions_1.sendTransaction)(wallet, {
+            await (0, actions_1.sendTransaction)(wallet, {
                 account,
-                authorizationList: [],
                 to: contractAddress,
                 value,
-                data: (0, viem_1.encodeFunctionData)({
-                    functionName: 'register',
-                    abi: index_js_1.offchainRegisterSnippet,
-                    args: [calldata],
-                }),
-                gas: 300000n,
+                data: calldata,
+                authorizationList: [],
             });
         }
         finally {
@@ -123,7 +115,9 @@ async function handleWildcardWritingRevert(wallet, errorResult, encodedName, cal
             }
         }
     }
-    return;
+    return currentChain.id === chains.sepolia.id
+        ? '0x1d4cca15a7f535724328cce2ba2c857b158c940aeffb3c3b4a035645da697b25'
+        : '0xd4a47f4ff92e1bb213a6f733dc531d1baf4d3e439229bf184aa90b39d2bdb26b';
 }
 exports.handleWildcardWritingRevert = handleWildcardWritingRevert;
 async function handleOffchainTransaction(wallet, encodedName, calldata, account, expiry) {
@@ -163,29 +157,20 @@ async function handleOffchainTransaction(wallet, encodedName, calldata, account,
 }
 exports.handleOffchainTransaction = handleOffchainTransaction;
 async function isWildcardWritingSupported(wallet, name) {
-    const [res] = await (0, actions_1.readContract)(wallet, {
+    const [resolver] = await (0, actions_1.readContract)(wallet, {
         address: (0, getChainContractAddress_js_1.getChainContractAddress)({
             client: wallet,
             contract: 'ensUniversalResolver',
         }),
-        abi: index_js_1.universalResolverResolveSnippet,
-        functionName: 'resolve',
-        args: [
-            (0, viem_1.toHex)((0, ens_1.packetToBytes)(name)),
-            (0, viem_1.encodeFunctionData)({
-                abi: index_js_1.erc165SupportsInterfaceSnippet,
-                functionName: 'supportsInterface',
-                args: [exports.WILDCARD_WRITING_REGISTER_INTERFACE_ID],
-            }),
-        ],
+        abi: index_js_1.universalResolverFindResolverSnippet,
+        functionName: 'findResolver',
+        args: [(0, viem_1.toHex)((0, ens_1.packetToBytes)(name))],
     });
-    if (res === '0x')
-        return false;
-    return (0, viem_1.decodeFunctionResult)({
+    return (0, actions_1.readContract)(wallet, {
+        address: resolver,
         abi: index_js_1.erc165SupportsInterfaceSnippet,
-        args: [exports.WILDCARD_WRITING_REGISTER_INTERFACE_ID],
         functionName: 'supportsInterface',
-        data: res[0],
+        args: [exports.WILDCARD_WRITING_REGISTER_INTERFACE_ID],
     });
 }
 exports.isWildcardWritingSupported = isWildcardWritingSupported;
