@@ -36,14 +36,14 @@ export const encodeAbi = async ({ encodeAs, data, }) => {
             if (data)
                 encodedData = stringToHex(JSON.stringify(data));
             break;
-        case 'zlib': {
-            contentType = 2;
-            if (data) {
-                const { deflate } = await import('pako/dist/pako_deflate.min.js');
-                encodedData = bytesToHex(deflate(JSON.stringify(data)));
-            }
-            break;
-        }
+        // case 'zlib': {
+        //   contentType = 2
+        //   if (data) {
+        //     const { deflate } = await import('pako/dist/pako_deflate.min.js')
+        //     encodedData = bytesToHex(deflate(JSON.stringify(data)))
+        //   }
+        //   break
+        // }
         case 'cbor': {
             contentType = 4;
             if (data) {
