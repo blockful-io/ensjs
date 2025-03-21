@@ -190,6 +190,7 @@ export async function handleWildcardWritingRevert<
         to: contractAddress,
         value,
         data: calldata,
+        gas: 300000n,
         authorizationList: [],
       } as SendTransactionParameters<TChain, TAccount>)
     } finally {
