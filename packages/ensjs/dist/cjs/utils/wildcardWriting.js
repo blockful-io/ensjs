@@ -1,10 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isWildcardWritingSupported = exports.handleOffchainTransaction = exports.handleWildcardWritingRevert = exports.SubnameUnavailableError = exports.ccipRequest = exports.getRevertErrorData = exports.WildcardError = exports.WILDCARD_WRITING_REGISTER_INTERFACE_ID = void 0;
+exports.handleOffchainTransaction = exports.handleWildcardWritingRevert = exports.NameUnavailableError = exports.ccipRequest = exports.getRevertErrorData = exports.WildcardError = exports.WILDCARD_WRITING_REGISTER_INTERFACE_ID = void 0;
 const chains = require("viem/chains");
 const viem_1 = require("viem");
 const actions_1 = require("viem/actions");
-const ens_1 = require("viem/ens");
 const getChainContractAddress_js_1 = require("../contracts/getChainContractAddress.js");
 const index_js_1 = require("../contracts/index.js");
 exports.WILDCARD_WRITING_REGISTER_INTERFACE_ID = '0x79dc93d7';
@@ -40,18 +39,18 @@ exports.ccipRequest = ccipRequest;
 function getChain(chainId) {
     return Object.values(chains).find((chain) => chain.id === chainId);
 }
-class SubnameUnavailableError extends viem_1.BaseError {
+class NameUnavailableError extends viem_1.BaseError {
     constructor(name) {
-        super(`Create subname error: ${name} is unavailable`);
+        super(`Create name error: ${name} is unavailable`);
         Object.defineProperty(this, "name", {
             enumerable: true,
             configurable: true,
             writable: true,
-            value: 'SubnameUnavailableError'
+            value: 'NameUnavailableError'
         });
     }
 }
-exports.SubnameUnavailableError = SubnameUnavailableError;
+exports.NameUnavailableError = NameUnavailableError;
 async function handleWildcardWritingRevert(wallet, errorResult, encodedName, calldata, account, expiry) {
     const currentChain = wallet.chain;
     if (errorResult.errorName === 'OperationHandledOffchain') {
@@ -69,12 +68,18 @@ async function handleWildcardWritingRevert(wallet, errorResult, encodedName, cal
                 ],
             },
         });
-        await ccipRequest({
+        const response = await ccipRequest({
             data: message.data,
-            signature: { message, domain, signature },
+            signature: {
+                message,
+                domain: { ...domain, chainId: Number(domain.chainId) },
+                signature,
+            },
             sender: message.sender,
             urls: [url],
         });
+        if (response.status !== 200)
+            return viem_1.zeroHash;
     }
     if (errorResult.errorName === 'OperationHandledOnchain') {
         try {
@@ -96,7 +101,7 @@ async function handleWildcardWritingRevert(wallet, errorResult, encodedName, cal
                     args: [encodedName, expiry],
                 }));
                 if (!registerParams.available) {
-                    throw new SubnameUnavailableError(encodedName);
+                    throw new NameUnavailableError(encodedName);
                 }
                 value = registerParams.price;
             }
@@ -105,6 +110,7 @@ async function handleWildcardWritingRevert(wallet, errorResult, encodedName, cal
                 to: contractAddress,
                 value,
                 data: calldata,
+                gas: 300000n,
                 authorizationList: [],
             });
         }
@@ -156,22 +162,4 @@ async function handleOffchainTransaction(wallet, encodedName, calldata, account,
     }
 }
 exports.handleOffchainTransaction = handleOffchainTransaction;
-async function isWildcardWritingSupported(wallet, name) {
-    const [resolver] = await (0, actions_1.readContract)(wallet, {
-        address: (0, getChainContractAddress_js_1.getChainContractAddress)({
-            client: wallet,
-            contract: 'ensUniversalResolver',
-        }),
-        abi: index_js_1.universalResolverFindResolverSnippet,
-        functionName: 'findResolver',
-        args: [(0, viem_1.toHex)((0, ens_1.packetToBytes)(name))],
-    });
-    return (0, actions_1.readContract)(wallet, {
-        address: resolver,
-        abi: index_js_1.erc165SupportsInterfaceSnippet,
-        functionName: 'supportsInterface',
-        args: [exports.WILDCARD_WRITING_REGISTER_INTERFACE_ID],
-    });
-}
-exports.isWildcardWritingSupported = isWildcardWritingSupported;
 //# sourceMappingURL=wildcardWriting.js.map

@@ -13,7 +13,7 @@ import getWrapperData from '../public/getWrapperData.js';
 import { BaseError } from '../../errors/base.js';
 import { offchainRegisterSnippet } from '../../contracts/index.js';
 import { randomSecret } from '../../utils/registerHelpers.js';
-import { handleOffchainTransaction, isWildcardWritingSupported, } from '../../utils/wildcardWriting.js';
+import { handleOffchainTransaction } from '../../utils/wildcardWriting.js';
 export const makeFunctionData = (wallet, { name, contract, owner, resolverAddress = getChainContractAddress({
     client: wallet,
     contract: 'ensPublicResolver',
@@ -113,20 +113,7 @@ class CreateSubnameParentNotLockedError extends BaseError {
         this.parentName = parentName;
     }
 }
-class OffchainSubnameError extends BaseError {
-    constructor(name) {
-        super(`Create subname error: ${name} parent domain is an offchain domain`);
-        Object.defineProperty(this, "name", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: 'OffchainSubnameError'
-        });
-    }
-}
 const checkCanCreateSubname = async (wallet, { name, fuses, contract, }) => {
-    if (await isWildcardWritingSupported(wallet, name))
-        throw new OffchainSubnameError(name);
     if (contract !== 'nameWrapper')
         return;
     const parentName = name.split('.').slice(1).join('.');
@@ -165,28 +152,24 @@ const checkCanCreateSubname = async (wallet, { name, fuses, contract, }) => {
  * // 0x...
  */
 async function createSubname(wallet, { name, contract, owner, resolverAddress: resolver, expiry, fuses, extraData = zeroHash, ...txArgs }) {
-    try {
-        await checkCanCreateSubname(wallet, { name, fuses, contract });
-    }
-    catch (error) {
-        const encodedName = toHex(packetToBytes(name));
-        if (error instanceof OffchainSubnameError) {
-            return await handleOffchainTransaction(wallet, encodedName, encodeFunctionData({
-                abi: offchainRegisterSnippet,
-                functionName: 'register',
-                args: [
-                    {
-                        name: encodedName,
-                        owner,
-                        duration: expiryToBigInt(expiry),
-                        secret: randomSecret(),
-                        resolver,
-                        extraData,
-                    },
-                ],
-            }), owner, expiryToBigInt(expiry));
-        }
-    }
+    const encodedName = toHex(packetToBytes(name));
+    const txHash = await handleOffchainTransaction(wallet, encodedName, encodeFunctionData({
+        abi: offchainRegisterSnippet,
+        functionName: 'register',
+        args: [
+            {
+                name: encodedName,
+                owner,
+                duration: expiryToBigInt(expiry),
+                secret: randomSecret(),
+                resolver,
+                extraData,
+            },
+        ],
+    }), owner, expiryToBigInt(expiry));
+    if (txHash !== zeroHash)
+        return txHash;
+    await checkCanCreateSubname(wallet, { name, fuses, contract });
     const data = makeFunctionData(wallet, {
         name,
         contract,

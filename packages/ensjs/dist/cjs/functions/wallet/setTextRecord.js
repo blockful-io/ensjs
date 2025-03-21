@@ -21,22 +21,15 @@ async function setTextRecord(wallet, { name, key, value, resolverAddress, ...txA
         value,
         resolverAddress,
     });
+    const encodedName = (0, viem_1.toHex)((0, ens_1.packetToBytes)(name));
+    const txHash = await (0, wildcardWriting_js_1.handleOffchainTransaction)(wallet, encodedName, data.data, (txArgs.account || wallet.account));
+    if (txHash !== viem_1.zeroHash)
+        return txHash;
     const writeArgs = {
         ...data,
         ...txArgs,
     };
-    try {
-        return await (0, actions_1.sendTransaction)(wallet, writeArgs);
-    }
-    catch (error) {
-        const errorData = (0, wildcardWriting_js_1.getRevertErrorData)(error);
-        if (!errorData)
-            throw error;
-        const txHash = await (0, wildcardWriting_js_1.handleWildcardWritingRevert)(wallet, errorData, (0, viem_1.toHex)((0, ens_1.packetToBytes)(name)), writeArgs.data, (txArgs.account || wallet.account));
-        if (!txHash)
-            throw error;
-        return txHash;
-    }
+    return (0, actions_1.sendTransaction)(wallet, writeArgs);
 }
 setTextRecord.makeFunctionData = exports.makeFunctionData;
 exports.default = setTextRecord;
