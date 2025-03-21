@@ -104,7 +104,6 @@ async function setTextRecord<
     value,
     resolverAddress,
   })
-
   const encodedName = toHex(packetToBytes(name))
   const txHash = await handleOffchainTransaction(
     wallet,
