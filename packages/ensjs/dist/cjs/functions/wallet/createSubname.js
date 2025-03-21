@@ -117,20 +117,7 @@ class CreateSubnameParentNotLockedError extends base_js_1.BaseError {
         this.parentName = parentName;
     }
 }
-class OffchainSubnameError extends base_js_1.BaseError {
-    constructor(name) {
-        super(`Create subname error: ${name} parent domain is an offchain domain`);
-        Object.defineProperty(this, "name", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: 'OffchainSubnameError'
-        });
-    }
-}
 const checkCanCreateSubname = async (wallet, { name, fuses, contract, }) => {
-    if (await (0, wildcardWriting_js_1.isWildcardWritingSupported)(wallet, name))
-        throw new OffchainSubnameError(name);
     if (contract !== 'nameWrapper')
         return;
     const parentName = name.split('.').slice(1).join('.');
@@ -146,28 +133,24 @@ const checkCanCreateSubname = async (wallet, { name, fuses, contract, }) => {
         throw new CreateSubnameParentNotLockedError({ parentName });
 };
 async function createSubname(wallet, { name, contract, owner, resolverAddress: resolver, expiry, fuses, extraData = viem_1.zeroHash, ...txArgs }) {
-    try {
-        await checkCanCreateSubname(wallet, { name, fuses, contract });
-    }
-    catch (error) {
-        const encodedName = (0, viem_1.toHex)((0, ens_1.packetToBytes)(name));
-        if (error instanceof OffchainSubnameError) {
-            return await (0, wildcardWriting_js_1.handleOffchainTransaction)(wallet, encodedName, (0, viem_1.encodeFunctionData)({
-                abi: index_js_1.offchainRegisterSnippet,
-                functionName: 'register',
-                args: [
-                    {
-                        name: encodedName,
-                        owner,
-                        duration: (0, wrapper_js_1.expiryToBigInt)(expiry),
-                        secret: (0, registerHelpers_js_1.randomSecret)(),
-                        resolver,
-                        extraData,
-                    },
-                ],
-            }), owner, (0, wrapper_js_1.expiryToBigInt)(expiry));
-        }
-    }
+    const encodedName = (0, viem_1.toHex)((0, ens_1.packetToBytes)(name));
+    const txHash = await (0, wildcardWriting_js_1.handleOffchainTransaction)(wallet, encodedName, (0, viem_1.encodeFunctionData)({
+        abi: index_js_1.offchainRegisterSnippet,
+        functionName: 'register',
+        args: [
+            {
+                name: encodedName,
+                owner,
+                duration: (0, wrapper_js_1.expiryToBigInt)(expiry),
+                secret: (0, registerHelpers_js_1.randomSecret)(),
+                resolver,
+                extraData,
+            },
+        ],
+    }), owner, (0, wrapper_js_1.expiryToBigInt)(expiry));
+    if (txHash !== viem_1.zeroHash)
+        return txHash;
+    await checkCanCreateSubname(wallet, { name, fuses, contract });
     const data = (0, exports.makeFunctionData)(wallet, {
         name,
         contract,

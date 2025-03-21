@@ -1,9 +1,8 @@
 import * as chains from 'viem/chains';
-import { decodeErrorResult, zeroHash, encodeFunctionData, BaseError, toHex, } from 'viem';
+import { decodeErrorResult, zeroHash, encodeFunctionData, BaseError, } from 'viem';
 import { readContract, sendTransaction } from 'viem/actions';
-import { packetToBytes } from 'viem/ens';
 import { getChainContractAddress } from '../contracts/getChainContractAddress.js';
-import { offchainRegisterSnippet, universalResolverResolveSnippet, erc165SupportsInterfaceSnippet, universalResolverFindResolverSnippet, } from '../contracts/index.js';
+import { offchainRegisterSnippet, universalResolverResolveSnippet, } from '../contracts/index.js';
 export const WILDCARD_WRITING_REGISTER_INTERFACE_ID = '0x79dc93d7';
 const WILDCARD_WRITING_REGISTER_SELECTOR = '0xf43c313a';
 export class WildcardError extends BaseError {
@@ -35,14 +34,14 @@ export async function ccipRequest({ data, sender, signature, urls, }) {
 function getChain(chainId) {
     return Object.values(chains).find((chain) => chain.id === chainId);
 }
-export class SubnameUnavailableError extends BaseError {
+export class NameUnavailableError extends BaseError {
     constructor(name) {
-        super(`Create subname error: ${name} is unavailable`);
+        super(`Create name error: ${name} is unavailable`);
         Object.defineProperty(this, "name", {
             enumerable: true,
             configurable: true,
             writable: true,
-            value: 'SubnameUnavailableError'
+            value: 'NameUnavailableError'
         });
     }
 }
@@ -63,12 +62,18 @@ export async function handleWildcardWritingRevert(wallet, errorResult, encodedNa
                 ],
             },
         });
-        await ccipRequest({
+        const response = await ccipRequest({
             data: message.data,
-            signature: { message, domain, signature },
+            signature: {
+                message,
+                domain: { ...domain, chainId: Number(domain.chainId) },
+                signature,
+            },
             sender: message.sender,
             urls: [url],
         });
+        if (response.status !== 200)
+            return zeroHash;
     }
     if (errorResult.errorName === 'OperationHandledOnchain') {
         try {
@@ -90,7 +95,7 @@ export async function handleWildcardWritingRevert(wallet, errorResult, encodedNa
                     args: [encodedName, expiry],
                 }));
                 if (!registerParams.available) {
-                    throw new SubnameUnavailableError(encodedName);
+                    throw new NameUnavailableError(encodedName);
                 }
                 value = registerParams.price;
             }
@@ -99,6 +104,7 @@ export async function handleWildcardWritingRevert(wallet, errorResult, encodedNa
                 to: contractAddress,
                 value,
                 data: calldata,
+                gas: 300000n,
                 authorizationList: [],
             });
         }
@@ -148,29 +154,5 @@ export async function handleOffchainTransaction(wallet, encodedName, calldata, a
             throw offchainError;
         return txHash;
     }
-}
-/**
- * Checks whether the ENSIP-20 Wildcard Writing is supported by a given domain's resolver.
- *
- * @param wallet - The wallet client with account information
- * @param name - The domain to gather the resolver for
- * @returns True if the ENSIP-20 Wildcard Writing is supported, false otherwise
- */
-export async function isWildcardWritingSupported(wallet, name) {
-    const [resolver] = await readContract(wallet, {
-        address: getChainContractAddress({
-            client: wallet,
-            contract: 'ensUniversalResolver',
-        }),
-        abi: universalResolverFindResolverSnippet,
-        functionName: 'findResolver',
-        args: [toHex(packetToBytes(name))],
-    });
-    return readContract(wallet, {
-        address: resolver,
-        abi: erc165SupportsInterfaceSnippet,
-        functionName: 'supportsInterface',
-        args: [WILDCARD_WRITING_REGISTER_INTERFACE_ID],
-    });
 }
 //# sourceMappingURL=wildcardWriting.js.map
