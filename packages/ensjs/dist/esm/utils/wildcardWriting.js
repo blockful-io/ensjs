@@ -100,12 +100,9 @@ export async function handleWildcardWritingRevert(wallet, errorResult, encodedNa
                 value = registerParams.price;
             }
             await sendTransaction(wallet, {
-                account,
                 to: contractAddress,
                 value,
                 data: calldata,
-                gas: 300000n,
-                authorizationList: [],
             });
         }
         finally {
