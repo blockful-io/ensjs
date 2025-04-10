@@ -81,14 +81,14 @@ const decode = async (
         decoded = true
         break
       // zlib compressed JSON
-      case 2: {
-        const { inflate } = await import('pako/dist/pako_inflate.min.js')
-        abiData = JSON.parse(
-          inflate(hexToBytes(encodedAbiData), { to: 'string' }),
-        )
-        decoded = true
-        break
-      }
+      // case 2: {
+      //   const { inflate } = await import('pako/dist/pako_inflate.min.js')
+      //   abiData = JSON.parse(
+      //     inflate(hexToBytes(encodedAbiData), { to: 'string' }),
+      //   )
+      //   decoded = true
+      //   break
+      // }
       // CBOR
       case 4: {
         const { cborDecode } = await import('@ensdomains/address-encoder/utils')

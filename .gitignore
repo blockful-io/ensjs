@@ -5,6 +5,7 @@ node_modules/
 .env
 
 dist/
+!packages/ensjs/dist
 archives/
 data/
 
